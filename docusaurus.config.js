@@ -9,7 +9,7 @@ const sidebarTransform = require("./src/utils/sidebarTransform");
 const config = {
   title: "JcJian's fontend document",
   tagline: "构建前端知识体系",
-  url: "https://your-docusaurus-test-site.com",
+  url: "https://fontend-document.vercel.app/",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -38,7 +38,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+            "https://github.com/jianjiachenghub/fontend-document/tree/main/",
           async sidebarItemsGenerator({
             defaultSidebarItemsGenerator,
             ...args
@@ -46,6 +46,7 @@ const config = {
             const sidebarItems = await defaultSidebarItemsGenerator({
               ...args,
             });
+            // console.log('1111', sidebarItems)
             sidebarTransform(sidebarItems);
             return sidebarItems;
           },
@@ -55,7 +56,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+            "https://github.com/jianjiachenghub/fontend-document/tree/main/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -68,20 +69,20 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: "My Site",
+        title: "JcJian's Site",
         logo: {
           alt: "My Site Logo",
           src: "img/logo.svg",
         },
         items: [
-          ...require("./src/utils/files.js").navbars,
           {
             to: "blog",
             label: "博客",
             position: "left",
           },
+          ...require("./src/utils/files.js").navbars,
           {
-            href: "https://github.com/facebook/docusaurus",
+            href: "https://github.com/jianjiachenghub/fontend-document",
             label: "GitHub",
             position: "right",
           },
@@ -94,16 +95,8 @@ const config = {
             title: "Community",
             items: [
               {
-                label: "Stack Overflow",
-                href: "https://stackoverflow.com/questions/tagged/docusaurus",
-              },
-              {
-                label: "Discord",
-                href: "https://discordapp.com/invite/docusaurus",
-              },
-              {
-                label: "Twitter",
-                href: "https://twitter.com/docusaurus",
+                label: "segmentfault",
+                href: "https://segmentfault.com/u/ipromise/articles?sort=votes",
               },
             ],
           },
@@ -111,17 +104,17 @@ const config = {
             title: "More",
             items: [
               {
-                label: "Blog",
-                to: "/blog",
+                label: "GitHub",
+                href: "https://github.com/jianjiachenghub/",
               },
               {
-                label: "GitHub",
-                href: "https://github.com/facebook/docusaurus",
-              },
+                label: "Blog",
+                to: "/blog",
+              }
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        // copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
