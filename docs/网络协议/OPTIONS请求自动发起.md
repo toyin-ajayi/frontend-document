@@ -52,22 +52,22 @@
 
 ## 预检请求头 request header 的关键字段：
 
-<img src='./img/预检请求头关键字段.png' />
-<img src='./img/预检请求头的关键字段.png' />
+![图片加载失败](./img/预检请求头关键字段.png)
+![图片加载失败](./img/预检请求头的关键字段.png)
 
 ## 预检响应头 response header 的关键字段
 
-<img src='./img/options.png' />
+![图片加载失败](./img/options.png)
  
 Access-Control-Allow-Credentials: true 只是服务端允许接收客户端的cookie，但是跨域的时候ajax请求默认是不带cookie的，就很坑，你需要手动开启xhr.withCredentials = true;
 
-<img src='./img/预请求.png' />
+![图片加载失败](./img/预请求.png)
 
 ## 两张流程图
 
-<img src='./img/OPTIONS预请求流程.png' width='100%' />
+![图片加载失败](./img/OPTIONS预请求流程.png)
 
-<img src='./img/OPTIONS详细过程.png' />
+![图片加载失败](./img/OPTIONS详细过程.png)
 
 ## 重定向 CORS 跨域请求
 - 非简单请求不可重定向，包括第一个preflight请求和第二个真正的请求都不行。

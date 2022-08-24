@@ -197,7 +197,7 @@ npm安装时，不会修改package.json与package-lock.json。
 node 如何共享 node_modules 呢？像 python 那样 site-packages，或者 Go 那样。
 前端开发时每个项目都下一个好大呀。。。
 
-<img src='./node_modules无底洞.png' />
+![图片加载失败](./node_modules无底洞.png)
 
 ## 参考
 - https://juejin.im/post/5d08d3d3f265da1b7e103a4d

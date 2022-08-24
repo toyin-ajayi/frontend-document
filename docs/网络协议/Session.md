@@ -36,7 +36,7 @@ Cookie 是有大小限制和数量限制的，并且越来越多的 Cookie 代�
 - 如果已包含这个 sessionId，则说明以前已经为此客户端创建过 session，服务器就按照 sessionId 把这个 session 检索出来使用（如果检索不到，可能会新建一个）
 - 如果客户端请求不包含 sessionId，则为此客户端创建一个 session 并且生成一个与此 session 相关联的 sessionId
 
-<img src='./img/SessionID.png' />
+![图片加载失败](./img/SessionID.png)
 
 ## session 的销毁
 
@@ -63,7 +63,7 @@ tomcat 中 session 的默认失效时间为 30 分钟，可调用调用 session 
 
 ## Session 对比 Cookie
 
-<img src='./img/cookie与session对比1.png' />
+![图片加载失败](./img/cookie与session对比1.png)
 
 ### 存储位置不同
 
@@ -111,7 +111,7 @@ tomcat 中 session 的默认失效时间为 30 分钟，可调用调用 session 
 
 ### 详细对比图
 
-<img src='./img/Cookie与Session详细对比.jpg' />
+![图片加载失败](./img/Cookie与Session详细对比.jpg)
 
 ## 为什么 session 在关闭浏览器后就失效了呢？
 

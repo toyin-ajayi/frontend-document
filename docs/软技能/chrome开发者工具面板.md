@@ -74,7 +74,7 @@ cmd + shift + p 执行Command命令
 
 ## 面板
 
-<img src="./img/chrome面板.png" />
+![图片加载失败](./img/chrome面板.png)
 
 ### 使用Chrome performance 面板监控
 >https://blog.csdn.net/weixin_44135121/article/details/103998869

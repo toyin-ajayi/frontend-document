@@ -8,7 +8,7 @@
 
 - Cookie与Session都能够进行会话跟踪，但是完成的原理不太一样。
   
-  <img src='./img/cookie与session.png' />
+  ![图片加载失败](./img/cookie与session.png)
 
 ### Cookie
 
@@ -19,19 +19,19 @@ cookie 是服务器发送到用户浏览器并保存在本地的一小块数据�
 Set-Cookie: logcookie=3qjj; expires=Wed, 13-Mar-2019 12:08:53 GMT; Max-Age=31536000; path=/;
  domain=fafa.com;secure; HttpOnly;
 ```
-<img src='./img/Cookie流程1.png' />
-<img src='./img/Cookie流程2.png' />
+![图片加载失败](./img/Cookie流程1.png)
+![图片加载失败](./img/Cookie流程2.png)
 
 ### Session
 
 服务端执行session机制时候会生成session的id值，这个id值会发送给客户端，客户端每次请求都会把这个id值放到http请求的头部发送给服务端，而这个id值在客户端会保存下来，保存的容器就是cookie，因此当我们完全禁掉浏览器的cookie的时候，服务端的session也会不能正常使用。
 
-<img src='./img/Session流程.png' />
+![图片加载失败](./img/Session流程.png)
 
 
 ## Cookie与Session对比
 
-<img src='./img/cookie与session对比.png' />
+![图片加载失败](./img/cookie与session对比.png)
 
 ## 为什么Session比Cookie安全
 >加盐加密：加盐加密是一种对系统登录口令的加密方式，它实现的方式是将每一个口令跟一个n位随机数相关联，这个n位随机数叫做”盐“（salt）。
@@ -54,10 +54,10 @@ Acesss Token
   - 支持跨程序调用
 - token 的身份验证流程：
 
-<img src='./img/token验证.png' />
+![图片加载失败](./img/token验证.png)
 
 
-<img src='./img/token.png' />
+![图片加载失败](./img/token.png)
 
 ## JWT
 >阮一峰:http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html
@@ -162,7 +162,7 @@ fetch('api/user/1', {
 })
 ```
 
-<img src='./img/JWT.png' />
+![图片加载失败](./img/JWT.png)
 
 JWT使用场景：A 网站和 B 网站是同一家公司的关联服务。现在要求，用户只要在其中一个网站登录，再访问另一个网站就会自动登录，就可以使用JWT，因为登录的信息全部都存在客户端，多个服务端只需要一套相同的逻辑即可
 
@@ -200,4 +200,4 @@ JWT使用场景：A 网站和 B 网站是同一家公司的关联服务。现在
 
 ## Cookie对比Storage
 
-<img src='./img/cookie对比storage.png' />
+![图片加载失败](./img/cookie对比storage.png)

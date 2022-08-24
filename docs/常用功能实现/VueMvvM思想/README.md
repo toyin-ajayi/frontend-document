@@ -24,7 +24,7 @@ MVVM是Model-View-ViewModel的缩写。mvvm是一种设计思想。Model 层代�
 
 ####  由于每个订阅的函数都把要操作的节点的堆地址缓存了起来，vue好像就不用想react那样diff节点，而是类似于依赖追踪的感觉，直接能找到需要更新的节点
 
-<img src='./VueMvvM.png' />
+![图片加载失败](./VueMvvM.png)
 
 
 ## 实例来源

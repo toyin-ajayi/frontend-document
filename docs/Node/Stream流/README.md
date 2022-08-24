@@ -70,7 +70,7 @@ glup这个打包工具也是大量使用转换流来进行操作的。
 
 ## 流事件和方法
 
-<img src="./img/../../img/流的方法和事件.png" />
+![图片加载失败](./img/../../img/流的方法和事件.png)
 
 ```
 let readStream=fs.createReadStream('./test/b.js');

@@ -4,9 +4,9 @@
 - WebApp:就是在浏览器中运行的 web 应用
 - NativeApp:用 android 和 Object-C 等原生语言开发的应用
 - HybridApp:就是外面是原生的壳，里面是 webapp 应用，兼具 2 者的优势
-  <img src='./img/四大App开发框架对比.png' />
+  ![图片加载失败](./img/四大App开发框架对比.png)
   综合评价
-  <img src='./img/三大App开发框架对比.png' />
+  ![图片加载失败](./img/三大App开发框架对比.png)
 
 ## Hybrid APP 是什么
 
@@ -37,7 +37,7 @@ Webview 是 Native App 中内置的一款基于 Webkit 内核 的浏览器，主
 
 在原生开发 SDK 中 Webview 被封装成了一个组件，用于作为 Web 页面 的容器。因此，作为宿主的客户端中拥有更高的权限，可以对 Webview 中的 Web 页面 进行配置和开发。
 
-<img src='./img/WebviewH5.png' />
+![图片加载失败](./img/WebviewH5.png)
 
 ## Hybrid APP 实现方案
 
@@ -67,19 +67,19 @@ Webview 是 Native App 中内置的一款基于 Webkit 内核 的浏览器，主
 - 在 iOS 上，小程序的 javascript 代码是运行在 JavaScriptCore 中，是由 WKWebView 来渲染的，环境有 iOS8、iOS9、iOS10
 - 在 Android 上，小程序的 javascript 代码是通过 X5 JSCore来解析，是由 X5 基于 Mobile Chrome 37 内核来渲染的在 
 - 开发工具上（如微信）， 小程序的 javascript 代码是运行在 nwjs 中，是由 Chrome Webview 来渲染的
-<img src='./img/小程序跨平台对比.png' />
+![图片加载失败](./img/小程序跨平台对比.png)
 
 ### 微信小程序架构
 
 微信小程序的框架包含两部分View视图层(可能存在多个)、App Service逻辑层(一个)，View层用来渲染页面结构
 
-<img src='./img/小程序两个线程.png' />
+![图片加载失败](./img/小程序两个线程.png)
 
 - AppService层用来逻辑处理、数据请求、接口调用，它们在两个线程里运行。
 - 视图层使用WebView渲染，逻辑层使用JSCore运行。
 - 视图层和逻辑层通过系统层的WeixinJsBridage进行通信，逻辑层把数据变化通知到视图层，触发视图层页面更新，视图层把触发的事件通知到逻辑层进行业务处理。
 
-<img src='./img/微信小程序架构.png' />
+![图片加载失败](./img/微信小程序架构.png)
 
 
 ### 小程序特有的双线程设计

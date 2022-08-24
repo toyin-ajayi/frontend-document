@@ -5,7 +5,7 @@ document.documentElement.clientHeight=height + padding \* 2- 滚动条宽度
 - 网页可见区域宽 
 document.documentElement.clientWidth=width + padding \* 2- 滚动条宽度
 
-<img src='./img/clientHeight.png' />
+![图片加载失败](./img/clientHeight.png)
 
 ## 指定元素的总宽高
 
@@ -14,16 +14,16 @@ document.body.offsetHeight= height+border*2+padding*2 = clientHeight + 滚动条
 - 指定元素的总宽度 
 document.body.offsetWidth= width+border*2+padding*2 = clientWidth + 滚动条宽度 + 边框宽度\*2
 
-<img src='./img/offsetHeight.png' />
+![图片加载失败](./img/offsetHeight.png)
 
 ## 滚动宽高
 
 - scrollHeight 的 MDN 解释：元素内容高度的度量，包括由于溢出导致的视图中不可见内容(总高度)
 - 滚动总高度 document.body.scrollHeight
-<img src='./img/scrollHeight.png' />
+![图片加载失败](./img/scrollHeight.png)
 
 - 滚动的高度 document.body.scrollTop
-<img src='./img/scrollTOp.png' />
+![图片加载失败](./img/scrollTOp.png)
 
 - 滚动总宽度 document.body.scrollWidth
 
@@ -56,8 +56,8 @@ document.body.offsetWidth= width+border*2+padding*2 = clientWidth + 滚动条宽
 
 ## 一张完善的图
 
-<img src="./img/网页各种宽高2.gif" />
+![图片加载失败](./img/网页各种宽高2.gif)
 
-<img src='./img/完善的宽高定位图.jpg' />
+![图片加载失败](./img/完善的宽高定位图.jpg)
 
-<img src="./img/mouseEventXY.png" />
+![图片加载失败](./img/mouseEventXY.png)

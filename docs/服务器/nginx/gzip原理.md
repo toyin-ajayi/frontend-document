@@ -103,7 +103,7 @@ a b c d e
 
 建立Huffman树的过程如图：
 
-<img src="./img/哈夫曼树建立.jpg" />
+![图片加载失败](./img/哈夫曼树建立.jpg)
 
 通过最终的Huffman树，我们可以得到每个符号的Huffman编码。
 

@@ -98,11 +98,11 @@ console.log(obj2 + ""); // "true"  -- hint 参数值是 "default"
 
 ### ToNumber 将值转换为数字
 
-<img src='./ToNumber.png' />
+![图片加载失败](./ToNumber.png)
 
 ### 通过 ToString 将值转换为字符串
 
-<img src='./ToString.png' />
+![图片加载失败](./ToString.png)
 
 ### TOBoolean
 
@@ -120,14 +120,14 @@ console.log(obj2 + ""); // "true"  -- hint 参数值是 "default"
 ### 汇总图
 > 来源ConardLi
 
-<img src='./类型转换.png' />
+![图片加载失败](./类型转换.png)
 
 **我们可以稍微记一下,JavaScript中只有7个假值：**
 >https://developer.mozilla.org/zh-CN/docs/Glossary/Falsy
 falsy 值 (虚值) 是在 Boolean 上下文中认定为 false 的值。
 JavaScript 在需要用到布尔类型值的上下文中使用强制类型转换(Type Conversion )将值转换为布尔值，例如条件语句和循环语句。
 
-<img src='./false.png' />
+![图片加载失败](./false.png)
 除了上面的这些值，其他的在转化为bool的时候都是true，有时候直接这样记要好一点
 
 不然很可能绕晕,下面哪些值是 falsy?
@@ -253,4 +253,4 @@ Object.is([1], true); //false
 Object.is(NaN, NaN); //true
 ```
 
-<img src='./Object.is.png' />
+![图片加载失败](./Object.is.png)

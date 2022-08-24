@@ -428,7 +428,7 @@ https://sass-lang.com/documentation/modules
 
 ## 对比
 
-<img src='./sass混合继承对比.jpg' />
+![图片加载失败](./sass混合继承对比.jpg)
 
 ## 插值语句
 

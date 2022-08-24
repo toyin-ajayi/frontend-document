@@ -29,9 +29,9 @@ callback是添加监听后，当目标元素与根元素通过阈值相交时，
 ### 应用1 图片懒加载
 
 ```js
-<img src="placeholder.png" data-src="img-1.jpg" />
-<img src="placeholder.png" data-src="img-2.jpg" />
-<img src="placeholder.png" data-src="img-3.jpg" />
+![图片加载失败](placeholder.png" data-src="img-1.jpg)
+![图片加载失败](placeholder.png" data-src="img-2.jpg)
+![图片加载失败](placeholder.png" data-src="img-3.jpg)
 ```
 ```js
 let observer = new IntersectionObserver((entries, observer) => { 

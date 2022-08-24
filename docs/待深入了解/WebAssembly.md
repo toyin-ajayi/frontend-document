@@ -31,7 +31,7 @@ WASM 让你在其中使用除 JavaScript 的语言以外的语言（比如 C, C+
 
 也就说WebAssembly其实不是一门编程语言，是编译器对不同语言的一种编译目标
 
-<img src='./img/WSAM编译器的编译目标.png' />
+![图片加载失败](./img/WSAM编译器的编译目标.png)
 
 ## 中间代码（Intermediate representation，IR）
 
@@ -44,7 +44,7 @@ WebAssembly 是一种“虚拟机器语言”，所以它也有对应的“汇�
 ## WebAssembly的 wat文件
 
 由于字节码对宿主环境的编译器友好，但对于编程开发人员却无法分析解读，所以提供的一种可读的文本格式
-<img src='./img/WAT.png' />
+![图片加载失败](./img/WAT.png)
 
 ## Java虚拟机 与 WebAssembly
 
@@ -94,7 +94,7 @@ function asmJs() {
 
 为了能让代码跑得更快，WebAssembly 出现了（并且现在主流浏览器也都开始支持了），它能够允许你预先使用“编译”的方法将代码编译好后，直接放在浏览器中运行，这一步就做得比较彻底了，不再需要 JIT 来动态得进行优化了，所有优化都可以在编译的时候直接确定。
 
-<img src='./img/asmjs与WebAssembly性能对比.png' />
+![图片加载失败](./img/asmjs与WebAssembly性能对比.png)
 
 ### WebAssembly并不是Assembly（汇编）
 
@@ -121,7 +121,7 @@ function asmJs() {
 
 在浏览器下载 WebAssembly后，使 WebAssembly 的迅速转换成目标机器的汇编代码。
 
-<img src='./img/WebAssembly转各种机器码.png' />
+![图片加载失败](./img/WebAssembly转各种机器码.png)
 
 
 ## WebAssembly实践

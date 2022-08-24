@@ -172,7 +172,7 @@ Slot 插槽传参可以传递复杂的 HTML 片段，像是这样：
 ### Shadow DOM（影子 DOM）
 
 为了保证组件的隔离性，Web Components 组件借助了 Shadow DOM 技术。它和 DOM 基本相似，可以简单地理解为被隔离的 DOM。
-<img src='./ShadowDOM.png' />
+![图片加载失败](./ShadowDOM.png)
 
 区别在于：
 

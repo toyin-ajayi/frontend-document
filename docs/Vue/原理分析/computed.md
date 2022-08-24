@@ -1,6 +1,6 @@
 ## 三种Watcher与Dep
 
-<img src="./img/三种watcher.png" />
+![图片加载失败](./img/三种watcher.png)
 
 ## 初始化 computed
 

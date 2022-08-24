@@ -30,7 +30,7 @@ master进程通过 cluster.fork() 来创建 worker进程。cluster.fork() 内部
 master进程、woker进程可以通过IPC通道进行通信。
 
 
-<img src='./img/Worker与master.png' />
+![图片加载失败](./img/Worker与master.png)
 
 - 子进程发消息： process.send({ cmd: 'notifyRequest' });
 - 父亲去监听： cluster.workers[id].on('message', messageHandler);
@@ -109,9 +109,9 @@ if (cluster.isMaster) {
 
 这是一种端口的共享：master进程监听特定端口，并将客户请求转发给worker进程。
 
-<img src='./img/Node集群原理.png' />
+![图片加载失败](./img/Node集群原理.png)
 
-<img src='./img/node父子进程通信原理.png' />
+![图片加载失败](./img/node父子进程通信原理.png)
 
 ### 如何进行端口共享即分发内容
 
@@ -181,7 +181,7 @@ if (cluster.isMaster) {
 
 ## 多线程多进程对比
 
-<img src='./img/多线程与多进程对比.png' />
+![图片加载失败](./img/多线程与多进程对比.png)
 
 
 ### node内部揭秘

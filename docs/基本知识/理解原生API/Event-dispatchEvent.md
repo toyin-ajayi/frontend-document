@@ -6,7 +6,7 @@ let myEvent = new Event(typeArg, eventInit);
 ```
 - typeArg  ： DOMString 类型，表示创建事件的名称；
 - eventInit ：可选配置项，包括：
-<img src='./img/Event配置.png' />
+![图片加载失败](./img/Event配置.png)
 
 
 ## CustomEvent
@@ -14,7 +14,7 @@ let myEvent = new Event(typeArg, eventInit);
 CustomEvent 与 Event 的主要区别是可以传递detail字段的参数
 
 - eventInit ：可选配置项，包括：
-<img src='./img/CustomEvent.png' />
+`![图片加载失败](./img/CustomEvent.png)`
 
 ## document.createEvent()
 >MDN上说很多东西被废弃了，不建议使用

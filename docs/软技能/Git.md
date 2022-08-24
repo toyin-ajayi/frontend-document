@@ -335,7 +335,7 @@ f 9728be5 add 3.txt
 
 ### 作用二： 修改分支历史达到变基的效果
 
-<img src="./img/rebase.png" />
+![图片加载失败](./img/rebase.png)
 
 和 git merge 不同的是，你需要在 feature 分支上进行 git rebase master 的操作，意味着让当前分支 feature 相对于 分支 master 进行变基：
 
@@ -482,7 +482,7 @@ git rm -r --cached 文件夹名字
 - git revert 是用一次新的 commit 来回滚之前的 commit
 - git reset 是直接删除退回指定节点后面的 commit，来回滚到目标。
 
-<img src='./img/revert与reset的区别.png' />
+![图片加载失败](./img/revert与reset的区别.png)
 
 git reset 是把 HEAD 向后移动了一下，而 git revert 是 HEAD 继续前进，只是新的 commit 的内容和要 revert 的内容正好相反，能够抵消要被 revert 的内容。
 

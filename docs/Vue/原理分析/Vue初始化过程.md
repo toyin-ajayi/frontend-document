@@ -1,9 +1,9 @@
 
 ## Vue 渲染更新流程
 
-<img src="./img/Vue渲染更新流程.jpg" />
+![图片加载失败](./img/Vue渲染更新流程.jpg)
 
-<img src="./img/Vue生命周期完整版.jpg" />
+![图片加载失败](./img/Vue生命周期完整版.jpg)
 
 ## 源码构建，基于 Rollup 
 
@@ -259,7 +259,7 @@ Vue对象上有一个全局函数compile，在src/entries/web-runtime-with-compi
 
 
 
-<img src="./img/Vue模板编译.png" />
+![图片加载失败](./img/Vue模板编译.png)
 
 compile 编译可以分成 parse-解析器、optimize-优化器 与 generate-生成器 三个阶段，最终需要得到 render function。
 
@@ -561,7 +561,7 @@ Vue.prototype._update = function (vnode: VNode, hydrating?: boolean) {
 
 因为使用了 Virtual DOM 的原因，Vue.js还具有了跨平台的能力
 
-<img src="./img/VueVdom.png" />
+![图片加载失败](./img/VueVdom.png)
 
 ### 创建
 
@@ -644,7 +644,7 @@ VNode最大的用途就是在数据变化前后生成真实DOM对应的虚拟DOM
 
 当不是第一次渲染的时候，就会执行到另外的逻辑，然后oldVnode是否为真实的DOM，如果不是，并且新老VNode不相同，就执行patchVnode。如果符合sameVnode，就不会渲染vnode重新创建DOM节点，而是在原有的DOM节点上进行修补，尽可能复用原有的DOM节点。如果两个节点相同则直接返回.
 
-<img src="./img/Patch.png" />
+![图片加载失败](./img/Patch.png)
 
 
 ### 创建节点 - createElm 
@@ -674,7 +674,7 @@ function createElm (vnode, parentElm, refElm) {
   }
 ```
 
-<img src="./img/Vue创建节点.png" />
+![图片加载失败](./img/Vue创建节点.png)
 
 ### 删除节点
 如果某些节点再新的VNode中没有而在旧的oldVNode中有，那么就需要把这些节点从旧的oldVNode中删除。删除节点非常简单，只需在要删除节点的父元素上调用removeChild方法即可。源码如下：
@@ -705,7 +705,7 @@ function removeNode (el) {
   - 如果旧的节点是文本节点，则把文本清空，然后把新的节点里的子节点创建一份然后插入到旧的节点里面。
 -  新元素节点不包含子节点：说明该节点是个空节点，不管旧节点之前里面都有啥，直接清空即可。
   
-<img src="./img/Vue节点对比更新.png" />
+![图片加载失败](./img/Vue节点对比更新.png)
 
 
 
@@ -713,7 +713,7 @@ function removeNode (el) {
 
 首先我们说说什么是响应式。通过某种方法可以达到数据变了可以自由定义对应的响应就叫响应式。
 
-<img src="./img/Vue流程图.png" />
+![图片加载失败](./img/Vue流程图.png)
 
 
 ## 与 React diff 对比

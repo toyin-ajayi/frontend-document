@@ -12,7 +12,7 @@ IE盒模型(怪异盒模型)
 标准盒模型的宽高则为内容区域的宽高
 IE盒模型则宽高为 border + padding + 内容区
 
-<img src='./img/css盒模型.png' />
+![图片加载失败](./img/css盒模型.png)
 
 ## 如何切换
 

@@ -22,7 +22,7 @@ Git建分支是非常cheap的，我们可以任意建立分支，对任意分支
 - feature 是短期分支，一般用于一个新功能的开发
 
 
-<img src='./img/gitflow.png' />
+![图片加载失败](./img/gitflow.png)
 
 
 ## 建议阅读

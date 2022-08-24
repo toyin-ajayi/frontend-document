@@ -8,7 +8,7 @@ Ajax 的工作原理相当于在用户和服务器之间加了一个中间层(aj
 
 ### readyState
 
-<img src='./readyState.png' />
+![图片加载失败](./readyState.png)
 
 ### onreadystatechange
 

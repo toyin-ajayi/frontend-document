@@ -3,7 +3,7 @@
 
 Channel Messaging API的MessageChannel 接口允许我们创建一个新的消息通道，并通过它的两个MessagePort 属性发送数据。
 
-<img src='./img/MessageChannel.png' />
+![图片加载失败](./img/MessageChannel.png)
 
 ```
 const ch = new MessageChannel()

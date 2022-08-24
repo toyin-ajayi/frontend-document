@@ -86,7 +86,7 @@ function runParallel(jobs:Array< (x: number) => Promise<string> >) {
 
 ### 测试结果1
 
-<img src='./初次测试结果.png' />
+![图片加载失败](./初次测试结果.png)
 
 问题
 
@@ -101,14 +101,14 @@ function runParallel(jobs:Array< (x: number) => Promise<string> >) {
 
 ### 测试结果2
 
-<img src='./超时.png' />
+![图片加载失败](./超时.png)
 
 分析mocha默认超时时间2000ms太短了。。
 
 ### 测试结果3
 
 设置一个大的超时时间`this.timeout(1000000);`发现还是有问题
-<img src='./抛出错误.png' />
+![图片加载失败](./抛出错误.png)
 
 分析进入了catch函数代表expect断言抛错了，比较结果为不相等，可能只是进行了浅比较，数组的栈内存肯定不相等，得加深比较
 
@@ -117,4 +117,4 @@ function runParallel(jobs:Array< (x: number) => Promise<string> >) {
 
 添加深比较，再次判断
 
-<img src='./最终测试结果.png' />
+![图片加载失败](./最终测试结果.png)

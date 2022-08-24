@@ -50,10 +50,10 @@
 ## 如何监控一些指标
 
 Performance.timing 是一个只读属性，返回 PerformanceTiming 对象，该对象包括了页面相关的性能信息。更多解释参见 W3C Recommendation - NavigationTiming 
-<img src='./img/前端性能监控.png' />
-<img src='./img/PerformanceAPI2.png' />
+![图片加载失败](./img/前端性能监控.png)
+![图片加载失败](./img/PerformanceAPI2.png)
 利用上面的这个API我们可以计算出一些基础的性能指标
-<img src='./img/性能指标计算.png' />
+![图片加载失败](./img/性能指标计算.png)
 
 ## 何时触发上报数据
 >感觉这应该属于代码埋点

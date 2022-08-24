@@ -429,10 +429,10 @@ router.get('/login', async (ctx, next) => {
 现在访问`http://localhost:3000/login`会打出“已经登录1次”
 
 现在来看看http的字段信息,可以看下图已经自动帮我们写好了cookie
-<img src='./img/Koa2Session.png' />
+![图片加载失败](./img/Koa2Session.png)
 
 现在我们可以查看这个sessionID对应在redis数据库里面的数据,这里谁便查看一个都可以看到里面缓存的数据
-<img src='./img/redisValue.png' />
+![图片加载失败](./img/redisValue.png)
 
 
 ## 测试环境 Jest

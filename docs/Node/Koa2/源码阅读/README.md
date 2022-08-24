@@ -278,7 +278,7 @@ console.log(ctx.fn(1))
 ### context最终结构
 
 源码里面就比较复杂，代理了很多的方法，最后的结果如图
-<img src='./img/createContext.png' />
+![图片加载失败](./img/createContext.png)
 
 所以这样委托代理后，即有set和get封装处理的node原生API，又有koa2帮我们处理过的的API
 ```
@@ -327,7 +327,7 @@ app.use(async (ctx, next) => {
 
 经过上面的四步就形成了koa2的一个洋葱模型（感觉就是一个函数嵌套的调用栈，后进先出，request过来最后一个中间件最先执行完然后弹出，再执行完上一个中间件）
 
-<img src='./img/koa2洋葱模型.png' />
+![图片加载失败](./img/koa2洋葱模型.png)
 
 经过前面callback函数的分析我们知道会调用const fn = compose(this.middleware);最后会把fn传递给handleRequest，这里先分析compose的作用
 
@@ -517,6 +517,6 @@ onerror是封装好的方法，注意看`this.app.emit('error', err, this)`这�
 
 ## 流程图
 
-<img src='./img/koa2流程图.png' />
+![图片加载失败](./img/koa2流程图.png)
 
-<img src='./img/Koa2流程图2.png' />
+![图片加载失败](./img/Koa2流程图2.png)

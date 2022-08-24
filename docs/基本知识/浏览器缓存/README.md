@@ -140,7 +140,7 @@ private，则表示该资源仅仅属于发出请求的最终用户，这将禁�
 
 Expires 和 Cache-Control 同时存在时，Cache-Control 优先级高于 Expires
 
-<img src='./Cache-Control.png' />
+![图片加载失败](./Cache-Control.png)
 
 - no-cache：客户端缓存内容，是否使用缓存则需要经过协商缓存来验证决定。表示不使用 Cache-Control的缓存控制方式做前置验证，而是使用 Etag 或者Last-Modified字段来控制缓存。需要注意的是，no-cache这个名字有一点误导。设置了no-cache之后，并不是说浏览器就不再缓存数据，只是浏览器在使用缓存数据时，需要先确认一下数据是否还跟服务器保持一致。
 
@@ -185,4 +185,4 @@ response 的 header 加上 ETag 的 header，这个 header 是服务器根据当
 强缓存就是给资源规定一个到期时间，在这段时间缓存一直有效不用请求服务器，资源的请求命中了强缓存时，返回的 HTTP 状态为 200
 协商缓存就是在协商缓存失效后去发请求询问资源是否改变，一个是看时间是否改变另一个是看文件的 hash（更准确）是否改变，没有变我浏览器还可以使用缓存，返回的 HTTP 状态为 304
 
-<img src='./浏览器缓存机制.png' />
+![图片加载失败](./浏览器缓存机制.png)

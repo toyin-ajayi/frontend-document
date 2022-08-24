@@ -241,7 +241,7 @@ event.stopPropagation()不再派发事件。终止事件在传播过程的捕获
 
 ## 对象的遍历方法
 
-<img src='./对象属性遍历方法.png' />
+![图片加载失败](./对象属性遍历方法.png)
 
 - Reflect.ownKeys(obj)是最好用的，什么都能拿到，但要考虑兼容性
 
@@ -260,7 +260,7 @@ event.stopPropagation()不再派发事件。终止事件在传播过程的捕获
 - mouseover：当鼠标移入元素或其子元素都会触发事件，所以有一个重复触发，**冒泡的过程**。对应的移除事件是 mouseout
 - mouseenter：鼠标移入监听对象时触发，在监听对象内移动不会触发。，也就是**不会冒泡**，对应的移出事件是 mouseleave
 
-<img src='./mouseenter.png' />
+![图片加载失败](./mouseenter.png)
 
 ## 套接字（socket）概念
 

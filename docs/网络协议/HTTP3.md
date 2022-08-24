@@ -8,13 +8,13 @@
 
 它不使用 TCP 作为会话的传输层，而是使用 QUIC（一种新的 Internet 传输协议，Quick UDP Internet Connection,让传输更快），该协议将流作为传输层的一级公民引入。QUIC 流共享相同的 QUIC 连接，因此不需要额外的握手和慢启动来创建新的 QUIC 流，但 QUIC 流是独立交付的，因此在大多数情况下，包丢失只影响一个流而不影响其他流。这是可能的，因为 QUIC 数据包被封装在 UDP 数据报头的顶部。
 
-<img src='./img/HTTP2VSHTTP3.png' />
+![图片加载失败](./img/HTTP2VSHTTP3.png)
 
 与 TCP 相比，使用 UDP 可以提供更大的灵活性，并且可以使 QUIC 完全于用户空间中实现——对协议实现的更新不像 TCP 那样需要绑定到操作系统更新。使用 QUIC，可以简单地将 HTTP 级别的流映射到 QUIC 流的顶部，从而获得 HTTP/2 的所有好处，而不会产生前端阻塞。
 
 QUIC 还结合了典型的 3 次 TCP 握手和 TLS 1.3 的握手。结合了这些步骤意味着 QUIC 在默认情况下提供了加密和身份验证，并且可以更快地建立连接。换句话说，即使 HTTP 会话中的初始请求需要一个新的 QUIC 连接，在数据开始流动之前产生的延迟也低于使用 TLS 的 TCP 时的情况。
 
-<img src='./img/QUIC握手.png' />
+![图片加载失败](./img/QUIC握手.png)
 
 ## QUIC - 百度百科
 
@@ -45,7 +45,7 @@ QUIC 还结合了典型的 3 次 TCP 握手和 TLS 1.3 的握手。结合了这�
 - 传输层 0RTT 就能建立连接。
 - 加密层 0RTT 就能建立加密连接。
 
-<img src='./img/QUIC握手对比HTTP2握手.png' />
+![图片加载失败](./img/QUIC握手对比HTTP2握手.png)
 
 比如上图左边是 HTTPS 的一次完全握手的建连过程，需要 3.5(TCP:1.5 RTT + TLS:2RTT) 个 RTT。就算是 Session Resumption[14]，也需要至少 2 个 RTT。
 
@@ -61,9 +61,9 @@ QUIC 还结合了典型的 3 次 TCP 握手和 TLS 1.3 的握手。结合了这�
 和 TCP 不同，QUIC 实现了在同一物理连接上可以有多个独立的逻辑数据流（如下图）。实现了数据流的单独传输，就解决了 TCP 中队头阻塞的问题。
 
 HTTP2一个管道上如果其中一个请求丢包整个 TCP 都要开始等待重传,会阻塞其他请求
-<img src='./img/HTTP2一个管道.png' />
+![图片加载失败](./img/HTTP2一个管道.png)
 HTTP3多个独立的逻辑数据流：
-<img src='./img/HTTP3多个管道.png' />
+![图片加载失败](./img/HTTP3多个管道.png)
 
 ## HTTP/3 问题与挑战
 

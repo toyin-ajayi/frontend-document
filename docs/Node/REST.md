@@ -9,7 +9,7 @@ REpresentational State Transfer 表现层状态转移
 * Representational：某种表现形式，比如用JSON，XML，JPEG等；
 * State Transfer：状态变化。通过HTTP动词实现。
 
-<img src='./img/RESTfulAPI.png' />
+![图片加载失败](./img/RESTfulAPI.png)
 
 ### REST本身不实用
 REST描述的是在网络中client和server的一种交互形式；REST本身不实用，实用的是如何设计 RESTful API（REST风格的网络接口）；

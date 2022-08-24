@@ -43,9 +43,9 @@ K8S 则是将基础设施可编程化，由原来的人工申请改为一个清�
 - Node（节点）
 - Kubernetes Master（Kubernetes主节点）
 
-<img src='./img/k8s集群1.png' />
-<img src='./img/k8s集群2.png' />
-<img src='./img/k8s集群3.png' />
+![图片加载失败](./img/k8s集群1.png)
+![图片加载失败](./img/k8s集群2.png)
+![图片加载失败](./img/k8s集群3.png)
 
 - Kubelet，主要负责监视指派到它所在Node上的Pod，包括创建、修改、监控、删除等。
 
@@ -60,7 +60,7 @@ Service
 
 Service是定义一系列Pod以及访问这些Pod的策略的一层抽象。Service通过Label找到Pod组。因为Service是抽象的，所以在图表里通常看不到它们的存在，这也就让这一概念更难以理解。
 
-<img src='./img/k8sService.gif' />
+![图片加载失败](./img/k8sService.gif)
 
 ## Kubernetes 特点编辑
 可移植: 支持公有云，私有云，混合云，多重云（multi-cloud）

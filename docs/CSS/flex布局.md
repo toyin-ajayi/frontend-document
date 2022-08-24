@@ -16,7 +16,7 @@ CSS3 弹性盒子(Flexible Box 或 Flexbox)，是一种用于在页面上布置�
 
 项目默认沿主轴排列。
 
-<img src='./img/flexbox.png' />
+![图片加载失败](./img/flexbox.png)
 
 
 默认情况下，项目都排在一条线（又称"轴线"）上。flex-wrap属性定义，如果一条轴线排不下，如何换行。

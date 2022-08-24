@@ -21,7 +21,7 @@ article、footer、header、nav、section，
 ### Navigator 对象
 
 Navigator 对象包含有关浏览器的信息。
-<img src='./img/Navigator对象.png' />
+![图片加载失败](./img/Navigator对象.png)
 
 ### HTML5 新特性有哪些？
 
@@ -113,7 +113,7 @@ Navigator 对象包含有关浏览器的信息。
 <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 ```
 
-<img src='./img/viewport属性.png' />
+![图片加载失败](./img/viewport属性.png)
 
 ```
 <meta name="viewport" content="width=device-width,initial-sacle=1">

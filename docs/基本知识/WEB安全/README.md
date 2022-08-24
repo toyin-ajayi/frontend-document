@@ -93,7 +93,7 @@ DOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行
 **我把一些可能造成 XSS 攻击的符号用特殊的编码代替，比如`<>`用那么 XSS 的攻击者是无法得知**
 
 为了对抗 XSS ，以下转义内容(实体编码在 html 里会显示正常的特殊符号)是必不可少的：
-<img src='./防御XSS转码.png' />
+![图片加载失败](./防御XSS转码.png)
 
 ```
   function encodeForHTML(str, kwargs){
@@ -195,7 +195,7 @@ if (valid) {
 - 3.B 发请求到服务器，服务器无法分辨是 A 发的还是 B 发的
 - 4.从而达到危险网站 B 来模拟 A 用户的操作，从而使 A 的用户成为受害者
 
-<img src='./CSRF.png' />
+![图片加载失败](./CSRF.png)
 
 ### 防御 CSRF
 
@@ -262,7 +262,7 @@ Post 请求伪造：
 
 Chrome80 之前默认是 None 的，Chrome80 后默认是 Lax。
 
-<img src='./SameSite.png' />
+![图片加载失败](./SameSite.png)
 
 如果对以前的页面造成影响最快的解决方法就是
 
@@ -378,7 +378,7 @@ POST 请求：数据被包含在请求体中。
 - 此时如果CSRF存在，那么点击关注我的按钮发送请求会带上用户登录的cookie，然后就能正常调用后台关注的借口
 - 这样就完成了点击的劫持
 
-<img src="./点击劫持.png" />
+![图片加载失败](./点击劫持.png)
 
 ```
 iframe {
@@ -403,7 +403,7 @@ height:40px;
 </style>
 ......
 <button>点击脱衣</button>
-<img src="http://pic1.win4000.com/wallpaper/2018-03-19/5aaf2bf0122d2.jpg" />
+![图片加载失败](http://pic1.win4000.com/wallpaper/2018-03-19/5aaf2bf0122d2.jpg)
 <iframe src="http://i.youku.com/u/UMjA0NTg4Njcy" scrolling="no"></iframe>
 
 ```

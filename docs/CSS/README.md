@@ -51,7 +51,7 @@
 而把 display 计算值为 block、table、list-item 的元素叫做块级元素。
 width、 height、 margin的四个方向、 padding的四个方向都正常显示，遵循标准的css盒模型。例如：div
 
-<img src="./img/内联元素.png" />
+![图片加载失败](./img/内联元素.png)
 
 ## 替换元素
 
@@ -157,7 +157,7 @@ IE 盒模型：
 
 > https://juejin.im/post/5adad4d8f265da0ba062ba46
 
-<img src='./img/内联盒子.png' />
+![图片加载失败](./img/内联盒子.png)
 
 ### inline-box
 
@@ -368,4 +368,4 @@ opacity: 0;
 
 ## 层叠上下文表
 
-<img src='./img/层叠上下文表.png' />
+![图片加载失败](./img/层叠上下文表.png)

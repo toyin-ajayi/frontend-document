@@ -4,7 +4,7 @@ MD5的全称是Message-Digest Algorithm，是Hash算法中的一种重要算法�
 
 
 
-<img src="./src/../img/MD5加密流程.png" />
+![图片加载失败](./src/../img/MD5加密流程.png)
 
 ## MD5特点
 
@@ -27,7 +27,7 @@ MD5的全称是Message-Digest Algorithm，是Hash算法中的一种重要算法�
 
 ABCD都是32位，分别与真实数据的每32位做运算
 
-<img src="./img/MD5循环加工.png" />
+![图片加载失败](./img/MD5循环加工.png)
 
 图中，A，B，C，D就是哈希值的四个分组。每一次循环都会让旧的ABCD产生新的ABCD。一共进行多少次循环呢？由处理后的原文长度决定。
 假设处理后的原文长度是M

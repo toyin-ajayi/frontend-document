@@ -33,7 +33,7 @@ Diffie-Hellman 迪菲-赫尔曼 密钥交换(Diffie-Hellman key exchange) 是 19
 
 **共享密钥K也就是Pre-Master**
 
-<img src="./img/DH算法原理.png" />
+![图片加载失败](./img/DH算法原理.png)
 
 Alice 和 Bob 公开了 4 个信息：P、G、A、B，其中 P、G 是算法的参数，A 和 B 是公钥，而 a、b 是各自秘密保管的私钥，无法获取，所以黑客只能从已知的 P、G、A、B 下手计算离散对数，但计算量很大一般破解不了。
 
@@ -67,7 +67,7 @@ EC的难点在于给定起点G和点K：K = sG （起点G(x, y)。
 
 各自随机选择两个数字 a 和 b 作为私钥，计算 A=aG、B=bG 作为公钥，然后互相交换，用与 DHE 相同的算法，计算得到 aB=abG=Ab，就是共享秘密 Pre-Master。
 
-<img src="./img/ECC.png" />
+![图片加载失败](./img/ECC.png)
 
 因为椭圆曲线离散对数的计算难度比普通的离散对数更大，所以 ECDHE 的安全性比 DHE 还要高，更能够抵御黑客的攻击。
 
@@ -96,11 +96,11 @@ RSA有一个问题，就是如果私钥泄漏，即私钥被第三方知道，�
 
 这就是所谓的前向不安全，私钥参与了密钥交换，安全性取决于私钥是否安全保存。
 
-<img src="./img/RSA简单密钥交换.png" />
+![图片加载失败](./img/RSA简单密钥交换.png)
 
 ## TLS-ECDHE交换密钥
 
-<img src="./img/ECDHE密钥交换.png" />
+![图片加载失败](./img/ECDHE密钥交换.png)
 
 
  SSL协议中，上图中椭圆曲线名和Pb通过server key exchange报文发送；Pa通过client key exchange报文发送。
@@ -108,7 +108,7 @@ RSA有一个问题，就是如果私钥泄漏，即私钥被第三方知道，�
 ## 完整的TLS1.2-ECDHE握手流程
 
 
-<img src="./img/完整的ECDHE握手流程.png" />
+![图片加载失败](./img/完整的ECDHE握手流程.png)
 
 ### Client Hello
 在 TCP 建立连接之后，浏览器会首先发一个“Client Hello”消息，也就是跟服务器“打招呼”。里面有客户端的版本号、支持的密码套件，还有一个随机数（Client Random），用于后续生成会话密钥。
@@ -160,7 +160,7 @@ RSA有一个问题，就是如果私钥泄漏，即私钥被第三方知道，�
 
 可以看到最大的差别就是Client Parans 椭圆曲线倍数公钥提前计算好了，在第一次请求的时候就直接发过去了
 
-<img src="./img/TLS1.3完整握手流程.png" />
+![图片加载失败](./img/TLS1.3完整握手流程.png)
 
 ## 总结
 
