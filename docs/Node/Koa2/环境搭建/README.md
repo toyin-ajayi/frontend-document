@@ -181,7 +181,7 @@ sequelize是对mysql操作的一个封装简化，所以安装好了mysql后就�
 cnpm i --save sequelize 
 ```
 sequelize的使用可以参照这个中文的文档[https://demopark.github.io/sequelize-docs-Zh-CN/](https://demopark.github.io/sequelize-docs-Zh-CN/)
-这里也有一份增删改查，外键，分页，多表联查的例子[Sequelize](../../Sequelize/src)
+这里也有一份增删改查，外键，分页，多表联查的例子`[Sequelize](../../Sequelize/src)`
 
 Sequelize有一个缺点就是需要你自己去使用seq.define去与表创建模型关联
 ```

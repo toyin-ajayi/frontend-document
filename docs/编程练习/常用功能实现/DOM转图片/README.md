@@ -49,7 +49,7 @@ console.log(encodeURIComponent('?x=test'));
              </svg>`;
       var url = 'data:image/svg+xml; charset=utf8, ' + encodeURIComponent(svgXML);
 ```
-详细看[myDemo](./myDemo-只兼容chrome.html)
+`详细看[myDemo](./myDemo-只兼容chrome.html)`
 
 ### 参考
 - https://developer.mozilla.org/zh-CN/docs/XMLSerializer

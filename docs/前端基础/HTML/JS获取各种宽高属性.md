@@ -23,7 +23,7 @@ document.body.offsetWidth= width+border*2+padding*2 = clientWidth + 滚动条宽
 ![图片加载失败](./img/scrollHeight.png)
 
 - 滚动的高度 document.body.scrollTop
-![图片加载失败](./img/scrollTOp.png)
+![图片加载失败](./img/scrollTop.png)
 
 - 滚动总宽度 document.body.scrollWidth
 

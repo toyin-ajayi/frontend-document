@@ -48,22 +48,3 @@ socket：与HTTP不一样，socket不是协议，它是在程序层面上对传�
 
 WebSocket： WebSocket是包装成了一个应用层协议作为socket,从而能够让客户端和远程服务端通过web建立全双工通信。websocket提供ws和wss两种URL方案。协议英文文档和中文翻译
 
-## [DNS域名解析详细流程](DNS域名解析详细流程.md)
-
-## [TCPIP&UDP](./TCPIP&UDP.md)
-
-## [HTTP&HTTPS](./HTTP&HTTPS.md)
-
-## [cookie&session&token](./cookie&session&token&JWT.md)
-
-## [PostGet本质区别](PostGet本质区别.md)
-
-## [OPTIONS请求自动发起](OPTIONS请求自动发起.md)
-
-## [SYNFlood攻击](./SYNFlood攻击.md)
-
-## [keep-alive](keep-alive.md)
-
-## [HTTP状态码全集](HTTP状态码全集.md)
-
-
