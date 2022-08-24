@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //在量词后面加个问号表示懒惰，尽可能少的匹配
+    var str="abc8defghij7klngon8qrstwxy7";
+    var reg1=/8[a-zA-Z0-9]*7/;
+    var reg2=/8[a-zA-Z0-9]*?7/;
+    var reg3=/8[a-zA-Z0-9]+?/;//NULL
+    var res1=str.match(reg1);
+    var res2=str.match(reg2);
+    var res3=str.match(reg3);
+    console.log(res1);
+    console.log(res2);
+    console.log(res3);
+
+</script>
+</html>

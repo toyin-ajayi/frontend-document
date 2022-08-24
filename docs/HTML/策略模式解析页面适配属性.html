@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" style="width: 100%;height: 100%">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 1010px;
+            height: 310px;
+            display: flex;
+            flex-wrap:wrap;
+
+        }
+        #box div{
+            width: 250px;
+            height: 50px;
+            border: 1px solid silver;
+        }
+        #view{
+            display: flex;
+            flex-wrap:wrap;
+            width: 1010px;
+        }
+        .line{
+            display: flex;
+        }
+        .line div{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid silver;
+            width: 250px;
+            height: 50px;
+        }
+        button{
+            width: 250px;
+            height: 50px;
+            margin-left: 756px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body style="width: 100%;height: 100%">
+    <div id="box" >
+        <div id="clientHeight">网页可见区域高clientHeight</div>
+        <div id="clientWidth">网页可见区域宽clientWidth</div>
+        <div id="offsetHeight">body的总高度offsetHeigh</div>
+        <div id="offsetWidth">body的总宽度offsetWidth</div>
+
+        <div id="scrollHeight">滚动总高度scrollHeight</div>
+        <div id="scrollTop">滚动的高度scrollTop</div>
+        <div id="scrollWidth">滚动总宽度scrollWidth</div>
+
+        <div id="innerHeight">浏览器可视窗口的高度innerHeight</div>
+        <div id="innerWidth">浏览器可视窗口的宽度innerWidth</div>
+        <div id="outerHeight">浏览器窗口的高度outerHeight</div>
+        <div id="outerWidth">浏览器窗口的宽度outerWidth</div>
+
+        <div id="height">屏幕物理分辨率高height</div>
+        <div id="width">屏幕物理分辨率宽width</div>
+        <div id="availHeight">浏览器窗口的可用高度availHeight</div>
+        <div id="availWidth">浏览器窗口的可用宽度availWidth</div>
+        <div id="screenTop">浏览器窗口距离显示屏上部高度screenTop</div>
+        <div id="screenLeft">浏览器窗口距离显示屏下部高度screenLeft</div>
+        <div id="localstorage">浏览器是否支持localstorage</div>
+        <div id="sessionstorage">浏览器是否支持sessionstorage</div>
+        <div id="animation">浏览器是否支持动画</div>
+        <div id="browser">浏览器类型判断</div>
+    </div>
+    <button onclick="showData()">OK</button>
+    <div id="view"></div>
+
+</body>
+<script>
+    var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+    console.log(userAgent);
+    var arr=[];
+    var data=[];
+    var box=document.getElementById('box');
+    box.addEventListener("click",function(e){
+        var id=e.target.id;
+        if(id=="box")return;
+        var flag=-1;
+        arr.forEach(function(value,index){
+            var div=document.getElementById(value)
+            div.style.background="white";
+            if(value==id){
+                flag=index;
+            }
+        })
+        if(flag==-1){
+            arr.push(e.target.id);
+        }else{
+            arr.splice(flag,1)
+        }
+        arr.forEach(function(value, index, array){
+            var div=document.getElementById(value)
+            div.style.background="red";
+        })
+    })
+
+
+    window.onresize = function () {
+        showData()
+    }
+
+    function showData(){
+        data=[];
+        var view=document.getElementById("view");
+        view.innerHTML="";
+        arr.forEach(function(value, index, array){
+            data.push(getData[value]())
+            console.log(data)
+        })
+        data.forEach(function(value, index, array){
+            var line=document.createElement("div");
+            var text=document.createElement("div");
+            var val=document.createElement("div");
+            val.innerText=value.value;
+            text.innerText=value.text;
+            line.appendChild(text);
+            line.appendChild(val);
+            line.setAttribute("class","line");
+            view.appendChild(line);
+        })
+    }
+
+    var getData = {
+        "clientHeight": function() {
+            var clientHeight = document.body.clientHeight||document.documentElement.clientHeight;;
+            return {text:"网页可见区域高",value:clientHeight};
+        },
+        "clientWidth" : function() {
+            var clientWidth = document.body.clientWidth||document.documentElement.clientWidth;
+            return {text:"网页可见区域宽",value:clientWidth};
+        },
+        "offsetHeight" : function() {
+            var offsetHeight = document.body.offsetHeight;
+            return {text:"body的总高度",value:offsetHeight};
+        },
+        "offsetWidth" : function() {
+            var offsetWidth = document.body.offsetWidth;
+            return {text:"body的总宽度",value:offsetWidth};
+        },
+        "scrollHeight":function(){
+            var scrollHeight= document.body.scrollHeight;
+            return {text:"滚动总高度",value:scrollHeight}
+        },
+        "scrollTop":function(){
+            var scrollTop= document.body.scrollTop;
+            return {text:"滚动的高度",value:scrollTop}
+        },
+        "scrollWidth":function(){
+            var scrollWidth= document.body.scrollWidth;
+            return {text:"滚动的宽度",value:scrollWidth}
+        },
+        "innerHeight":function(){
+            var innerHeight= window.innerHeight;
+            return {text:"浏览器可视窗口的高度",value:innerHeight}
+        },
+        "innerWidth":function(){
+            var innerWidth= window.innerWidth;
+            return {text:"浏览器可视窗口的宽度度",value:innerWidth}
+        },
+        "outerHeight":function(){
+            var outerHeight= window.outerHeight;
+            return {text:"浏览器窗口的高度",value:outerHeight}
+        },
+        "outerWidth":function(){
+            var outerWidth= window.outerWidth;
+            return {text:"浏览器窗口的宽度",value:outerWidth}
+        },
+        "height":function(){
+            var height= window.screen.height;
+            return {text:"屏幕物理分辨率高",value:height}
+        },
+        "width":function(){
+            var width= window.screen.width;
+            return {text:"屏幕物理分辨率宽",value:width}
+        },
+        "availHeight":function(){
+            var availHeight= window.screen.availHeight;
+            return {text:"浏览器窗口的可用高度",value:availHeight}
+        },
+        "availWidth":function(){
+            var availWidth= window.screen.availWidth;
+            return {text:"浏览器窗口的可用宽度",value:availWidth}
+        },
+        "screenTop":function(){
+            var screenTop= window.screenTop;
+            return {text:"浏览器窗口距离显示屏上部高度",value:screenTop}
+        },
+        "screenLeft":function(){
+            var screenLeft= window.screenLeft;
+            return {text:"浏览器窗口距离显示屏下部高度",value:screenLeft}
+        },
+        "localstorage":function(){
+            var localstorage= window.localstorage?"Yes":"No";
+            return {text:"localstorage",value:localstorage}
+        },
+        "sessionstorage":function(){
+            var sessionstorage= window.sessionstorage?"Yes":"No";
+            return {text:"sessionstorage",value:sessionstorage}
+        },
+        "animation":function(){
+            var res;
+            var test=document.getElementsByTagName("body")[0].style;
+            if(typeof test.animation!="undefined"||typeof test.WebkitAnimation!="undefined"){
+                res="Yes"
+            }else{
+                res="No";
+            }
+            return {text:"动画",value:res}
+        },
+        "browser":function(){//无法准确判断，杂糅信息了
+            var name="无法检测"
+            var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+            console.log(userAgent);
+            name = userAgent.indexOf("Opera") > -1?"Opera":"无法检测"; //判断是否Opera浏览器
+            name = userAgent.indexOf("Chrome") > -1?"Chrome":"无法检测"; //判断是否Opera浏览器
+            name = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera?"compatible":"无法检测";
+            name = userAgent.indexOf("Firefox") > -1?"Firefox":"无法检测"; //判断是否Firefox浏览器
+            name = userAgent.indexOf("Safari") > -1?"Safari":"无法检测"; //判断是否Safari浏览器
+            return {text:"浏览器类型",value:name}
+        },
+
+    };
+
+
+</script>
+
+</html>

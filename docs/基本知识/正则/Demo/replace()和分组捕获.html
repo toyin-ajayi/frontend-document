@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+    var str="0816-2323263";
+    var reg=/(\d+)(-)(\d+)/g;
+    var str2=str.replace(reg,"($1)-$3");//全部匹配添加修饰
+    console.log(str2);
+
+
+    var str1="123478basd-12aaaaa";
+    var reg1=/(\d+)([a-z]+)(\d+)(?<rename>[a-z]+)/g;
+    var str21=str1.replace(reg1,"$1hhhhh$<rename>");//(?<name>)捕获文本到名称为name的组里  (?:exp)匹配exp,不捕获匹配的文本，也不给此分组分配组号
+    console.log(str21);
+
+    var str23="123478basd12asdsa";
+    var reg2=/[a-z]+/g;
+    var str22=str23.replace(reg2,"");//匹配需要删除的部分然后置空
+    console.log(str22);
+
+    (function(){
+        var str23="asda-12";
+        var reg2=/((?<=(-|[0-9]))([-0-9]+))/;
+        var str22=str23.replace(reg2,"$2$1");//匹配需要删除的部分然后置空
+        console.log(str22);
+    })()
+
+
+
+
+</script>
+
+</html>

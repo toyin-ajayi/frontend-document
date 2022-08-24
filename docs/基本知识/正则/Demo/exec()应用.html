@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var res = /aab/g;
+    var s="aabacbaabs"
+    var a = res.exec(s)
+    console.log(a)//index=0
+    var b = res.exec(s)//上一次的lastindex开始匹配
+    console.log(b)//index=6
+</script>
+</body>
+</html>

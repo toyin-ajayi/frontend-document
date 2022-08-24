@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      img {
+        transform: translate(10px, 100px);
+      }
+      img:hover {
+        content: url('../img/mm1.jpg');
+      }
+
+      img::after {
+        /* 生成 alt 信息 */
+        content: attr(alt);
+        /* 尺寸和定位 */
+        postion: absolute;
+        bottom: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        transform: translateY(100%);
+        transition: transform 0.2s;
+      }
+      img:hover::after {
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <img
+      src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1582asddddd1197s68272&di=8118b070ee7fe1487c767d515a21edf7&imgtype=0&src=http%3A%2F%2Fimg.jk51.com%2Fimg_jk51%2F304272147.jpeg"
+      alt="123123312312"
+    />
+  </body>
+</html>

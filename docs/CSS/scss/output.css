@@ -1,0 +1,35 @@
+article ~ article {
+  border-top: 1px dashed #ccc;
+}
+article > section {
+  background: #eee;
+}
+article dl > dt {
+  color: #333;
+}
+article dl > dd {
+  color: #555;
+}
+nav + article {
+  margin-top: 0;
+}
+
+.c {
+  color: red;
+}
+.c:hover {
+  color: red;
+}
+.c:visited {
+  color: red;
+}
+
+.btn.disabled, .btn[disabled] {
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.btn.disabled > *, .btn[disabled] > * {
+  pointer-events: none;
+}
+
+/*# sourceMappingURL=output.css.map */

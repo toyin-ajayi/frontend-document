@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    (function(){
+        //当采用非全局匹配的时候，两个方法的返回值完全一样。
+        //match和exec都只匹配一次，且都会把分组抽出来放到数组后面
+        let str="antzoane";
+        let reg=/(a)(n)/;
+        console.log(str.match(reg));
+        console.log(reg.exec(str));
+    })();
+
+    (function(){
+        //当为全局匹配的时候，match方法返回一个存放所有匹配内容的数组（无视子表达式的匹配）。
+        //exex方法返回数组不会存储所有的匹配，仅存储第一个匹配到的内容（存储在数字第一个元素），第二个元素存储第一个子表达式匹配到的内容，第三个元素存储第二个子表达式匹配到的内容，以此类推
+        let str="antzoane";
+        let reg=/a(n)/g;
+        console.log(str.match(reg));
+        console.log(reg.exec(str));
+        //再次调用从上次的lastindex开始匹配；
+        console.log(reg.exec(str));
+    })();
+
+</script>
+</html>

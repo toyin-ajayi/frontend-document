@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" style="overflow: auto">
+<head>
+    <meta charset="UTF-8">
+    <title>演示网页浏览器等宽度的例子</title>
+</head>
+<style type="text/css">
+    @media screen and (max-width: 300px) {
+        span {
+            font-size: 5px;
+        }
+    }
+
+    @media (min-width: 300px) and (max-width: 768px) {
+        span {
+            font-size: 10px;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1200px) {
+        span {
+            font-size: 15px;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        span {
+            font-size: 20px;
+        }
+    }
+
+    /*#main {*/
+    /*    border: 0.2em solid black;*/
+    /*}*/
+
+    /*div {*/
+    /*    border-bottom: 1px dotted red;*/
+    /*}*/
+
+    body {
+        padding: 50px;
+        height: 500px;
+        border: 1px dotted red;
+        overflow: scroll;
+    }
+    span {
+        color: blue;
+    }
+</style>
+<body onscroll="body_scroll()">
+    <div>网页可见区域高document.body.clientHeight=height + padding * 2- 滚动条宽度<span id="span_client_height">测试的文字12</span></div>
+    <div>网页可见区域宽document.body.clientWidth=width + padding * 2- 滚动条宽度<span id="span_client_width">测试的文字12</span></div>
+    <div>body的总高度document.body.offsetHeight= height+border*2+padding*2 = clientHeight + 滚动条宽度 + 边框宽度*2<span id="span_client_offsetHeight">测试的文字12</span></div>
+    <div>body的总宽度document.body.offsetWidth= width+border*2+padding*2 = clientWidth + 滚动条宽度 + 边框宽度*2<span id="span_client_offsetWidth">测试的文字12</span></div>
+
+    scrollHeight的MDN解释：元素内容高度的度量，包括由于溢出导致的视图中不可见内容
+    <div>滚动总高度document.body.scrollHeight<span id="span_client_scrollHeight">测试的文字12</span></div>
+    <div>滚动的高度document.body.scrollTop<span id="span_client_scrollTop">测试的文字12</span></div>
+    <div>滚动总宽度document.body.scrollWidth<span id="span_client_scrollWidth">测试的文字12</span></div>
+
+    <div>浏览器可视窗口的高度，不包括边框、工具栏、调试窗口（可变）window.innerHeight<span id="span_inner_height">测试的文字12</span></div>
+    <div>浏览器可视窗口的宽度，不包括边框（可变）window.innerWidth<span id="span_inner_width">测试的文字12</span></div>
+    <div>浏览器窗口的宽度，包括滚动条和边框（可变）window.outerHeight<span id="span_outer_height">测试的文字12</span></div>
+    <div>浏览器窗口的高度，包括边框、工具栏（可变）window.outerWidth<span id="span_outer_width">测试的文字12</span></div>
+
+    <div>屏幕物理分辨率高（不变）window.screen.height=window.screen.availHeight+windows上下任务栏<span id="span_screen_height">测试的文字12</span></div>
+    <div>屏幕物理分辨率宽（不变）window.screen.width=window.screen.availHeight+windows左右任务栏<span id="span_screen_width">测试的文字12</span></div>
+    <div>浏览器窗口的可用高度，不包括windows任务栏（可变）window.screen.availHeight<span id="span_screen_availHeight">测试的文字12</span></div>
+    <div>浏览器窗口的可用宽度，不包括windows任务栏（可变）window.screen.availWidth<span id="span_screen_availWidth">测试的文字12</span></div>
+    <div>浏览器窗口距离显示屏上部高度（可变） window.screenTop<span id="span_window_top">测试的文字12</span></div>
+    <div>浏览器窗口距离显示屏下部高度（可变） window.screenLeft<span id="span_window_left">测试的文字12</span></div>
+</body>
+<script type="text/javascript">
+   function body_scroll(){
+       console.log(this)
+       console.log(document.body.scrollTop)
+    }
+    window.onload = function () {
+        dataUpdate();
+    }
+    window.onresize = function () {
+        dataUpdate();
+    }
+    window.onscroll = function () {
+        console.log("window.onscroll")
+        dataUpdate();
+    }
+    document.body.onclick =function () {
+        dataUpdate();
+    }
+   var client_height = document.getElementById("span_client_height");
+   client_height.onclick=function () {
+       console.log(this)
+   }
+
+    function dataUpdate() {
+        var client_height = document.getElementById("span_client_height");
+        client_height.innerText = document.body.clientHeight||document.documentElement.clientHeight;
+        var client_width = document.getElementById("span_client_width");
+        client_width.innerText = document.body.clientWidth||document.documentElement.clientWidth;
+
+        var client_offsetHeight = document.getElementById("span_client_offsetHeight");
+        client_offsetHeight.innerText = document.body.offsetHeight;
+        var client_offsetWidth = document.getElementById("span_client_offsetWidth");
+        client_offsetWidth.innerText = document.body.offsetWidth;
+
+        var client_scrollHeight = document.getElementById("span_client_scrollHeight");
+        client_scrollHeight.innerText = document.body.scrollHeight;
+        var client_scrollTop = document.getElementById("span_client_scrollTop");
+        client_scrollTop.innerText = document.body.scrollTop;
+        var client_scrollWidth = document.getElementById("span_client_scrollWidth");
+        client_scrollWidth.innerText = document.body.scrollWidth;
+
+        var window_innerHeight = document.getElementById("span_inner_height");
+        window_innerHeight.innerText = window.innerHeight;
+        var window_innerWidth = document.getElementById("span_inner_width");
+        window_innerWidth.innerText = window.innerWidth;
+        var window_outerHeight = document.getElementById("span_outer_height");
+        window_outerHeight.innerText = window.outerHeight;
+        var window_outerWidth = document.getElementById("span_outer_width");
+        window_outerWidth.innerText = window.outerWidth;
+
+
+        var screen_height = document.getElementById("span_screen_height");
+        screen_height.innerText = window.screen.height;
+        var screen_width = document.getElementById("span_screen_width");
+        screen_width.innerText = window.screen.width;
+        var screen_availHeight = document.getElementById("span_screen_availHeight");
+        screen_availHeight.innerText = window.screen.availHeight;
+        var screen_availWidth = document.getElementById("span_screen_availWidth");
+        screen_availWidth.innerText = window.screen.availWidth;
+        var window_top = document.getElementById("span_window_top")
+         window_top.innerText = window.screenTop
+        var window_left = document.getElementById("span_window_left")
+        window_left.innerText = window.screenLeft
+
+    }
+
+
+</script>
+
+</html>

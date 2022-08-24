@@ -1,0 +1,4 @@
+- 跨端技术：flutter taro3 RN （重点研究taro的同构原理
+- Node+typescript+typeorm+nestjs（egg）
+- SSR nextjs 主要研究下next实现的原理
+- 架构相关：vite2 Vue3 TSReact TS 多类型组件以及动画还需封装

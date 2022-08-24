@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .list {
+        width: 60vw;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="list"></ul>
+  </body>
+  <script>
+    "use strict";
+    let list = document.querySelector(".list");
+    let total = 50000;
+    // 这里因为js一直在执行 所以会阻塞页面的渲染 表现为转了好几秒的圈才更新视图
+    for (let i = 0; i < total; ++i) {
+      let item = document.createElement("li");
+      item.innerText = `我是${i}`;
+      list.appendChild(item);
+    }
+  </script>
+</html>

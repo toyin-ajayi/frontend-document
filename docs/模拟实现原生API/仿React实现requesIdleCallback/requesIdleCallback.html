@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // 这只是实现了没一帧都去调用 且保证在切换Tab也的时候requestAnimationFrame不停止
+    // React内部还有了一个MessageChannel的一个回调来计算空闲时间
+    var requestAnimationFrameWithTimeout = function(callback) {
+      rAFID = requestAnimationFrame(function(timestamp) {
+        clearTimeout(rAFTimeoutID);
+        callback(timestamp);
+      });
+      rAFTimeoutID = setTimeout(function() {
+        cancelAnimationFrame(rAFID);
+        callback(getCurrentTime());
+      }, 100);
+    };
+    requestAnimationFrameWithTimeout(myconsole);
+    function myconsole() {
+      console.log(performance.now());
+      requestAnimationFrameWithTimeout(myconsole);
+    }
+  </script>
+</html>

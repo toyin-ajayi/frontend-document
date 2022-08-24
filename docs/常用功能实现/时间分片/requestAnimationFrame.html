@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .list {
+        width: 60vw;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="list"></ul>
+  </body>
+  <script>
+ 'use strict'
+    // 页面会平缓的更新视图
+    let list = document.querySelector('.list')
+    let total = 50000
+    let size = 100
+    let index = 0
+    const render = (total, index) => {
+        // 递归出口 渲染完成时
+        if (total <= 0) {
+            return
+        }
+        let curPage = Math.min(total, size)
+        window.requestAnimationFrame(() => {
+            let fragment = document.createDocumentFragment()
+            // 一帧如果只渲染20次的话就不会阻塞本次事件循环
+            for (let i = 0; i < curPage; ++i) {
+                let item = document.createElement('li')
+                item.innerText = `我是${index + i}`
+                fragment.appendChild(item)
+            }
+            list.appendChild(fragment)
+            // 递归调用的话才能保证每一帧都执行
+            // 渲染一次总数减少   索引增加
+            render(total - curPage, index + curPage)
+        })
+    }
+    render(total, index)
+  </script>
+</html>

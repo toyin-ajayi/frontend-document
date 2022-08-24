@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        p{
+            padding: 0;
+            margin: 20px 0 20px 0;
+            height: 20px;
+            background-color: burlywood;
+            color: #fff;
+        }
+        div{
+            overflow: auto;/* 前后的区别取决于这句话，加上就能让父级生成BFC区域包含它们 */
+            width: 250px;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <p>aaaaaaaaaaaaaa</p>
+    <p>bbbbbbbbbbbbbb</p>
+</div>
+
+</body>
+</html>

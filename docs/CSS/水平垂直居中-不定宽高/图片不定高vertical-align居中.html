@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .wrap1 {
+        line-height: 600px;/* 设置height: 400px;是没用的 */
+        text-align: center;
+        border: 1px solid rebeccapurple;
+      }
+      .middle {
+        vertical-align: middle;
+      }
+      span {
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        font-size: 100px;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <!--     <div class="wrap1">
+      <img src="./mm1.jpg" class="middle" />
+    </div> -->
+    <!--     我们可以在父级最后面增加一个inline-block化的span标签,
+    高度为100%，font-size为0，
+    接着让居中的元素居中对齐即可。 -->
+    <div class="wrap1" >
+      <img src="../img/mm1.jpg" alt="" class="middle" />
+      <span >123</span>
+    </div>
+  </body>
+</html>

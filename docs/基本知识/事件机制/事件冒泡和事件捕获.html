@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="s1" style="height: 400px;width: 400px;border: 1px solid red">红
+    <div id="s2" style="height: 200px;width: 200px;border: 1px solid yellow">
+        黄
+        <div id="s3" style="height: 100px;width: 100px;border: 1px solid blue">蓝</div>
+    </div>
+
+</div>
+<ul id="ur">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+</ul>
+
+</body>
+<script>
+
+    //事件先捕获再冒泡。
+    s1 = document.getElementById('s1')
+    s2 = document.getElementById('s2')
+    s3 = document.getElementById('s3')
+    ul = document.getElementById('ul')
+
+    s1.onclick=function(){
+        console.log('红')
+    }
+    s2.onclick=function(){
+        console.log('黄')
+    }
+    s3.onclick=function(){
+        console.log('蓝')
+        return true
+    }
+
+    ul.addEventListener("click",function(e){
+        console.log(e.target.innerText);//从底层往上
+    },false);
+
+    s1.addEventListener("click",function(e){
+        console.log("红 冒泡事件");//从底层往上
+    },false);//第三个参数默认值是false，表示在事件冒泡阶段调用事件处理函数;如果参数为true，则表示在事件捕获阶段调用处理函数。
+    s2.addEventListener("click",function(e){
+        console.log("黄 冒泡事件");
+    },false);
+    s3.addEventListener("click",function(e){
+        console.log("蓝 冒泡事件");
+    },false);
+
+    s1.addEventListener("click",function(e){
+        console.log("红 捕获事件");
+    },true);//第三个参数默认值是false，表示在事件冒泡阶段调用事件处理函数;如果参数为true，则表示在事件捕获阶段调用处理函数。
+
+    s2.addEventListener("click",function(e){
+        console.log("黄 捕获事件");
+
+    },true);
+    s3.addEventListener("click",function(e){
+        console.log("蓝 捕获事件");
+    },true);
+
+
+
+
+/*    s1.addEventListener("click",function(e){
+        console.log("红 冒泡事件");//从底层往上
+    },false);//第三个参数默认值是false，表示在事件冒泡阶段调用事件处理函数;如果参数为true，则表示在事件捕获阶段调用处理函数。
+    s2.addEventListener("click",function(e){
+        console.log("黄 冒泡事件");
+    },false);*/
+
+
+/*    s1.addEventListener("click",function(e){
+        console.log("红 捕获事件");
+    },true);//第三个参数默认值是false，表示在事件冒泡阶段调用事件处理函数;如果参数为true，则表示在事件捕获阶段调用处理函数。
+    s2.addEventListener("click",function(e){
+        console.log("黄 捕获事件");
+        console.log(e.target)
+    },true);*/
+
+
+</script>
+</html>

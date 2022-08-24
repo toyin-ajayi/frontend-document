@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
+  </body>
+  <script>
+    var oDiv = null;
+    var disX = 0;
+    var disY = 0;
+    window.onload = function () {
+      oDiv = document.getElementById("box");
+      init();
+    };
+    function init() {
+      oDiv.onmousedown = fnDown;
+    }
+    function fnDown(event) {
+        // 当移动的太快时可能移动到了window上去
+      var event = event || window.event;
+      // 鼠标与拖拽元素边界的距离 = 鼠标与可视区边界的距离 - 拖拽元素与边界的距离
+      disX = event.clientX - oDiv.offsetLeft;
+      disY = event.clientY - oDiv.offsetTop;
+      document.onmousemove = fnMove;
+      document.onmouseup = fnUp;
+      return false;
+    }
+    function fnMove(event) {
+      var event = event || window.event;
+      // 拖拽元素移动的距离 = 鼠标与可视区边界的距离 - 鼠标与拖拽元素边界的距离
+      // TODO: 这里可以判断是否dayu0来避免拖出可视范围
+      oDiv.style.left = event.clientX - disX + "px";
+      oDiv.style.top = event.clientY - disY + "px";
+    }
+    function fnUp() {
+      document.onmousemove = null;
+      document.onmouseup = null;
+    }
+  </script>
+</html>

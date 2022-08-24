@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .list {
+        width: 60vw;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="list"></ul>
+  </body>
+  <script>
+ 'use strict'
+    // React16 内部的时间分片就是基于requestIdleCallback的，内部模拟实现了这个方法
+    // React 通过 Fiber 链式结构来遍历 一个Fiber一个Fiber的比对，并且由workLoop控制
+    // 并且只有当浏览器本帧还有剩余的时间采取执行diff
+    // 也就是说每次执行方法前都需要判断是否有时间,没有时间就中断等待，采取的是标记以及遍历过的节点（标记中断）
+    // 我们没有Fiber的数据结构 简单点可以通过 Generator 来实现中断机制 完成任务调度
+    function gen(task) {
+      requestIdleCallback(deadline => {
+        // deadline 可以让你判断用户代理(浏览器)还剩余多少闲置时间可以用来执行耗时任务
+        // 一般刚开始渲染的时候没有多少剩余时间 而后面趋于16mm 因为后面基本只有这里的回调函数有任务
+        let next = task.next()
+        // 不断遍历生成器返回的迭代器
+        while (!next.done) {
+            // 如果本帧没有剩余时间则要发起下一次调度
+            // 不然就会出现掉帧，不流畅等现象，严重的话会卡顿
+          if (deadline.timeRemaining() <= 0) {
+            gen(task)
+            return
+          }
+          // 有时间就去执行任务
+          next = task.next()
+        }
+      })
+    }
+    let list = document.querySelector('.list')
+    let total = 100000
+    function* loop() {
+      for (let i = 0; i < total; ++i) {
+        let item = document.createElement('li')
+        item.innerText = `我是${i}`
+        list.appendChild(item)
+        yield
+      }
+    }
+    gen(loop())
+  </script>
+</html>

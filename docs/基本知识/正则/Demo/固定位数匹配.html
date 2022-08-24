@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" value="" onblur="check(this.value)"/>
+</body>
+<script type="text/javascript">
+    //匹配固定位数时，不能/[1-9]\d{4,11}/这样写，这样输入15位也会从15位中成功匹配11位
+    //只能用^和$匹配字符串开始和结束位置，然后再匹配中间的位数(^$不是从哪里开始匹配
+    function check(val) {
+        console.log(val)
+        var reg = /^[1-9]\d{4,8}[0-9]$/;//匹配5到10位qq号
+        if (!reg.test(val)) {
+            alert("输入有误");
+        }else{
+            alert("输入正确");
+        }
+    }
+</script>
+
+</html>

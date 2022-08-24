@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!--     <style>
+      .element {
+        height: 0;
+        overflow: hidden;
+        transition: height 0.25s;
+        background-color: pink;
+      }
+      :checked ~ .element {
+        height: 100%; /*高度100%和auto都是生硬的效果，无法计算，给定具体值可以实现动画*/
+      }
+    </style> -->
+    <style>
+            .box {
+                width: 100%;
+                height: 800px;
+            }
+            .element {
+                max-height: 0px;
+                overflow: hidden;
+                transition: max-height 0.25s;
+                background: pink;
+            }
+            :checked ~ .element {
+                max-height: 1000px;
+            }
+
+    </style>
+  </head>
+  <body>
+      <!-- 思路就是先吗max-height设为0，然后用overflow隐藏掉溢出，最后修改max-hight -->
+    <input id="check" type="checkbox">
+    <div class="element">
+        <div class="box">asdasdasfsafasfsaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+    </div>
+    <label for="check" >展开</label>
+  
+
+
+  </body>
+</html>

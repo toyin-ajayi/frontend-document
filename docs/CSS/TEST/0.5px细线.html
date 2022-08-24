@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .hr.scale-half {
+        height: 1px;
+        transform: scaleY(0.5);
+        background-color: red;
+        transform-origin: 50% 100%;
+      /*   //等价于bottom 用来设置元素的运动的基点（参照点）。默认点是元素的中心点。 */
+      }
+      
+    </style>
+  </head>
+  <body>
+    <p>1px + scaleY(0.5)</p>
+    <div class="hr scale-half"></div>
+  </body>
+</html>

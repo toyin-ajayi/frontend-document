@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var str="this is block of of text ,here are are ";
+    var reg=/[ ]+(\w+)[ ]+\1/g;//\1表示匹配和第一个（）里相同的内容
+    var t=/[]+/g;
+
+    var res=str.match(reg);
+    var str2=str.replace(reg," $1");
+    console.log(res);
+    console.log(str2);
+</script>
+</html>

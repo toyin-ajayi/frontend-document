@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //(?=exp)向前查找
+    //(?<=exp)向后查找
+    //(?!exp)匹配后面跟的不是exp的位置
+    //(?<!exp)匹配前面不是exp的位置
+    (function(){
+        var str="http://www.sina.com.cn ";
+        var reg1= new RegExp(/.+(:)/g);
+        var res1=str.match(reg1);
+        var reg2=new RegExp(/.+(?=:)/);
+        var res2=str.match(reg2);
+        console.log(res1);
+        console.log(res2);
+    })();
+    (function(){
+        var a = "价格是123456789.6754";
+        var reg4= new RegExp(/(\d)(?=(\d{3})+\.)/g);
+        console.log(a.match(reg4));
+        var b = a.replace(reg4, '$1,');
+        console.log(b)
+    })();
+    (function(){
+        let str="ABCD01:$23.45";
+        let reg1=/\$[0-9.]+/g;
+        let reg2=/(?<=\$)[0-9.]+/g;
+        let res1=str.match(reg1);
+        let res2=str.match(reg2);
+        console.log(res1);
+        console.log(res2);
+    })();
+
+
+
+
+</script>
+
+</body>
+</html>

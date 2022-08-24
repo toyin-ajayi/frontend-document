@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            height: 500vh;
+            background-image: linear-gradient(red, yellow, blue);
+        }
+        #button{
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id='box'>阿萨德撒</div>
+    <button id='button'>上</button>
+</body>
+<script>
+    let button = document.getElementById('button')
+    const scrollToTop = () => {
+  const c = document.documentElement.scrollTop || document.body.scrollTop;
+  if (c > 0) {
+    window.requestAnimationFrame(scrollToTop);
+    window.scrollTo(0, c - c / 20);// 60FPS 一秒 这里用 20FPS执行完 大概0.3秒画上去 较为平滑
+  }
+};
+
+button.addEventListener('click',scrollToTop)
+
+
+</script>
+</html>

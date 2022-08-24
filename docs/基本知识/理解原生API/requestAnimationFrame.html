@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    let count = 0;
+    let rafId = null;
+    let ord = 0
+    console.log(Date.now())
+    console.log(performance.now())
+    console.log(performance.now())
+    requestAnimationFrame(requestAnimation);
+    /**
+     * 回调函数
+     * @param time 
+     * requestAnimationFrame 调用该函数时，自动传入的一个时间
+     * 该参数与performance.now()的返回值相同
+     * 它表示requestAnimationFrame() 开始去执行回调函数的时刻。
+     */
+    function requestAnimation(time) {
+      let now = time - ord
+      ord = time
+      console.log(now)
+      // 动画没有执行完，则递归渲染
+      if (count < 50) {
+        // requestAnimation也是会被耗时任务阻塞的
+        if(count == 3){
+          console.log("count 3")
+          let preTime = Date.now()
+          while(Date.now()<preTime+3000);
+        }
+        // 但只要只要这个任务在16ms内执行完就不会阻塞
+        // React15里的递归比较两颗完整树很容易超过16ms，所以很容易出现掉帧卡顿现象
+        // React16里链式的一个个Fiber节点的比对基本不会出现大于16ms的情况
+        if(count == 5){
+          console.log("count 5")
+          let preTime = Date.now()
+          while(Date.now()<preTime+14);
+        }
+        count++;
+        // 渲染下一帧
+        rafId = requestAnimationFrame(requestAnimation);
+      }
+    }
+    // 渲染第一帧
+
+  </script>
+</html>

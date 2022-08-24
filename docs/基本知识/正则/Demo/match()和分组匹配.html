@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    var reg = /(\d{4})-(\d{2})-(\d{2})/;
+    var dateStr = '2018-04-18';
+    var s=dateStr.match(reg);
+    console.log(s)//arr[0]是匹配的结果，arr[1]是第一个（）里的匹配内容，全局匹配不会返回（）里的内容
+
+    var str="hello my name is ben &nbsp;&nbsp;,this is &nbsp;";
+    var reg2=/&nbsp;{1,}/g;
+    var reg22=/(&nbsp;){1,}/g//（）内看成一个整体去匹配
+    console.log(str.match(reg2));
+    console.log(str.match(reg22));
+</script>
+</html>

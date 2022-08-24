@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jsonp跨域test</title>
+</head>
+<body>
+    <script type="text/javascript">
+        function res (r) {  //定义回调函数接收返回结果
+            console.log(r)
+        }
+    </script>
+    <script src="./test.js?callback=res">
+        //? 之前为请求的路径
+　　　　 //? 之后 callback 可缩写为 cb，值为回调函数的名称
+    </script>  
+</body>
+</html>
