@@ -3,6 +3,7 @@
 
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const sidebarTransform = require("./src/utils/sidebarTransform");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -39,17 +40,14 @@ const config = {
           editUrl:
             "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
           async sidebarItemsGenerator({
-            isCategoryIndex: defaultCategoryIndexMatcher, // 默认匹配函数实现，见下文
             defaultSidebarItemsGenerator,
             ...args
           }) {
-            return defaultSidebarItemsGenerator({
+            const sidebarItems = await defaultSidebarItemsGenerator({
               ...args,
-              isCategoryIndex() {
-                // 没有文档会被自动选为类别索引
-                return false;
-              },
             });
+            sidebarTransform(sidebarItems);
+            return sidebarItems;
           },
         },
         blog: {
