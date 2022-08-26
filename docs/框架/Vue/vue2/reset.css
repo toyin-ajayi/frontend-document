@@ -1,0 +1,23 @@
+body, h1, h2, h3, h4, h5, h6, dl, dt, dd, ul, ol, li, th, td, p, pre, form, input, button, textarea, hr {
+    margin: 0;
+    padding: 0;
+}
+
+em, i {
+    font-style: normal;
+}
+
+ul, li {
+    list-style-type: none;
+}
+.clear:after,.clearfix:after{
+    display: block;
+    content: "";
+    clear: both;
+}
+.fllil li{
+    float: left;
+}
+.ml30{
+    margin-left: 30px;
+}

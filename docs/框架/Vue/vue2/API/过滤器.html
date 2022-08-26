@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>过滤器 filter</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      {{message | lower}}
+      <div>{{ dateStr | date('YYYY-MM-DD hh:mm:ss') }}</div>
+    </div>
+    <script>
+        // 全局的过滤
+      Vue.filter("date", function(value, format) {
+          console.log(value,format)
+          return '1111111'
+        // value 要过滤的字符串内容，比如：dateStr
+        // format 过滤器的参数，比如：'YYYY-MM-DD hh:mm:ss'
+      });
+      // 局部过滤
+      new Vue({
+        el: "#root",
+        filters: {
+          lower(value) {
+            return value.toLowerCase();
+          },
+        },
+        data() {
+          return {
+            message: "Hello Vue",
+            dateStr:'22222'
+          };
+        },
+      });
+    </script>
+  </body>
+</html>

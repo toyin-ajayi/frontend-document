@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./animate.css" />
+    <style>
+        .p-enter{
+            opacity: 0;
+        }
+        .enter{
+            transition: opacity 5s;
+        }
+        .p-leave-to{
+            opacity: 0;
+        }
+        .leave{
+            transition: opacity 5s;
+        }
+    </style>
+  </head>
+  <body>
+    <!-- 动画效果 -->
+    <div id="anim1">
+      <button @click="show = !show">放大缩小动画</button>
+      <br />
+
+
+      <transition
+        name="p"
+        :duration="{ enter: 1000, leave: 2000 }"
+        enter-active-class="animated swing enter"
+        leave-active-class="animated shake leave"
+        appear 
+        appear-active-class='animated shake '
+      >
+        <div class="box" v-if="show">animate</div>
+      </transition>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    
+    let vm3 = new Vue({
+      el: "#anim1",
+      data: {
+        show: true,
+      },
+    });
+    // transition 的 type 属性 ：animation transition 设置动画和渐变同时存在以哪个为准
+  </script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        .p-enter{
+            opacity: 0;
+        }
+        .p-enter-active{
+            transition: opacity 2s;
+        }
+        .p-leave-to{
+            opacity: 0;
+        }
+        .p-leave-active{
+            transition: opacity 2s;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="example-1">
+      <button @click="show = !show">
+        Toggle render
+      </button>
+      <transition name="p">
+        <p v-if="show">hello</p>
+      </transition>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: "#example-1",
+      data: {
+        show: true,
+      },
+    });
+  </script>
+</html>

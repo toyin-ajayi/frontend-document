@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./animate.css" />
+    <style>
+      /* 动画效果 */
+      .anim1-enter-active {
+        transform-origin: left center;
+        animation: bounce-in 1s;
+      }
+      .anim1-leave-active {
+        transform-origin: left center;
+        animation: bounce-in 2s reverse;
+      }
+      /* @keyframes自定义动画效果，然后可以被引用 */
+      @keyframes bounce-in {
+        /* 若总共持续1秒，则0%表示0秒，50%表示0.5秒，100%表示1秒 */
+        0% {
+          transform: scale(0);
+        }
+        50% {
+          transform: scale(1.5);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .active {
+        animation: move-in 1s;
+      }
+      .leave {
+        animation: move-in 2s reverse;
+      }
+      @keyframes move-in {
+        /* 若总共持续1秒，则0%表示0秒，50%表示0.5秒，100%表示1秒 */
+        0% {
+          transform: translateX(-50px);
+        }
+        50% {
+          transform: translateX(50px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 动画效果 -->
+    <div id="anim1">
+      <button @click="show = !show">放大缩小动画</button>
+      <br />
+      <transition name="anim1">
+        <div class="box" v-if="show">1234567</div>
+      </transition>
+
+      <transition
+        name="anim2"
+        enter-active-class="active"
+        leave-active-class="leave"
+      >
+        <div class="box" v-if="show">move in</div>
+      </transition>
+
+      <transition
+        name="anim3"
+        enter-active-class="animated swing "
+        leave-active-class="animated shake "
+      >
+        <div class="box" v-if="show">animate</div>
+      </transition>
+
+      <transition
+        name="appear"
+        enter-active-class="animated swing "
+        leave-active-class="animated shake "
+        appear 
+        appear-active-class='animated shake '
+      >
+        <div class="box" v-if="show">animate</div>
+      </transition>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    let vm3 = new Vue({
+      el: "#anim1",
+      data: {
+        show: true,
+      },
+    });
+  </script>
+</html>
