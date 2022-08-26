@@ -1,3 +1,6 @@
+---
+sidebar_position: 1
+---
 ## 源码仓库
 :::tip
 迁移From：https://github.com/jianjiachenghub/DataStructure-Algorithm
