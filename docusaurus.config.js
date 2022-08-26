@@ -11,7 +11,7 @@ const config = {
   tagline: "构建前端知识体系",
   url: "https://fontend-document.vercel.app/",
   baseUrl: "/",
-  onBrokenLinks: "throw",
+  onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
 
