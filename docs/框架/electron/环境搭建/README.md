@@ -1,3 +1,6 @@
+:::tip
+迁移From: https://github.com/jianjiachenghub/electron-react
+:::
 ## 依赖安装
 
 - electron 容器
