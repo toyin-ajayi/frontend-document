@@ -22,7 +22,7 @@
  */
 function sidebarTransform (tree) {
   tree.forEach((sidebar) => {
-    if(sidebar.label === "README" && sidebar.link) {
+    if(sidebar.label && sidebar.label.toLowerCase() === "readme" && sidebar.link) {
       const id = sidebar.link.id;
       const fileNames = id.split('/');
       const dirName = fileNames[fileNames.length - 2] || fileNames[fileNames.length - 1];
