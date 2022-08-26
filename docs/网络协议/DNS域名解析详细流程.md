@@ -20,15 +20,43 @@ DNS，就是 Domain Name System 的缩写，翻译过来就是域名系统，是
 全球目前有 13 台根服务器。然而，因为每分钟有无数的名字要处理，所以事实上有很多这些服务器的镜像。有意思的是这些镜像服务器的 IP 竟然和单根服务器共享同样的 IP 地址。当请求要发送到一台根服务器，这个请求会被路由到最近的镜像根服务器上。
 
 ### CNAME 记录
+> 真实名称记录（英语：Canonical Name Record），即CNAME记录，是域名系统（DNS）的一种记录。CNAME记录用于将一个域名（同名）映射到另一个域名（真实名称），域名解析服务器遇到CNAME记录会以映射到的目标重新开始查询
 
-CNAME 记录定义了一个给定的服务（一个通过 A 记录或者 AAAA 记录定义的）名字的别名。
-
-例如：我们已经定义了一条 A 记录叫 server1 的 host，然后使用 www 来定义一个这个 host 的一个别名：
-
+假设有下述DNS zone：
 ```
-server1     IN  A       111.111.111.111
-www         IN  CNAME   server1
+NAME                    TYPE   VALUE
+--------------------------------------------------
+bar.example.com.        CNAME  foo.example.com.
+foo.example.com.        A      192.0.2.23
 ```
+
+当要查询bar.example.com的A记录时，域名解析器会查到对应的CNAME记录，即foo.example.com，随即开始查询该域名的A记录，查到192.0.2.23则返回结果。
+
+可以使用CNAME记录将“bar.example.com”指向“foo.example.com”。因此，可能会有人随意的将bar.example.com称作是foo.example.com的“CNAME”。然而事实并非如此，bar.example.com的“CNAME”是foo.example.com，因为CNAME的意思是真实名称，而右侧才是真实名称，才是CNAME。
+
+这则误会在《RFC 2181》“DNS规范的解释”一章中有提到。应当说左侧标签是右侧真实名称的一个同名。即下述CNAME记录：
+```
+bar.example.com.        CNAME  foo.example.com.
+```
+应当读作：bar.example.com的真实名称是foo.example.com。请求访问bar.example.com的客户端会得到foo.example.com返回的结果。
+
+CNAME可以避免全量修改指向，也常用于CDN
+```
+假如这个时候我又想给原域名取几个小名儿，分别叫www.cc.com和www.kk.com那么存在下列指向关系：
+
+www.yy.com → www.xx.com → 1.1.1.1
+www.cc.com → www.xx.com → 1.1.1.1
+www.kk.com → www.xx.com → 1.1.1.1
+突然服务器的IP地址因为一些不可描述的原因要更换了，不再是1.1.1.1了，换成了2.2.2.2
+这时候你发现，只要把www.xx.com的指向修改一下即可：
+
+域名 www.xx.com → 2.2.2.2
+这时候你又发现了，原来他的小名儿不需要做更改，直接就能访问服务器
+因为他们都只指向了www.xx.com，服务器IP改没改它们不管
+```
+www.xx.com即可当做中间CDN专用服务器，yy,cc,kk都是可以视作这个CDN的用户
+
+
 
 ### Name Server 名字服务器
 

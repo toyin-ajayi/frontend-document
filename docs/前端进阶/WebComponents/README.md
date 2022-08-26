@@ -219,3 +219,38 @@ const link = document.querySelector('link[rel=import]')
 const header = link.import;
 const pulse = header.querySelector('div.logo');
 ```
+
+## Stencil.js => Web Component
+
+Stencil 是 ionic 公司的一个开源框架，简单来说，它是一个构建 Web Component 的工具集。在 Stencil的框架下面，我们可以以一种类似 React 的方式去开发 Web Component 组件，它有更加便捷的语法糖、更高的渲染效率。而且集成了unit和e2e的测试框架，而且最需要注意的是，它只是一个构造器，最终的编译结果是标准的Web Component组件，所以它不会作为我们组件库的直接依赖。
+
+它提供了以下的特性。
+
+- Virtual DOM
+- Async rendering
+- Reactive data-binding
+- TypeScript
+- JSX
+- 
+为什么说它结合了最流行框架的最佳概念——它的代码看上去就像 Angular + React 的混合体，如下
+
+```jsx
+@Component({
+ tag: 'my-component',
+ styleUrl: 'my-component.css',
+ shadow: true
+})
+export class MyComponent {
+ @Prop() first: string;
+
+ private getText(): string {
+ return this.first;
+ }
+
+ render() {
+ return <div>Hello, World! I'm {this.getText()}</div>;
+ }
+}
+```
+
+taro/component 就是用Stencil构建，以到达跨框架可用的目的（如React、Vue
