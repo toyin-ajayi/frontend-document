@@ -73,7 +73,7 @@ TypedArray对象描述了一个类数组的底层二进制数据buffer的视图�
 
 TypedArray 是一类构造函数的总称,用这九个构造函数生成的 typed array，和数组具有类似的行为。如都有 length 属性，都可以通过 [] 访问元素，也可以使用数组大部分的方法。
 
-<img src = './类型化数组.png' />
+![图片无法加载](./类型化数组.png)
 
 ```
 const buffer = new ArrayBuffer(12);// 这里面全是二进制的

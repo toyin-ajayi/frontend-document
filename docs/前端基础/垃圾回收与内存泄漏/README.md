@@ -45,7 +45,7 @@ let family = marry({
 
 ```
 
-<img src = './1.png' />
+![图片无法加载](./1.png)
 
 现在让我们移除两个引用：
 
@@ -54,8 +54,8 @@ delete family.father;
 delete family.mother.husband;
 ```
 
-<img src = './2.png' />
-<img src = './3.png' />
+![图片无法加载](./2.png)
+![图片无法加载](./3.png)
 
 ### 基本算法
 
@@ -66,7 +66,7 @@ delete family.mother.husband;
 - 知道所有能到达的全被标记就结束
 
 如下图经过三次遍历到达所有的节点，没有标记的将会被清除
-<img src = './4.png' />
+![图片无法加载](./4.png)
 
 ## 古老的引用计数算法
 
