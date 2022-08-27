@@ -55,7 +55,7 @@ border-image: 图片url 图像边界向内偏移 图像边界的宽度(默认为
 ## Grid 栅格布局
 
 ## 媒体查询
-```
+```tsx
 @media screen and (max-width: 960px) {
     body {
         background-color: darkgoldenrod;

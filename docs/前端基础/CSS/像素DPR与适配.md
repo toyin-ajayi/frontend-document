@@ -79,7 +79,7 @@ DPR = 物理像素/ 设备逻辑像素（css 像素）
 
 **device-width 是设备逻辑像素的宽**
 
-```
+```tsx
 <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 
 ```
@@ -107,7 +107,7 @@ meta viewport 标签首先是由苹果公司在其safari浏览器中引入的，
 
 
 用 iphone6 举例，设置 width=device-width
-```
+```tsx
 <meta name="viewport" content="width=device-width,initial-sacle=1">
 ```
 DPR = 物理像素/ 设备逻辑像素（css 像素）
@@ -119,7 +119,7 @@ iphone 6/7/8**物理**竖屏的宽度为 750px，它的 dpr=2，用 2px 表示 1
 
 我们可以动态获取屏幕逻辑宽度然后计算出rem，来适配
 
-```
+```tsx
 <script>
     document.documentElement.style.fontSize = (document.documentElement.clientWidth / 750)*100 + 'px';
 </script>

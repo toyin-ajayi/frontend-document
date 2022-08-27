@@ -8,7 +8,7 @@
 
 
 将相对路径转化为绝对路径：
-```
+```tsx
 const {resolve} = require('path');
 console.log(resolve('./'));
 ```
@@ -16,7 +16,7 @@ console.log(resolve('./'));
 ## path.join()
 用于连接路径。会把全部给定的 path 片段连接到一起，并规范化生成的路径。
 
-```
+```tsx
 path.join('/foo', 'bar', './baz');
 // '/foo/bar/baz'
 
@@ -25,7 +25,7 @@ path.join('/foo', 'bar', '/baz', '..');
 ```
 ## join VS resolve
 join是把各个path片段连接在一起， resolve把‘／’当成根目录
-```
+```tsx
 path.join('/a', '/b'); 
 // /a/b
 path.resolve('/a', '/b');
@@ -42,7 +42,7 @@ path.resolve('/a', '/b');
 
 根目录ES6-lottery 目录下运行 node syntax/nodejs/2.path.js，我们再来看看输出结果:
 
-```
+```tsx
 const path = require('path')
 console.log('__dirname：', __dirname)
 console.log('__filename：', __filename)
@@ -68,7 +68,7 @@ process.cwd()： /Users/jawil/Desktop/nodejs/demo/ES6-lottery
 
 ### fs.readFile fs.writeFile 读写文件
 
-```
+```tsx
 fs.readFile('./big.file', (err, buffer) => {
   zlib.gzip(buffer, (err, buffer) => {
     fs.writeFile('big' + '.gz', buffer, err => {
@@ -79,7 +79,7 @@ fs.readFile('./big.file', (err, buffer) => {
 ```
 
 ### fs.stat 获取文件信息
-```
+```tsx
  fs.stat(pathsToCheck[i], function(err, stats) {
     console.log(stats.isDirectory());
     console.log(stats);
@@ -110,7 +110,7 @@ Stats {
 
 ### fs.access 测试权限
 
-```
+```tsx
 // 检查当前目录中是否存在该文件。
 fs.access(file, fs.constants.F_OK, (err) => {
   console.log(`${file} ${err ? '不存在' : '存在'}`);
@@ -125,7 +125,7 @@ fs.access(file, fs.constants.R_OK, (err) => {
 
 ### fs.appendFile 追加文件
 
-```
+```tsx
 fs.appendFile('message.txt', '追加的数据', (err) => {
   if (err) throw err;
   console.log('数据已追加到文件');
@@ -134,7 +134,7 @@ fs.appendFile('message.txt', '追加的数据', (err) => {
 
 ## url.parse(urlString[, parseQueryString])
 
-```
+```tsx
 ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
 │                                              href                                              │
 ├──────────┬──┬─────────────────────┬────────────────────────┬───────────────────────────┬───────┤
@@ -154,7 +154,7 @@ fs.appendFile('message.txt', '追加的数据', (err) => {
 └────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-```
+```tsx
 使用 WHATWG 的 API 解析 URL 字符串：
 
 const myURL =
@@ -183,7 +183,7 @@ const myURL =
 - url.toString()
 - url.toJSON()
 
-```
+```tsx
 const myURL = new URL('https://example.org/?abc=123');
 console.log(myURL.searchParams.get('abc'));
 // 打印 123
@@ -191,7 +191,7 @@ console.log(myURL.searchParams.get('abc'));
 
 ## path.parse(path)
 
-```
+```tsx
 // 将路径字符串转换为路径对象
 const pathObj = path.parse('E:\\a\\b\\c\\d\\index.html')
 console.log(pathObj)
@@ -213,7 +213,7 @@ console.log(pathObj)
 - basename()方法 获得路径中的最后一段
 - extname()方法 获取扩展名
 
-```
+```tsx
 const {basename, dirname, extname} = require('path');
 const filePath = '/usr/local/bin/no.txt';
 

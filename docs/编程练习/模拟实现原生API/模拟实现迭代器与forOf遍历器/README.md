@@ -21,7 +21,7 @@
 - `value`\- 迭代器返回的任何 JavaScript 值。done 为 true 时可省略。
   next 方法必须要返回一一个对象，该对象有两个必要的属性： done 和 value，如果返回一个非对象值（比如 false 和 undefined)  会展示一个  [`TypeError`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/TypeError "TypeError（类型错误） 对象用来表示值的类型非预期类型时发生的错误。")("iterator.next() returned a non-object value") 的错误
 
-```
+```tsx
 var myIterator = {
     next: function() {
         // ...
@@ -36,7 +36,7 @@ var myIterator = {
 - 可迭代协议: 对象的[Symbol.iterator]值是一个无参函数，该函数返回一个迭代器(Iterator)。
 - 原生具备 Iterator 接口的数据结构如下。 - Array - Map - Set - String - TypedArray - 函数的 arguments 对象 - NodeList 对象
 
-```
+```tsx
 
    // for...of会获取可迭代对象的[Symbol.iterator]()，对该迭代器逐次调用next()
    // 直到迭代器返回对象的done属性为true时，遍历结束
@@ -47,7 +47,7 @@ var myIterator = {
 
 ## 手写一个迭代器(Iterator)
 
-```
+```tsx
     /*
         这是一个手写的迭代器(Iterator)
         满足迭代器协议的对象。
@@ -75,7 +75,7 @@ var myIterator = {
 
 一个良好的迭代即实现了迭代器协议，又实现了可迭代协议，方式就是可迭代协议返回的是自身
 
-```
+```tsx
     /*
         使迭代器可迭代
         makeIterator函数生成的迭代器并没有实现可迭代协议
@@ -107,7 +107,7 @@ var myIterator = {
 上面的函数看出，手动写个`iterator`太麻烦了，所以`ES6`推出`generator`，方便创建`iterator`。也就是说，`generator`就是一个返回值为迭代器`iterator`的函数。（感觉就是我们上面函数的语法糖）
 [生成器对象既是迭代器，又是可迭代对象](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#%E7%94%9F%E6%88%90%E5%99%A8%E5%AF%B9%E8%B1%A1%E5%88%B0%E5%BA%95%E6%98%AF%E4%B8%80%E4%B8%AA%E8%BF%AD%E4%BB%A3%E5%99%A8%E8%BF%98%E6%98%AF%E4%B8%80%E4%B8%AA%E5%8F%AF%E8%BF%AD%E4%BB%A3%E5%AF%B9%E8%B1%A1)
 
-```
+```tsx
 function *aGeneratorfunction(){
   yield 1
   yield 2
@@ -134,7 +134,7 @@ var aGeneratorObject1 = aGeneratorfunction()
 
 遍历返回对象的 done 值为 true 时迭代即结束，不对该 value 处理（return 会把 done 置为 true）
 
-```
+```tsx
 function *createIterator() {
   yield 1;
   return 42;
@@ -147,14 +147,14 @@ iterator.next();   // {value: 42, done: true}
 iterator.next();   // {value: undefined, done: true}
 ```
 
-```
+```tsx
 let iterator1 = createIterator();
 console.log(...iterator);   // 1
 ```
 
 ## 生成器委托 yield\*
 
-```
+```tsx
 function* g1() {
   yield 1;
   yield 2;
@@ -177,7 +177,7 @@ console.log(...generator);   // 1 2 3 4 "5" "6" 7 8
 
 其实原理很简单，通过 Symbol.iterator 属性获取迭代器对象，然后 while 遍历 next 就行了
 
-```
+```tsx
 function forOf(obj, cb) {
     let iterable, result;
 

@@ -16,7 +16,7 @@ Promise 一定程度上解决了回调地狱的问题，Promise 最早由社区�
 
 
 Promise 是一个构造函数，new Promise 返回一个 promise对象
-```
+```tsx
 const promise = new Promise((resolve, reject) => {
    resolve('fulfilled'); // 状态由 pending => fulfilled
 });
@@ -69,7 +69,7 @@ then的两个参数onFulfilled,onRejected，如果他们是函数，则必须分
 [myPromise2异步then.js](./myPromise2异步then.js)中：
 // 有个小问题 then回调如果直接注册是同步任务，234会先打出来
 // 而真实的promise是先执行'同步任务应该先执行'
-```
+```tsx
 const myPro2 = new myPromise(resolve => {
   resolve(234);
 }).then(val => console.log(val));
@@ -80,7 +80,7 @@ console.log('同步任务应该先执行')
 A+规范规定onFulfilled或onRejected不能同步被调用，必须异步调用，也就是我们常说的注册微任务。
 
 但浏览器端对微任务queueMicrotask不太支持，只有chrome能用(测了下node也行)，所以我们一般用setTimeout宏任务来模拟，node环境下可以使用nextTick。
-```
+```tsx
         // 一般浏览器
         setTimeout(() => {
           onRejected(this.reason);

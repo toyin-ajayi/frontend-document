@@ -36,7 +36,7 @@ master进程、woker进程可以通过IPC通道进行通信。
 - 父亲去监听： cluster.workers[id].on('message', messageHandler);
 - 当然也可以反过来 父进程cluster.workers[id].send消息。子进程process.on
 
-```
+```tsx
 const cluster = require('cluster');
 const http = require('http');
 

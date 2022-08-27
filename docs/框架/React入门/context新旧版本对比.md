@@ -3,7 +3,7 @@
 注意必须要声明Parent.childContextType才会生效，
 而子组件如果需要使用context，需要显示得声明Child.contextTypes
 
-```
+```tsx
 
 // old version
 class Parent extends Component{
@@ -37,7 +37,7 @@ React提供了createContext方法，这个方法会返回两个组件：Provider
 当 Provider 的 value 值发生变化时，它内部的所有消费组件都会重新渲染。Provider 及其内部 consumer 组件都不受制于 shouldComponentUpdate 函数，因此当 consumer 组件在其祖先组件退出更新的情况下也能更新。
 
 
-```
+```tsx
 // new version
 const { Provider, Consumer } = React.createContext('defaultValue')
 
@@ -62,7 +62,7 @@ const Child = () => {
 
 挂载在 class 上的 contextType 属性会被重赋值为一个由 React.createContext() 创建的 Context 对象。这能让你使用 this.context 来消费最近 Context 上的那个值。你可以在任何生命周期中访问到它，包括 render 函数中。
 
-```
+```tsx
 class MyClass extends React.Component {
   componentDidMount() {
     let value = this.context;
@@ -89,7 +89,7 @@ MyClass.contextType = MyContext;
 从一个在组件树中嵌套很深的组件中更新 context 是很有必要的。
 在这种场景下，你可以通过 context 传递一个函数，使得 consumers 组件更新 context：
 
-```
+```tsx
 this.toggleTheme = () => {
       this.setState(state => ({
         theme:
@@ -120,7 +120,7 @@ this.toggleTheme = () => {
 
 利用Consumer组件多重嵌套回调，每一层拿到对应的context的值
 
-```
+```tsx
 // Theme context，默认的 theme 是 “light” 值
 const ThemeContext = React.createContext('light');
 
@@ -182,7 +182,7 @@ React是一个树结构，要进行更新只能通过某个节点执行setState�
 
 我们来看一小段源码：
 
-```
+```tsx
 if (
   !hasLegacyContextChanged() &&
   (updateExpirationTime === NoWork ||

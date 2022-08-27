@@ -2,7 +2,7 @@
 JS的原型链继承的本质是根据__proto__一层一层往上找
 继承的时候只需要把子类的原型对象prototype里的__proto__属性指向父类的prototype即可
 这就好理解Extends在干嘛了
-```
+```tsx
     class A {
         // constructor也是定义在A的原型链上
         constructor(x,y){
@@ -60,7 +60,7 @@ Class 作为构造函数的语法糖，同时有prototype属性和\_\_proto\_\_�
 ### 最后需要继承构造函数里的属性和方法
 
 内部写的有点绕，但最后还是通过apply(this, arguments)来继承的
-```
+```tsx
 (function(_A) {
     //继承原型对象上的属性和方法
     _inherits(B, _A);
@@ -82,7 +82,7 @@ Class 作为构造函数的语法糖，同时有prototype属性和\_\_proto\_\_�
  
 ## babeljs对extends语法糖的部分编译结果
  
-```
+```tsx
 function _inherits(subClass, superClass) {
     //对superClass进行类型判断
   if (typeof superClass !== "function" && superClass !== null) {
@@ -109,7 +109,7 @@ function _inherits(subClass, superClass) {
 1.  使用借用构造函数(`call`)来**继承父类this声明的属性/方法**
 2.  通过寄生式封装函数设置父类prototype为子类prototype的原型来继**承父类的prototype声明的属性/方法**。
 可以发现ES6类的继承其实就是基于寄生组合继承来实现的，只是比这里多了一步 Object.setPrototypeOf(subType, superType)；
-```
+```tsx
 function inheritPrototype(subType, superType){
     //原型式继承：浅拷贝superType.prototype对象作为superType.prototype为新对象的原型
     // 内部会自带_proto_指向：prototype.\_\_proto\_\_ = superType.prototype;

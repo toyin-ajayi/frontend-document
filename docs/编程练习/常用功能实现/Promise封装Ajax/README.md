@@ -14,7 +14,7 @@ Ajax 的工作原理相当于在用户和服务器之间加了一个中间层(aj
 
 onreadystatechange 事件回调方法在 readyState 状态改变时触发, 在一个收到响应的 ajax 请求周期中, onreadystatechange 方法会被触发 4 次.
 
-```
+```tsx
 xhr.onreadystatechange = function(e){
   if(xhr.readystate==4){
     var s = xhr.status;
@@ -42,7 +42,7 @@ timeout 属性用于指定 ajax 的超时时长. 通过它可以灵活地控制 
 
 ontimeout 方法在 ajax 请求超时时触发, 通过它可以在 ajax 请求超时时做一些后续处理.
 
-```
+```tsx
 xhr.ontimeout = function(e) {
   console.error("请求超时!!!")
 }
@@ -68,7 +68,7 @@ onerror 方法用于在 ajax 请求出错后执行. 通常只在网络出现问�
 
 浏览器的原生 form 表单，如果不设置 enctype 属性，那么最终就会以 application/x-www-form-urlencoded 方式提交数据。请求类似于下面这样
 
-```
+```tsx
 POST http://www.example.com HTTP/1.1
 Content-Type: application/x-www-form-urlencoded;charset=utf-8
 
@@ -81,7 +81,7 @@ title=test&sub%5B%5D=1&sub%5B%5D=2&sub%5B%5D=3
 
 用来在 HTML 文档中上传二进制文件的。表单上传文件时，必须让 form 的 enctyped 等于这个值。
 
-```
+```tsx
 Content-Type:multipart/form-data; boundary=----WebKitFormBoundaryrGKCBY7qhFd3TrwA
 
 ------WebKitFormBoundaryrGKCBY7qhFd3TrwA
@@ -92,7 +92,7 @@ Content-Disposition: form-data; name="text"
 
 用来告诉服务端消息主体是序列化后的 JSON 字符串。由于 JSON 规范的流行，除了低版本 IE 之外的各大浏览器都原生支持 JSON.stringify，服务端语言也都有处理 JSON 的函数，使用 JSON 不会遇上什么麻烦。
 
-```
+```tsx
 POST http://www.example.com HTTP/1.1
 Content-Type: application/json;charset=utf-8
 
@@ -101,7 +101,7 @@ Content-Type: application/json;charset=utf-8
 
 ## 最简单的 Ajax 请求
 
-```
+```tsx
 // 实例化
 let xhr = new XMLHttpRequest()
 // 初始化
@@ -132,7 +132,7 @@ xhr.onreadystatechange = () => {
 - 适配 IE 用 ActiveXObject
 - 数据类型无法识别需要抛出错误，可以被 catch
 
-```
+```tsx
 // 基于promise实现
 function getCode(data) {
   let paramArr = [];
@@ -226,7 +226,7 @@ function ajax(options) {
 
 ```
 
-```
+```tsx
 const res = ajax({
       method: "POST",
       // application/json

@@ -15,7 +15,7 @@ Service worker运行在worker上下文，因此它不能访问DOM。相对于驱
 
 使用 ServiceWorkerContainer.register() 方法首次注册service worker。如果注册成功，service worker就会被下载到客户端并尝试安装或激活（见下文），这将作用于整个域内用户可访问的URL，或者其特定子集。
 
-```
+```tsx
 // index.js
 if ('serviceWorker' in window.navigator) {
   navigator.serviceWorker.register('./sw.js', { scope: './' })
@@ -33,7 +33,7 @@ if ('serviceWorker' in window.navigator) {
 
 使用 postMessage 方法可以进行 Service Worker 和页面之间的通讯
 
-```
+```tsx
 // index.js
 if ('serviceWorker' in window.navigator) {
   navigator.serviceWorker.register('./sw.js', { scope: './' })
@@ -46,7 +46,7 @@ if ('serviceWorker' in window.navigator) {
 ```
 为了保证 Service Worker 能够接收到信息，我们在它被注册完成之后再发送信息，和普通的 window.postMessage 的使用方法不同，为了向 Service Worker 发送信息，我们要在 ServiceWorker 实例上调用 postMessage 方法，这里我们使用到的是 navigator.serviceWorker.controller
 
-```
+```tsx
 // sw.js
 this.addEventListener('message', function (event) {
   console.log(event.data); // this message is from page
@@ -64,7 +64,7 @@ Service Worker 能够实现的最主要的功能——静态资源缓存。
 >CacheStorage 接口表示 Cache 对象的存储。它提供了一个 ServiceWorker 、其它类型worker或者 window 范围内可以访问到的所有命名cache的主目录（它并不是一定要和service workers一起使用，即使它是在service workers规范中定义的），并维护一份字符串名称到相应 Cache 对象的映射。
 CacheStorage  同样暴露了 CacheStorage.open() 和 CacheStorage.match()方法。使用 CacheStorage.open() 获取 Cache 实例。
 
-```
+```tsx
 Cache是Service Worker衍生出来的API，配合Service Worker实现对资源请求的缓存。
 不过cache并不直接缓存字符串，而是直接缓存资源请求（css、js、html等）。
 cache也是key-value形式，一般来说key就是request，value就是response
@@ -81,7 +81,7 @@ cache.delete(Request|url) 删除缓存
 
 ```
 
-```
+```tsx
 // sw.js
 this.addEventListener('install', function (event) {
   console.log('install');

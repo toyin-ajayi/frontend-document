@@ -26,7 +26,7 @@ Vue.createApp({
 
 子组件向父组件传值，父组件在接受子组件传过来的值时，还会附加一些其他参数
 
-```
+```tsx
     <a-table :columns="columns" :dataSource="requestData" rowKey="identifier" bordered>
         <template slot="remark" slot-scope="text, record">
             <editable-cell :text="text" @change="onCellChange(requestData, record.identifier, 'remark', $event)"/>
@@ -39,14 +39,14 @@ Vue.createApp({
 
 在 template 模板下，使用相对路径，直接写字符串；
 
-```
+```tsx
 // 没问题
 <img src="./../assets/avatar.png" />
 ```
 
 但是在 script 中，使用相对路径，需要通过 require/import 方式，主动引入，申明一个变量，然后使用这个变量。
 
-```
+```tsx
 <img :src="imgUrl" />
 --------------------------
 // require 方式
@@ -78,21 +78,21 @@ computed 'a'中使用了 computed 'b'，b把a放到自己的deps中，b改变，
 
 ### 三位运算相当于函数被执行
 
-```
+```tsx
  @click="ifConfirmTagChangeBatch ? handleBatchTagChange() : handleTagChangeConfirm()"
 ```
 
 ### .sync
 
 用于组件属性的双向绑定。父组件可以监听那个事件并根据需要更新一个本地的数据 property。例如：
-```
+```tsx
 <text-document
   v-bind:title="doc.title"
   v-on:update:title="doc.title = $event"
 ></text-document>
 ```
 为了方便起见，我们为这种模式提供一个缩写，即 .sync 修饰符：
-```
+```tsx
 <text-document :title.sync="doc.title"></text-document>
 
 // 子组件
@@ -141,7 +141,7 @@ PostCSS给一个组件中的所有dom添加了一个独一无二的动态属性�
 
 解决办法是使用样式穿透>>>和 /deep/，可以解决一些比如给EelementUI覆盖样式。
 
-```
+```tsx
 如下面的例子：
 <style scoped>
   .a >>> .b { /* ... */ }
@@ -187,7 +187,7 @@ Vue 提供了一个 $listeners 属性，它是一个对象，里面包含了作�
 
 
 假设有父组件Parent和子组件Child
-```
+```tsx
 // Parent
 <template>
   ...
@@ -196,7 +196,7 @@ Vue 提供了一个 $listeners 属性，它是一个对象，里面包含了作�
 </template>
 ```
 那么你在使用Child时，传入的所有v-on事件都可以在$listeners对象中找到。
-```
+```tsx
 // Child
 created () {
   console.log(this.$listeners) // { 'event-one': f(), 'event-two': f() }
@@ -223,7 +223,7 @@ created () {
 
 页面基础路径
 
-```
+```tsx
   return new Router({
     routes,
     mode: 'history', 

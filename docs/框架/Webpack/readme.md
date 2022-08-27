@@ -65,13 +65,13 @@ https://github.com/jianjiachenghub/WebpackReact.git
 ## 创建一个公共打包的配置
 
 创建一个公共打包的配置文件名为 `webpack.common.config.js`
-```
+```tsx
 WebpackReact
 ├── config
 │   ├── webpack.common.config.js
 ```
 
-```
+```tsx
 const path = require('path');
 
 module.exports = {
@@ -89,7 +89,7 @@ module.exports = {
 
 写入`console.log('hello world')`
 
-```
+```tsx
 WebpackReact
 ├── src
 │   ├── app.js
@@ -97,7 +97,7 @@ WebpackReact
 
 ## 修改package.json指令
 
-```
+```tsx
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
 +  "start": "webpack --config ./config/webpack.common.config.js"
@@ -110,7 +110,7 @@ WebpackReact
 `npm run start`
 在dist/js ，其中有一个js文件： `bundle.js`
 
-```
+```tsx
 !(function(e) {
   var t = {};
   function n(r) {
@@ -178,7 +178,7 @@ WebpackReact
 
 `npm install --save-dev webpack-merge`
 
-```
+```tsx
 WebpackReact-----------------------------------根目录
 ├── config
 │   ├── webpack.common.config.js---------------公共的配置
@@ -187,7 +187,7 @@ WebpackReact-----------------------------------根目录
 ```
 
 在生产环境`webpack.prod.config.js`就可以这样使用`merge`
-```
+```tsx
 const merge = require('webpack-merge');
 const common = require('./webpack.common.config.js');
 
@@ -199,7 +199,7 @@ module.exports = merge(common, {
 
 然后修改`package.json`文件，添加指令
 
-```
+```tsx
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
 -   "start": "webpack --config ./config/webpack.common.config.js",
@@ -210,7 +210,7 @@ module.exports = merge(common, {
 
 修改`app.js`代码：
 
-```
+```tsx
 
 var root =document.getElementById('root');
 root.innerHTML = 'hello, webpack!';
@@ -222,7 +222,7 @@ root.innerHTML = 'hello, webpack!';
 
 我们创建一个`public`来测试打包运行的结果，后面会用插件来干这件事
 
-```
+```tsx
 WebpackReact
 ├── config
 │   ├── webpack.common.config.js
@@ -239,7 +239,7 @@ WebpackReact
 
 在`public`里创建一个html并引入打包好的JS文件
 
-```
+```tsx
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -266,14 +266,14 @@ WebpackReact
 
 ## 安装react
 
-```
+```tsx
 
 npm install --save react react-dom
 
 ```
 
 在 src 文件夹下新建一个js文件， index.js ，用于渲染根组件。
-```
+```tsx
 WebpackReact
 ├── config
 │   ├── webpack.common.config.js
@@ -289,7 +289,7 @@ WebpackReact
 +   |——index.js
 ```
 
-```
+```tsx
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -300,7 +300,7 @@ ReactDOM.render(<App />, document.getElementById('root'));
 ```
 并用jsx语法重写 app.js ：
 
-```
+```tsx
 import React from 'react';
 
 function App() {
@@ -314,7 +314,7 @@ export default App;
 
 修改webpack入口文件配置
 
-```
+```tsx
   const path = require('path');
 
   module.exports = {
@@ -337,7 +337,7 @@ export default App;
 
 安装相关的bable依赖 
 
-```
+```tsx
 npm install --save-dev babel-loader @babel/preset-react @babel/preset-env @babel/core
 
 ```
@@ -349,7 +349,7 @@ npm install --save-dev babel-loader @babel/preset-react @babel/preset-env @babel
 
 根目录新建一个配置文件`.babelrc` 配置相关的"presets"
 
-```
+```tsx
 {
     "presets": [// presets 就是 plugins 的组合
       [
@@ -375,7 +375,7 @@ npm install --save-dev babel-loader @babel/preset-react @babel/preset-env @babel
 ```
 
 再修改`webpack.common.config.js` ，添加如下代码：
-```
+```tsx
 const path = require('path');
 
 module.exports = {
@@ -404,12 +404,12 @@ module.exports = {
 ### html-webpack-plugin
 
 `html-webpack-plugin`用来生成HTML文件自动引用打包好的JS文件
-```
+```tsx
 npm install --save-dev html-webpack-plugin
 
 ```
 
-```
+```tsx
 const merge = require('webpack-merge');
 const common = require('./webpack.common.config.js');
 
@@ -434,7 +434,7 @@ module.exports = merge(common, {
 
 ## CSS跑起来
 在我们的`/src` 目录下，新建一个文件名为`app.css` ，并输入以下代码：
-```
+```tsx
 .App {
   height: 200px;
   display: flex;
@@ -451,17 +451,17 @@ h1 {
 ```
 
 在app.js中引入css
-```
+```tsx
 import  './app.css';
 ```
 配置loader
 wbpack只能编译js文件，css文件是无法被识别并编译的，我们需要loader加载器来进行预处理。 首先安装`style-loader` 和`css-loader` ：
-```
+```tsx
 npm install --save-dev style-loader css-loader  
 
 ```
 在module的rules里添加配置
-```
+```tsx
       {
         test: /\.css$/,
         use: [ 
@@ -482,7 +482,7 @@ css编译器顺序可能会导致了Webpack编译报错
 
 Webpack选择了compose方式，而不是pipe的方式而已,从右往左的函数式，所以loader的顺序编程了从右往左 
 
-```
+```tsx
 const compose = (...fns) => x => fns.reduceRight((v, f) => f(v), x);
 const add1 = n => n + 1; //加1
 const double = n => n * 2; // 乘2
@@ -497,7 +497,7 @@ add1ThenDouble(2); // 6
 所以style-loader放在css-loader的左边，也就是上面
 
 ## 现在的目录结构
-```
+```tsx
 WebpackReact
 ├── config
 │   ├── webpack.common.config.js ------------------------公共的配置
@@ -519,7 +519,7 @@ WebpackReact
 
 ### 给打包出的js文件换个不确定名字
 使用webpack内置的[hash]或[chunkhash]
-```
+```tsx
 const merge = require('webpack-merge');
 const common = require('./webpack.common.config.js');
 module.exports = merge(common, {
@@ -535,7 +535,7 @@ module.exports = merge(common, {
 ### 代码分割
 Webpack内置了optimization（优化字段）的splitChunks来实现代码的分割，大多数情况下不需要配置就够用了，但你也可以个性化的配置，
 比如你想指定哪些代码该分到哪一组可以使用cacheGroups来配置
-```
+```tsx
 module.exports = {
   //...
   optimization: {
@@ -560,11 +560,11 @@ module.exports = {
 
 ## 自动编译打包
 ### 安装webpack-dev-server
-```
+```tsx
 npm install webpack-dev-server --save-dev
 ```
 ### 增加代码至`webpack.dev.config.js` ：
-```
+```tsx
 const path = require('path');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.config.js');
@@ -599,7 +599,7 @@ module.exports = merge(common, {
 **注意的是我们开启了hot，那么导出不能使用chunkhash，需要替换为hash。**
 
 ### 修改我们的package.json
-```
+```tsx
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config ./config/webpack.prod.config.js",
@@ -611,7 +611,7 @@ module.exports = merge(common, {
 
 ### 修改代码自动运行
 执行代码
-```
+```tsx
 npm run start
 ```
 自动开了一个端口为9000的网页，上面是我们写的页面内容，这和我们的配置都是一一对应的。  
@@ -624,32 +624,32 @@ npm run start
 
 ### terser-webpack-plugin
 可配置删除console.log
-```
+```tsx
 npm install --save-dev terser-webpack-plugin
 ```
 
 ### clean-webpack-plugin
 只想要最新打包编译的文件，就需要先清除dist目录
 
-```
+```tsx
 npm install --save-dev clean-webpack-plugin
 ```
 
 ### uglifyjs-webpack-plugin
 压缩代码
-```
+```tsx
 npm install --save-dev uglifyjs-webpack-plugin
 ```
 
 ### mini-css-extract-plugin
 将css提出去，而不是直接在页面来内嵌
-```
+```tsx
 npm install --save-dev mini-css-extract-plugin
 ```
 
 ### webpack-bundle-analyzer
 可视化的包大小分析工具
-```
+```tsx
 npm install --save-dev webpack-bundle-analyzer
 ```
 
@@ -662,7 +662,7 @@ gzipped: 1.68M（开启gzip压缩后的文件大小）
 ## 其他优化打包的插件使用方式
 直接在plugins字段里面new一个实例，参数就是插件的配置项
 我就不一一介绍了直接给一个完整的webpack.prod.config配置
-```
+```tsx
 const merge = require('webpack-merge'); // 区分生产环境和开发环境
 const common = require('./webpack.common.config.js'); // 导入基础配置
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 插件为你生成一个HTML文件，并主动加入JS文件
@@ -766,14 +766,14 @@ module.exports = merge(common, {
 
 ## 打包图片字体媒体文件，以及调试优化
 下载文件打包的依赖
-```
+```tsx
 npm install file-loader url-loader --save-dev
 
 ```
 调试devtool里填个cheap-module-eval-source-map，当你保存时能直接找到源文件的多少在报错
 
 下面直接给个一个给个webpack.common.config的配置
-```
+```tsx
 const path = require("path");
 
 module.exports = {
@@ -848,7 +848,7 @@ module.exports = {
 
 ```
 ## 完整的目录结构
-```
+```tsx
 WebpackReact
 ├── config
 │   ├── webpack.common.config.js

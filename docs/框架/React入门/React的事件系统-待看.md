@@ -25,7 +25,7 @@ JSX上面的事件全部绑定在 document 上，不仅减少了内存消耗，�
 
  React 组件中 button 的事件处理器中调用 event.stopPropagation() 没有阻止 document 的点击事件执行的问题了。因为 button 事件处理器的执行前提是事件达到 document 被 React 接收到，然后 React 将事件派发到 button 组件。既然在按钮的事件处理器执行之前，事件已经达到 document 了，那当然就无法在按钮的事件处理器进行阻止了。
 
- ```
+ ```tsx
  function App() {
   useEffect(() => {
     document.addEventListener("click", documentClickHandler);
@@ -52,7 +52,7 @@ JSX上面的事件全部绑定在 document 上，不仅减少了内存消耗，�
 
 ## 探索事件的触发机制
 
-```
+```tsx
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 
@@ -108,7 +108,7 @@ document.addEventListener("click", event => {
 - React 将事件再派发到组件树中，然后事件开始在组件树 DOM 中走捕获冒泡流程。 ->react:button->raect:container
 - 同一元素上如果对同一类型的事件绑定了多个处理器，会按照绑定的顺序来执行。最后 ReactDOM.render 之后的那个处理器执行，->document:after react mount。
 - 事件完成了在 document 上的冒泡，往上到了 window，执行相应的处理器并输出 window。
-```
+```tsx
 body // 先冒泡到document，于是会触发body上的事件 
 document:bedore react mount // 到了document后，触发document上的事件
 react:button // React 将事件再派发到组件树中，然后事件开始在组件树 DOM 中走捕获冒泡流程。 
@@ -118,7 +118,7 @@ document within react // useEffect居然比ReactDOM.render后面的语句执行�
 window //事件完成了在 document 上的冒泡，往上到了 window，执行相应的处理器并输出 window。
 ```
 如果在body上阻止冒泡，那只会打出body
-```
+```tsx
 document.body.addEventListener("click", event => {
 +  event.stopPropagation();
   console.log("body");
@@ -129,7 +129,7 @@ document.body.addEventListener("click", event => {
 
 ### 阻止合成事件冒泡 stopPropagation
 
-```
+```tsx
  handleClick(e){
         // 阻止合成事件间的冒泡
         e.stopPropagation();
@@ -140,7 +140,7 @@ document.body.addEventListener("click", event => {
 ### 阻止原生事件 stopImmediatePropagation
 
 组件中事件处理器接收到的 event 事件对象是 React 包装后的 SyntheticEvent 事件对象。但可通过它的 nativeEvent 属性获取到原生的 DOM 事件对象。通过调用这个原生的事件对象上的 stopImmediatePropagation() 方法可达到阻止冒泡的目的。
-```
+```tsx
 function btnClickHandler(event) {
 +  event.nativeEvent.stopImmediatePropagation();
   console.log("btn clicked");
@@ -155,7 +155,7 @@ React 在 render 时监听了 document 冒泡阶段的事件，当我们的 App 
 
 ### 阻止合成事件与除最外层document上的原生事件上的冒泡 判断e.target
 
-```
+```tsx
 componentDidMount() {
     document.body.addEventListener('click',e=>{
     // 通过e.target判断阻止冒泡

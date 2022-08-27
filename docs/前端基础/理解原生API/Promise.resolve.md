@@ -8,7 +8,7 @@
 
 thenable对象指的是具有then方法的对象，比如下面这个对象
 
-```
+```tsx
 let thenable = {
   then: function(resolve, reject) {
     resolve(42);
@@ -19,7 +19,7 @@ let thenable = {
 
 Promise.resolve方法会将这个对象转为 Promise 对象，然后就立即执行thenable对象的then方法。
 
-```
+```tsx
 let thenable = {
   then: function(resolve, reject) {
     resolve(42);
@@ -39,7 +39,7 @@ thenable对象的then方法执行后，对象p1的状态就变为resolved，从�
 
 如果参数是一个原始值，或者是一个不具有then方法的对象，则Promise.resolve方法返回一个**新的 Promise 对象**，状态为resolved。
 
-```
+```tsx
 const p = Promise.resolve('Hello');
 
 p.then(function (s){
@@ -54,7 +54,7 @@ p.then(function (s){
 
 Promise.resolve方法允许调用时不带参数，直接返回一个resolved状态的 Promise 对象。
 
-```
+```tsx
 setTimeout(function () {
   console.log('three');
 }, 0);
@@ -72,7 +72,7 @@ console.log('one');
 ```
 
 .then()函数里不返回值或者返回的不是promise，那么 `then` 返回的 Promise 将会成为接受状态（resolve）
-```
+```tsx
 Promise.resolve().then(() => console.log(2)).then(() => console.log(3));
 console.log(1); // 1, 2, 3
 ```
@@ -83,7 +83,7 @@ console.log(1); // 1, 2, 3
 
 **当v是一个Promise实例的时候就会出现一些不同的地方**
 
-```
+```tsx
     // v是一个实例化的promise，且状态为fulfilled
     let v = new Promise(resolve => {
       console.log("begin");

@@ -6,7 +6,7 @@
 
 内部包含很多框架的devtools插件
 
-```
+```tsx
     const {
       default: installExtension,
       REACT_DEVELOPER_TOOLS,

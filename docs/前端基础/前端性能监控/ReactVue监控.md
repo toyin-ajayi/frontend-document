@@ -53,7 +53,7 @@ Profiler 能添加在 React 树中的任何地方来测量树中这部分渲染�
 
 
 多个 Profiler 组件能测量应用中的不同部分：
-```
+```tsx
 render(
   <App>
     <Profiler id="Navigation" onRender={callback}>
@@ -69,7 +69,7 @@ render(
 onRender 回调
 Profiler 需要一个 onRender 函数作为参数。 React 会在 profile 包含的组件树中任何组件 “提交” 一个更新的时候调用这个函数。 它的参数描述了渲染了什么和花费了多久。
 
-```
+```tsx
 function onRenderCallback(
   id, // 发生提交的 Profiler 树的 “id”
   phase, // "mount" （如果组件树刚加载） 或者 "update" （如果它重渲染了）之一

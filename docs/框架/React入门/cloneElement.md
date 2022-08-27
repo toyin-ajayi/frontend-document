@@ -2,7 +2,7 @@
 
 以 element 元素为样板克隆并返回新的 React 元素。返回元素的 props 是将新的 props 与原始元素的 props 浅层合并后的结果。新的子元素将取代现有的子元素，而来自原始元素的 key 和 ref 将被保留。
 
-```
+```tsx
 React.cloneElement(
   element,
   [props],
@@ -12,7 +12,7 @@ React.cloneElement(
 
 React.cloneElement() 几乎等同于：
 
-```
+```tsx
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
@@ -22,7 +22,7 @@ React.cloneElement() 几乎等同于：
 
 使用 JSX 编写的代码将会被转换成使用 React.createElement() 的形式。
 
-```
+```tsx
 React.createElement(
   type,
   [props],

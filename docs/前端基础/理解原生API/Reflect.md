@@ -18,7 +18,7 @@ Reflect对象与Proxy对象一样，也是 ES6 为了操作对象而提供的新
 Reflect.get方法查找并返回target对象的name属性，如果没有该属性，则返回undefined。
 如果name属性部署了读取函数（getter），则读取函数的this绑定receiver。
 
-```
+```tsx
 var myObject = {
   foo: 1,
   bar: 2,
@@ -45,7 +45,7 @@ Reflect.set(target, name, value, receiver)
 Reflect.set方法设置target对象的name属性等于value。
 如果name属性设置了赋值函数，则赋值函数的this绑定receiver。
 
-```
+```tsx
 var myObject = {
   foo: 4,
   set bar(value) {

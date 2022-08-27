@@ -192,7 +192,7 @@ CSS hack 是通过在 CSS 样式中加入一些特殊的符号，让不同的浏
 
 ## 让文本不可复制
 
-```
+```tsx
     -webkit-user-select: none;
     -ms-user-select: none;
     -moz-user-select: none;
@@ -222,7 +222,7 @@ CSS hack 是通过在 CSS 样式中加入一些特殊的符号，让不同的浏
 - 2.当一侧为 Number 类型，另一侧为原始类型，则将原始类型转换为 Number 类型。
 - 3.当一侧为 Number 类型，另一侧为引用类型，将引用类型和 Number 类型转换成字符串后拼接。
 
-```
+```tsx
 1 - true // 0
 1 - null //  1
 1 * undefined //  NaN

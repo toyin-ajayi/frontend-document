@@ -4,7 +4,7 @@ Buffer 类的实例类似于从 0 到 255 之间的整数数组（其他整数�
 
 Buffer 类在全局作用域中，因此无需使用 require('buffer').Buffer。
 
-```
+```tsx
 // 创建一个长度为 10、且用零填充的 Buffer。
 const buf1 = Buffer.alloc(10);
 

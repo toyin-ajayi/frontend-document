@@ -5,7 +5,7 @@
 实现看我们平时的Index.js,里面有一个ReactDOM.render()方法这是渲染的入口;
 `<App />`是JSX语法，通过Babel编译会转化成一个描述UI的对象
 第二个参数即为我们的容积
-```
+```tsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -20,7 +20,7 @@ ReactDOM.render(<App />, document.getElementById('root'));
 ReactDOM是一个比较复杂的对象，里面有很多方法，我们只需要看到hydrate，render这两个方法，这两个方法很类似，hydrate服务端渲染的时候用，render就是我们index里面调用的那个render 
 
 两个方法最后都会调用legacyRenderSubtreeIntoContainer方法
-```
+```tsx
 const ReactDOM: Object = {
   ...
   /**
@@ -79,7 +79,7 @@ const ReactDOM: Object = {
 
 ## legacyRenderSubtreeIntoContainer
 
-```
+```tsx
 /**
  * 开始构建FiberRoot和RootFiber，之后开始执行更新任务
  * @param parentComponent 父组件，可以把它当成null值来处理
@@ -160,7 +160,7 @@ legacyCreateRootFromDOMContainer会让container._reactRootContainer挂载ReactRo
 
 ![图片无法加载](./img/reactRootContainer.png)
 
-```
+```tsx
 /**
  * 创建并返回一个ReactSyncRoot实例
  * @param container ReactDOM.render()或者ReactDOM.hydrate()中的第二个参数，组件需要挂载的DOM容器
@@ -206,7 +206,7 @@ function legacyCreateRootFromDOMContainer(
 前面的shouldHydrateDueToLegacyHeuristic还是和服务端渲染有关
 
 data-reactrootx渲染会有data-reactroot属性，需要区分
-```
+```tsx
 
 <body>
     <div id="root">
@@ -222,7 +222,7 @@ ROOT_ATTRIBUTE_NAME位于表示data-reactroot属性
 
 
 
-```
+```tsx
 /**
  * 根据nodeType和attribute判断是否需要融合
  * @param container DOM容器
@@ -259,7 +259,7 @@ function getReactRootElementInContainer(container: any) {
 ## ReactSyncRoot
 
 上面的legacyCreateRootFromDOMContainer方法经过一一系列处理后返回了一个ReactSyncRoot实例，现在分析下ReactSyncRoot里面干了什么
-```
+```tsx
 /**
  * ReactSyncRoot构造函数
  * @param container DOM容器
@@ -340,7 +340,7 @@ FiberRoot的含义与作用：
 （3）FiberRoot记录整个React应用 更新过程中的各种信息
 
 FiberRoot与RootFiber的关系:
-```
+```tsx
 FiberRoot.current = RootFiber
 RootFiber.stateNode = FiberRoot
 ```
@@ -413,7 +413,7 @@ type BaseFiberRootProperties = {|
 ###  RootFiber(FiberNode) 的结构
 
 RootFiber相当于是最顶层的fiber对象，其实每一个节点都对应一个fiber对象，不是Root专有的
-```
+```tsx
 interface Fiber {
   /**
    * nextIndex 节点的类型信息
@@ -473,7 +473,7 @@ interface Fiber {
 - 然后通过createHostRootFiber函数new FiberNode()创建rootFiber赋值给uninitializedFiber 
 - 然后让他们相互引用 
 
-```
+```tsx
 export function createFiberRoot(
   containerInfo: any,
   tag: RootTag,
@@ -505,7 +505,7 @@ export function createFiberRoot(
 
 ## createHostRootFiber(tag)
 
-```
+```tsx
 /**
  * 内部调用createFiber方法创建一个FiberNode实例
  * @param tag fiberRoot节点的标记(LegacyRoot、BatchedRoot、ConcurrentRoot)
@@ -546,7 +546,7 @@ export function createHostRootFiber(tag: RootTag): Fiber {
 
 legacyCreateRootFromDOMContainer返回后就回到了legacyRenderSubtreeIntoContainer方法里面，然后往下执行会有是否是首次挂载的条件判断
 
-```
+```tsx
 if (!root) {
   
         // 对于首次挂载来说，更新操作不应该是批量的，所以会先执行unbatchedUpdates方法
@@ -569,7 +569,7 @@ updateContainer方法里的currentTime是用来计算expirationTime的,expiratio
 
 ## updateContainer
 
-```
+```tsx
 export function updateContainer(
   element: ReactNodeList,
   container: OpaqueRoot,
@@ -594,7 +594,7 @@ export function updateContainer(
 
 computeExpirationForFiber方法里面会有computeExpirationBucket算法
 最终的公式是：((((currentTime - 2 + 5000 / 10) / 25) | 0) + 1) * 25
-```
+```tsx
 const UNIT_SIZE = 10;
 const MAGIC_NUMBER_OFFSET = 2;
 
@@ -617,7 +617,7 @@ function computeExpirationBucket(
 }
 ```
 尝试几个currentTime变量
-```
+```tsx
 ((((101 - 2 + 5000 / 10) / 25) | 0) + 1) * 25 // 600
 ((((102 - 2 + 5000 / 10) / 25) | 0) + 1) * 25 // 625
 ((((105 - 2 + 5000 / 10) / 25) | 0) + 1) * 25 // 625
@@ -633,7 +633,7 @@ function computeExpirationBucket(
 
 ## updateContainerAtExpirationTime
 这里将current（即Fiber实例）提取出来， 并作为参数传入调用scheduleRootUpdate
-```
+```tsx
 export function updateContainerAtExpirationTime(
   element: ReactNodeList,
   container: OpaqueRoot,
@@ -653,7 +653,7 @@ export function updateContainerAtExpirationTime(
 1、将我们的组件的ReactNodeList挂载到创建更新update的payload里，并放到更新队列enqueueUpdate，创建更新的具体细节稍后再讲哈。因为待会我们会发现其他地方也用到了。
 2、执行sheculeWork函数，进入React异步渲染的核心：React Scheduler
 
-```
+```tsx
 function scheduleRootUpdate(
   current: Fiber,
   element: ReactNodeList,
@@ -680,11 +680,11 @@ function scheduleRootUpdate(
  
 createUpdate创建一个更新任务，并且标记更新类型
 
-```
+```tsx
 const update = createUpdate(expirationTime);
 ```
 
-```
+```tsx
 export function createUpdate(expirationTime: ExpirationTime): Update<*> {
   return {
     // 过期时间
@@ -721,7 +721,7 @@ export function createUpdate(expirationTime: ExpirationTime): Update<*> {
 
 创建了update对象之后，紧接着调用了enqueueUpdate，把update对象放到队列enqueueUpdate。同时保证current和workInProgress的updateQueue是一致的，即fiber.updateQueue和fiber.alternate.updateQueue保持一致。
 
-```
+```tsx
 export function enqueueUpdate<State>(fiber: Fiber, update: Update<State>) {
   // 保证current和workInProgress的updateQueue是一致的
   // alternate即workInProgress
@@ -801,7 +801,7 @@ export function enqueueUpdate<State>(fiber: Fiber, update: Update<State>) {
 ### createUpdateQueue
 
 创建UpdateQueue是一个单向链表，用来存放update。每个update用next连接。它的结构如下：
-```
+```tsx
 //创建更新队列
 export function createUpdateQueue<State>(baseState: State): UpdateQueue<State> {
   const queue: UpdateQueue<State> = {
@@ -834,7 +834,7 @@ react将不同的任务分为了不同的优先级，有些任务可以异步执
 
 ### scheduleUpdateOnFiber
 源码里有一句这个，所以说实际调用的是scheduleUpdateOnFiber
-```
+```tsx
 export const scheduleWork = scheduleUpdateOnFiber;
 ```
 
@@ -852,7 +852,7 @@ export const scheduleWork = scheduleUpdateOnFiber;
 
 - 第四部区分同步更新和异步更新，通过两个if判断来区分，很关键这里看了好久才清楚，因为后面还有个地方在区分同步和异步
 
-```
+```tsx
 /**
  * 开始进行任务调度
  * @param {*} fiber
@@ -911,7 +911,7 @@ export function scheduleUpdateOnFiber(
 
 ### ensureRootIsScheduled
 
-```
+```tsx
 // 每一个root都有一个唯一的调度任务，如果已经存在，我们要确保到期时间与下一级别任务的相同，每一次更新都会调用这个方法
 function ensureRootIsScheduled(root: FiberRoot) {
   const lastExpiredTime = root.lastExpiredTime;
@@ -990,7 +990,7 @@ function ensureRootIsScheduled(root: FiberRoot) {
 ### scheduleSyncCallback
 
 scheduleSyncCallback这个方法主要是将同步任务推入同步队列syncQueue，等待flushSyncCallbackQueue调用将所有同步任务推入真正的任务队列。如果第一次的同步任务会直接加入调度队列
-```
+```tsx
 /**
  * 同步任务调度的中间方法,如果队列不为空就加入队列，如果为空就立即推入任务调度队列
  * @param {*} callback
@@ -1017,7 +1017,7 @@ export function scheduleSyncCallback(callback: SchedulerCallback) {
 ### scheduleCallback
 
 异步的任务调度很简单，直接将异步任务推入调度队列
-```
+```tsx
 export function scheduleCallback(
   reactPriorityLevel: ReactPriorityLevel,
   callback: SchedulerCallback,
@@ -1046,7 +1046,7 @@ ensureRootIsScheduled流程图接上图：
 unstable_scheduleCallback->requestHostCallback(flushWork)->scheduledHostCallback = callback->onAnimationFrame->port.postMessage(null)->channel.port1.onmessage触发调度->performWorkUntilDeadline->scheduledHostCallback->flushWork->workLoop;
 
 还有一个值得注意的是requestWork这个在React16.8之前是一个很典型的方法，内部有根据同步任务还是异步任务调用不同方法的逻辑，网上有很多的源码解析都会特别说明这个方法，并且有这个方法才能一步一步往后走，我看的时候居然没有就傻了，结果是16.10后的版本这个方法就直接被上层的scheduleWork里的部分逻辑替代了
-```
+```tsx
 if(xxx)
   {
 performSyncWorkOnRoot(root);

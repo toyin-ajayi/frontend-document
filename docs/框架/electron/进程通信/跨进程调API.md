@@ -11,7 +11,7 @@ let win = new BrowserWindow({ width: 800, height: 600 })
 
 **注意，渲染进程使用remote需要开启配置项**
 
-```
+```tsx
     mainWindow = new BrowserWindow({
       width: 1024,
       height: 680,

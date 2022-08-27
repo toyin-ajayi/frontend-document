@@ -51,7 +51,7 @@ Vite 在拦截的请求里，对直接引用 node_modules 的模块都做了路�
 
 
 
-```
+```tsx
  import { createApp } from 'vue' 换成了 import { createApp } from '/@modules/vue
 ```
 

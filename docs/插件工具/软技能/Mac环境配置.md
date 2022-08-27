@@ -11,7 +11,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 ```
 如果没有.bash_profile可以先用touch指令来创建
-```
+```tsx
 touch ~/.bash_profile
 open -e ~/.bash_profile // 用文本编辑程序打开文件
 source ~/.bash_profile // 加载环境变量
@@ -20,12 +20,12 @@ mac下采用zsh代替bash，而zsh加载的是 ~/.zshrc文件，而 ‘.zshrc’
 
 在~/.zshrc文件最后，增加一行：
 
-```
+```tsx
 source ~/.bash_profile // zsh加载bash的环境配置
 ```
 
 .bashrc和.zshrc是干嘛的
-```
+```tsx
 使用man bash命令查看到的bai联机帮助文du件zhi中的相关解释如下：
 .bashrc - The individual per-interactive-shell startup file.
 这个文件主要保存个人的一些个性dao化设置，如命令别名、路径等。下面是个例子：
@@ -39,7 +39,7 @@ alias ls='/bin/ls -F --color=tty --show-control-chars'
 ```
 
 ## nvm的使用
-```
+```tsx
 nvm ls-remote：列出所有可以安装的node版本号
 nvm install v10.4.0：安装指定版本号的node
 nvm use v10.3.0：切换node的版本，这个是全局的
@@ -54,7 +54,7 @@ nvm ls：列出所有已经安装的node版本
 
 ### npm
 npm直接使用nrm来管理源
-```
+```tsx
 npm install -g nrm，全局安装nrm。
 ```
 
@@ -75,13 +75,13 @@ yarn也比较常用，能够更快，包管理给便捷。Yarn的速度快主要
 yarn 默认会使用 “prefer-online” 的模式，也就是先尝试从远程仓库下载，如果连接失败则尝试从缓存读取。yarn 也提供了 --offline 参数，即通过 yarn add --offline 安装依赖。
 
 Yarn 缓存了每个下载过的包，所以再次使用时无需重复下载。 同时利用并行下载以最大化资源利用率，因此安装速度更快。
-```
+```tsx
 npm i yarn -g // 全局安装完也需要换下公司的源
 yarn config get registry  // 查看yarn当前镜像源
 yarn config set registry http://cnpm.byted.org/  // 设置yarn镜像源为淘宝的源
 ```
 
-```
+```tsx
 npm                                     yarn
 
 npm init                                yarn init              // 初始化
@@ -136,7 +136,7 @@ yarn cache list --pattern <pattern>  列出匹配指定模式的已缓存的包
 
 ## git配置
 
-```
+```tsx
 brew install git
 ```
 

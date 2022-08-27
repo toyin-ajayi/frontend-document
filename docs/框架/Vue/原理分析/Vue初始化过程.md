@@ -102,7 +102,7 @@ Vue.prototype._init = function (options?: Object) {
 ## Vue 实例挂载 $mount
 
 $mount 这个方法的实现是和平台、构建方式都相关的。我们分析带 compiler 版本的 $mount 实现。在 Vue 2.0 版本中，所有 Vue 的组件最终都会转换成 render 方法。
-```
+```tsx
 const mount = Vue.prototype.$mount
 Vue.prototype.$mount = function (
   el?: string | Element,
@@ -171,7 +171,7 @@ Vue.prototype.$mount = function (
 
 $mount 方法实际上会去调用 mountComponent 方法，这个方法定义在 src/core/instance/lifecycle.js 文件中：
 
-```
+```tsx
 export function mountComponent (
   vm: Component,
   el: ?Element,
@@ -272,20 +272,20 @@ compile 编译可以分成 parse-解析器、optimize-优化器 与 generate-生
 
 简称语法树（Syntax tree），是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。之所以说语法是“抽象”的，是因为这里的语法并不会表示出真实语法中出现的每个细节。比如，嵌套括号被隐含在树的结构中，并没有以节点的形式呈现；而类似于if-condition-then这样的条件跳转语句，可以使用带有两个分支的节点来表示。
 如下的html结构
-```
+```tsx
 <div :class="c" class="demo" v-if="isShow">
     <span v-for="item in sz">{{item}}</span>
 </div>
 ```
 首先会转化成字符：
-```
+```tsx
 var html = '<div :class="c" class="demo" v-if="isShow"><span v-for="item in sz">{{item}}</span></div>';
 ```
 parse后：
 - 字符串解析为AST可以使用正则来实现
 
 通常模板内会包含如下内容：
-```
+```tsx
 文本，例如“难凉热血”
 HTML注释，例如<!-- 我是注释 -->
 条件注释，例如<!-- [if !IE]> -->我是注释<!--< ![endif] -->
@@ -298,7 +298,7 @@ DOCTYPE，例如<!DOCTYPE html>
 - 标签的的匹配可以用栈来实现,这样就确保的AST层级的关系
 - 属性存入attrsMap
 - 内部会有专门解析v-if等指令的函数，然后解析挂载ifConditions，forProcessed等属性
-```
+```tsx
 {
     /* 标签属性的map，记录了标签上属性 */
     'attrsMap': {
@@ -348,7 +348,7 @@ DOCTYPE，例如<!DOCTYPE html>
 
 optimize后：
 经过 optimize 这层的处理，每个节点会加上 static 属性，用来标记是否是静态的
-```
+```tsx
 {
     'attrsMap': {
         ':class': 'c',
@@ -386,7 +386,7 @@ optimize后：
 }
 ```
 然后再调用代码生成函数generate把编译成AST的模板转化为render函数
-```
+```tsx
 <ul :class="bindCls" class="list" v-if="isShow">
     <li v-for="(item,index) in data" @click="clickItem(index)">{{item}}:{{index}}</li>
 </ul>
@@ -394,7 +394,7 @@ optimize后：
 const code = generate(ast, options)，生成的 render 代码串如下：
 with的作用是缩短属性的访问，with里的变量全部都是从传入的上下文上去取。
 
-```
+```tsx
 with(this){
   return (isShow) ?
     _c('ul', {
@@ -417,11 +417,11 @@ with(this){
 
 这里还有很多工具函数比如 _c 函数定义在 src/core/instance/render.js 中。
 这个是createElement的缩写，createElement会根据解析类型生成不同的虚拟DOM
-```
+```tsx
 vm._c = (a, b, c, d) => createElement(vm, a, b, c, d, false)
 ```
 而 _l、_v 定义在 src/core/instance/render-helpers/index.js 中：
-```
+```tsx
 export function installRenderHelpers (target: any) {
   target._o = markOnce
   target._n = toNumber
@@ -444,7 +444,7 @@ export function installRenderHelpers (target: any) {
 
 注意上面的只是代码串，是字符类型，现在需要转化为function才能调用
 
-```
+```tsx
 const compiled = compile(template, options)
 res.render = createFunction(compiled.render, fnGenErrors)
 
@@ -471,7 +471,7 @@ vm._render 最终是通过执行 createElement 方法并返回的是 vnode，它
 
 VNode类中包含了描述一个真实DOM节点所需要的一系列属性，如tag表示节点的标签名，text表示节点中包含的文本，children表示该节点包含的子节点等。通过属性之间不同的搭配，就可以描述出各种类型的真实DOM节点。
 
-```
+```tsx
 // 源码位置：src/core/vdom/vnode.js
 
 export default class VNode {
@@ -521,7 +521,7 @@ export default class VNode {
 Vue 的 _update 是实例的一个私有方法，它被调用的时机有 2 个，一个是首次渲染，一个是数据更新的时候；定义在src/core/instance/lifecycle.js
 
 _update 方法的作用是把 VNode 渲染成真实的 DOM，也就是调用patch方法
-```
+```tsx
 Vue.prototype._update = function (vnode: VNode, hydrating?: boolean) {
   const vm: Component = this
   const prevEl = vm.$el
@@ -565,7 +565,7 @@ Vue.prototype._update = function (vnode: VNode, hydrating?: boolean) {
 
 ### 创建
 
-```
+```tsx
 <template>
   <span class="demo" v-show="isShow">
     This is a span.
@@ -573,7 +573,7 @@ Vue.prototype._update = function (vnode: VNode, hydrating?: boolean) {
 </template>
 ```
 编译后在生成代码（简化了调用createElement然后return new VNode的逻辑）：
-```
+```tsx
 function render () {
     return new VNode(
         'span',
@@ -596,7 +596,7 @@ function render () {
 }
 ```
 最后的返回：
-```
+```tsx
 {
     tag: 'span',
     data: {
@@ -654,7 +654,7 @@ VNode的节点类型判断：
 - isComment 判断是否是注释
 - 前两个都不是那就是文本节点
 确定类型了后调用不同的creatNode方法来往真实的DOM结构里插
-```
+```tsx
 // 源码位置: /src/core/vdom/patch.js
 function createElm (vnode, parentElm, refElm) {
     const data = vnode.data
@@ -678,7 +678,7 @@ function createElm (vnode, parentElm, refElm) {
 
 ### 删除节点
 如果某些节点再新的VNode中没有而在旧的oldVNode中有，那么就需要把这些节点从旧的oldVNode中删除。删除节点非常简单，只需在要删除节点的父元素上调用removeChild方法即可。源码如下：
-```
+```tsx
 function removeNode (el) {
     const parent = nodeOps.parentNode(el)  // 获取父节点
     if (isDef(parent)) {
@@ -692,7 +692,7 @@ function removeNode (el) {
 更新节点就是当某些节点在新的VNode和旧的oldVNode中都有时，我们就需要细致比较一下，找出不一样的地方进行更新。
 
 首先了解静态节点，也就是和数据无关，Vue通过数据驱动，更新的时候那些没有用到数据的自然就不会比对，因为不会变化如：
-```
+```tsx
 <p>我是不会变化的文字</p>
 ```
 

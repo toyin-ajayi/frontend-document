@@ -11,7 +11,7 @@ Vue.extend的作用是创建一个继承自Vue类的子类，可接收的参数�
 - Super：指向父类，即基础 Vue类；
 - SuperId：父类的cid属性，无论是基础 Vue类还是从基础 Vue类继承而来的类，都有一个cid属性，作为该类的唯一标识；
 - cachedCtors：缓存池，用于缓存创建出来的类；
-```
+```tsx
 Vue.extend = function (extendOptions: Object): Function {
     extendOptions = extendOptions || {}
     const Super = this
@@ -80,7 +80,7 @@ Vue.extend = function (extendOptions: Object): Function {
 
 好了，如果我们现在自己来通过Vue.extends构造一个构造函数，然后挂载到全局不就行了。
 
-```
+```tsx
 // 创建构造器
 var Profile = Vue.extend({
   template: '<p>{{extendData}}</br>实例传入的数据为:{{propsExtend}}</p>',//template对应的标签最外层必须只有一个标签

@@ -11,7 +11,7 @@
 - 堆是实现优先级队列的标准方法。 一般情况下（插入到末尾）插入为O（1），最坏情况下插入为O（log n）。 删除为O（log n）。 偷看是O（1）。
 
 ### React 最小堆的源码
-```
+```tsx
 
 type Heap = Array<Node>;
 type Node = {
@@ -101,7 +101,7 @@ function compare(a, b) {
 
 看重点新任务推入时： push(taskQueue, newTask);
 到时候取优先级最高的直接pop就行了
-```
+```tsx
 function unstable_scheduleCallback(priorityLevel, callback, options) {
   var currentTime = getCurrentTime();
 

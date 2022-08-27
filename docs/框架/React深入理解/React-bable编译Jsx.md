@@ -1,6 +1,6 @@
 ## 首先是配置Babel
 
-```
+```tsx
 {
     "presets": ["env"],
     "plugins": [
@@ -17,14 +17,14 @@
 - attrs是属性对象
 - children是 0 到多个子结点
 
-```
+```tsx
 React.createElement(tag, attrs, ...children);
 ```
 
 
 ## 嵌套编译JSX
 
-```
+```tsx
 const App = (
   <div className="container">
     <h1 style={style}>{greet('scott')} hah</h1>
@@ -37,7 +37,7 @@ const App = (
 ```
 编译后
 
-```
+```tsx
 var App = React.createElement(
   'div',
   { className: 'container' },

@@ -9,14 +9,14 @@ Dep 依赖收集器(相当于发布订阅设计模式中的发布者，收集所
 
 结合上面简易的代码，可以发现Vue在mount这个生命周期里会自动调用Watcher.
 
-```
+```tsx
   this.mount = function() {
     new Watcher(self, self.render);
   }
 ```
 **那么就是一个组件对应一个Watcher，也就是说Vue2X的粒度是一个组件，如果数据右边这回触发这个组件的更新函数**
 
-```
+```tsx
 const vue = new Vue({
   data() {
     return {
@@ -176,7 +176,7 @@ vue._data.text = '123'; // in watcher update /n in get
 
 
 Vue 中有两个 $mount 函数，第一个的作用是给第二个 调用......如果大家看源码，不要搞混了喂
-```
+```tsx
 Vue.prototype.$mount = function(el) {    
 
     return mountComponent(this, query(el))
@@ -197,7 +197,7 @@ Vue.prototype.$mount = function(el) {
 ## Watcher -  数据与视图如何联系
 
 可以发现Vue初始化的时候并没有直接调用` vm._update(vm._render(), hydrating)`，而是将其封装成一个回调函数传入Watcher，之后重新设置数据就可以调用这个更新函数来更新页面初始化了页面的数据，也就是或这个时候你模板你的{{name}}里的变量已经变成了值，触发了get把，然后再去把这里 new 的 Watcher 放入Dep的队列里
-```
+```tsx
 export function mountComponent(
   vm: Component,
   el: ?Element,
@@ -241,7 +241,7 @@ export function mountComponent(
 - 在Watcher.prototype.get()方法中通过this.getter.call(vm, vm)来调用updateComponent方法
 
 - 然后执行vm._update(vm._render, hydrating)。
-```
+```tsx
 let uid = 0
 
  /*
@@ -437,7 +437,7 @@ export default class Watcher {
 
 在执行new Watcher会有一个求值的操作，这里的求值是一个函数表达式,也就是执行updateComponent，执行updateComponent后，会再执行vm._render(),传参数给vm._update(vm._render(), hydrating),收集完依赖以后才结束
 vm._render在做什么？vm._update在做什么？
-```
+```tsx
   Vue.prototype._render = function (): VNode {
     const vm: Component = this
     const {

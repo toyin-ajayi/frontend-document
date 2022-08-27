@@ -28,12 +28,12 @@ callback是添加监听后，当目标元素与根元素通过阈值相交时，
 
 ### 应用1 图片懒加载
 
-```js
+```tsxjs
 ![图片加载失败](placeholder.png" data-src="img-1.jpg)
 ![图片加载失败](placeholder.png" data-src="img-2.jpg)
 ![图片加载失败](placeholder.png" data-src="img-3.jpg)
 ```
-```js
+```tsxjs
 let observer = new IntersectionObserver((entries, observer) => { 
     entries.forEach(entry => {
       if(entry.isIntersecting){ // 目标元素开始出现在 root 可视区，返回 true
@@ -54,7 +54,7 @@ document.querySelectorAll('img').forEach(img => { observer.observe(img) });
 
 ### 应用2 兴趣埋点
 
-```js
+```tsxjs
 const boxList = [...document.querySelectorAll('.box')]
 
 var io = new IntersectionObserver((entries) =>{

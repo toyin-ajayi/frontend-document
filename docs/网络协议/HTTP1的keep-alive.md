@@ -39,7 +39,7 @@ HTTP版本为1.0,表明上是通过请求头`Connection: Keep-Alive`来实现开
 
 Http1.1 以后，Keep-Alive 已经默认支持并开启。客户端（包括但不限于浏览器）发送请求时会在 Header 中增加一个请求头 Connection: Keep-Alive，当服务器收到附带有 Connection: Keep-Alive 的请求时，也会在响应头中添加 Keep-Alive。这样一来，客户端和服务器之间的 HTTP 连接就会被保持，不会断开（断开方式下面介绍），当客户端发送另外一个请求时，就可以复用已建立的连接。
 
-```
+```tsx
 HTTP/1.1 200 OK
 Connection: Keep-Alive
 Content-Encoding: gzip
@@ -60,7 +60,7 @@ Server: Apache
 timeout：在 15S 保持了连接不销毁，15 后就销毁
 max：最多 100 次请求，强制断掉连接。就是在 timeout 时间内又有新的连接过来，同时 max 会自动减 1，直到为 0，强制断掉。
 
-```
+```tsx
 Keep-Alive:timeout=15, max=100
 ```
 
@@ -114,7 +114,7 @@ keep-alive 只是一种为了达到复用 tcp 连接的“协商”行为，双�
 - 浏览器每隔一段时间向浏览器发送 http 请求，服务器端在收到请求后，不论是否有数据更新，都直接进行 响应。
 - 这种方式实现的即时通信，本质上还是浏览器发送请求，服务器接受请求的一个过程，通过让客户端不断的进行请求，使得客户端能够模拟实时地收到服务器端的数据的变化。
 
-```
+```tsx
 var tis = setInterval(function(){$.ajax(getting)},3000);//{调用ajax(自己封装的数据)},每3秒执行一次
 var getting = {
     type:'GET',

@@ -1,4 +1,4 @@
-```
+```tsx
 /* 获取CSS样式 */
 function getCss(element, attr) {
     let value = window.getComputedStyle(element)[attr],

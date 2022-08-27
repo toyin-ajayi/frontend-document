@@ -8,7 +8,7 @@
 ## 函数
 
 最起初，实现模块化的方式使用函数进行封装。将不同功能的代码实现封装到不同的函数中。通常一个文件就是一个模块，有自己的作用域，只向外暴露特定的变量和函数。
-```
+```tsx
 function a(){
   // 功能二
 }
@@ -21,7 +21,7 @@ function b(){
 ## 立即执行函数
 
 立即执行函数中的匿名函数中有独立的 词法作用域，避免了外界访问此作用域的变量。通过函数作用域解决了命名冲突、污染全局作用域的问题 。
-```
+```tsx
 // module.js文件
 (function(window) {
   let name = 'xiaolu'
@@ -35,7 +35,7 @@ function b(){
 
 ```
 
-```
+```tsx
 <script type="text/javascript" src="module.js"></script>
 <script type="text/javascript">
     myModule.name = 'xixi' // 无法访问
@@ -82,7 +82,7 @@ import命令会被 JavaScript 引擎静态分析，在编译时就引入模块�
 - 设计思想：尽量地静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量
 - 严格模式：ES6模块自动采用严格模式(不管模块头部是否添加use strict)
 
-```
+```tsx
 // 指定指定的值暴露对外的接口
 export let counter = 3;
 export function incCounter() {
@@ -118,7 +118,7 @@ CommonJS 模块的加载机制是，输入的是被输出的值的拷贝。也�
 模块可以多次加载，但是只会在第一次加载时运行一次，然后运行结果就被缓存了，以后再加载，就直接读取缓存结果。要想让模块再次运行，必须清除缓存。
 模块加载的顺序，按照其在代码中出现的顺序。
 
-```
+```tsx
 // lib.js
 var counter = 3;
 function incCounter() {
@@ -132,7 +132,7 @@ module.exports = {
 
 ```
 
-```
+```tsx
 // 加载外部模块
 var mod = require('./lib');
 
@@ -171,7 +171,7 @@ AMD规范采用异步方式加载模块，模块的加载不影响它后面语�
 **AMD 的特点就和它的名字一样，模块的加载过程是异步的，它大大的利用了浏览器的并发请求能力，让模块的依赖过程的阻塞变得更少了。requireJs 就是 AMD 模块化规范的实现。** 
 
 如果一个文件只有一个模块好像可以省略名字，模块的名字即为文件的名字
-```
+```tsx
 /* 
 * a.js 
 * 创建一个名为“a”的模块
@@ -202,7 +202,7 @@ require(['b'], function(b) {
 
 还有可以配置一些路径的解析
 
-```
+```tsx
 require.config({
   baseUrl: "js/lib",
   paths: {
@@ -223,7 +223,7 @@ CMD（Common Module Definiton）是另一种js模块化方案，它与AMD很类�
 - 模块会被异步加载；
 - 模块加载完成后，不会执行其回调函数，而是等到主函数运行且需要的执行依赖的时候才运行依赖函数（依赖后置、按需加载）；
 
-```
+```tsx
 /** CMD写法 **/
 define(function(require, exports, module) {
     var a = require('./a'); //在需要时申明

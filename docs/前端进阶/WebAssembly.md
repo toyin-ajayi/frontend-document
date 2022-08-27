@@ -72,7 +72,7 @@ Google推出了自家的JavaScript引擎V8，试图使用JIT技术提升JavaScri
 和TypeScript比较相似的是，asm.js同样也是强类型的JavaScript，但是他的语法则是JavaScript的子集，是为了JIT性能优化而专门打造的。试图利用标注的方法，加上变量类型。然后有一个能够识别这些符号的JS引擎，你就可以不用猜类型了.
 
 asm.js强制静态类型，举个例子。
-```
+```tsx
 function asmJs() {
     'use asm';
     
@@ -131,7 +131,7 @@ function asmJs() {
 -  WebAssembly.compile 可以用来编译 wasm 的二进制源码，它接受 BufferSource 格式的参数，返回一个 Promise
 -  WebAssembly.Instance 将模块对象转成 WebAssembly 实例
   
-```
+```tsx
 WebAssembly.compile(new Uint8Array(`
   00 61 73 6d  01 00 00 00  01 0c 02 60  02 7f 7f 01
   7f 60 01 7f  01 7f 03 03  02 00 01 07  10 02 03 61
@@ -159,7 +159,7 @@ WebAssembly.compile(new Uint8Array(`
 - new 了一个 WebAssembly.Memory 对象，通过这个对象，可以实现 JavaScript 与 WebAssembly 之间互通数据
 - 使用了 WebAssembly.instantiateStreaming 来实例化加载的 WebAssembly 模块
 
-```
+```tsx
 // main.js
 
 const file = await fetch('./test.wasm');

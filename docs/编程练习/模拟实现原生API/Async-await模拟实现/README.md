@@ -17,7 +17,7 @@ yield表达式本身没有返回值，或者说总是返回undefined。next方�
 
 由于next方法的参数表示上一个yield表达式的返回值，所以在第一次使用next方法时，传递参数是无效的。
 
-```
+```tsx
 function* foo() {
   var index = 0;
   var index2 = 1;
@@ -36,7 +36,7 @@ console.log(bar.next()); // { value: 1, done: false }
 console.log(bar.next(2)); // { value: 2, done: false }
 console.log(bar.next(3)); // { value: undefined, done: true }
 ```
-```
+```tsx
 begin
 Object {value: 1, done: false}
 index 2 // 这里的2是bar.next(2)传入的2，并不是index+1的，因为index+1是明显结果是1
@@ -46,7 +46,7 @@ Object {value: undefined, done: true}
 ```
 
 在生成器（Generator）中，return语句的作用是为最后一个.next()函数调用设置value值。
-```
+```tsx
 function* generator() {
   yield 1;
   return 2;
@@ -66,7 +66,7 @@ Co 函数库约定，yield 命令后面只能是 Thunk 函数或 Promise 对象�
 说白了就是帮你自动执行你的Generator不用手动调用next
 
 我们可以简单模拟下Co，当然async是基于Co模式的，里面还添加了报错等
-```
+```tsx
 function co(it) {
     return new Promise(function (resolve, reject) {
         function step(d) {
@@ -102,7 +102,7 @@ function co(it) {
 ### Async内部错误可以被捕获
 >Promise的错误是不能被捕获的
 
-```
+```tsx
 let last;
 async function throwError() {  
     await Promise.reject('error');//这里就是异常    
@@ -116,7 +116,7 @@ throwError().then(success => console.log('成功', success,last))
 上面函数，执行的到`await`排除一个错误后，就停止往下执行，导致`last`没有赋值报错。
 `async`里如果有多个await函数的时候，如果其中任一一个抛出异常或者报错了，都会导致函数停止执行，直接`reject`;
 怎么处理呢，可以用`try/catch`，遇到函数的时候，可以将错误抛出，并且继续往下执行。
-```
+```tsx
 let last;
 async function throwError() {  
     try{  
@@ -144,7 +144,7 @@ spawn函数是重点，他有以下几个重要功能：
 - 使asyncFn返回的值变成一个Promise对象，并resolve最后的返回值
 - 捕获迭代器执行的异常情况,try catch 迭代器每一项的执行，如果报错直接reject，外层Promise直接返回，终止了递归，整个async函数终止，返回reject状态的Promise
 
-```
+```tsx
 function spawn(genF) {
     //spawn函数就是自动执行器，跟简单版的思路是一样的，多了Promise和容错处理
     return new Promise(function(resolve, reject) {
@@ -208,7 +208,7 @@ asyncFn2()
 为什么await会等到后面的promise在resolve后才往下执行，因为可以看出整个代码是在Generator里执行,Generator不会主动执行,，所以在.then里调用了gen.next(v)，才会往下走。感觉就像是把Promise的链式调用通过Generator和递归美化成了更加接近同步的写法。
 
 为什么可以从外部捕获await后面的错误？ 因为await出错无非就是Promise.reject，然后调用这个回调函数
-```
+```tsx
  function(e) {
             step(function() {
               return gen.throw(e);
@@ -216,7 +216,7 @@ asyncFn2()
           }
 ```
 但是我们再外部try catch了 这个gen抛出的错误就不会被内部判断错误的程序中断,也就是这里感知不到我们gen.throw(e)，因为已经被catch了
-```
+```tsx
 function step(nextF) {
         let next;
         try {

@@ -12,7 +12,7 @@
 闭包在很多时候被拿来解决模块化问题，显而易见，私有变量本质上也是一种模块化问题，所以，我们也可以使用闭包来解决私有变量的问题。
 
 我们在构造函数中定义一个局部变量，然后通过方法引用，该变量就成为了真正的私有变量。
-```
+```tsx
 class A {
     constructor (x) {
         let _x = x
@@ -40,7 +40,7 @@ a.showX()	// 1
 
 我们可以通过 IIFE （立即执行函数表达式） 建立一个闭包，在其中建立一个变量以及 class ，通过 class 引用变量实现私有变量。
 
-```
+```tsx
 // 利用闭包生成IIFE，返回类A
 const A = (function() {
     // 定义私有变量_x
@@ -73,7 +73,7 @@ a.showX()	//1
 
 这种方式利用的是 Symbol 的唯一性—— 敌人最大的优势是知道我方key值，我把key值弄成唯一的，敌人不就无法访问了吗？
 
-```
+```tsx
 // 定义symbol
 const _x = Symbol('x')
 
@@ -101,7 +101,7 @@ a.showX()	//1
 ##  WeakMap实现私有属性
 
 与Symbol实现的私有属性相同，由于都在constructor中，所以仅实现了私有属性的不暴露，但是没有实现不可继承。
-```
+```tsx
 const privateData = new WeakMap();
 
 class Person {

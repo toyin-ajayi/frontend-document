@@ -16,7 +16,7 @@ propertiesObject:可选。要添加到新对象的可枚举（新添加的属性
 
 ### 实例
 
-```
+```tsx
 const person = {
   isHuman: false,
   printIntroduction: function () {
@@ -45,7 +45,7 @@ console.log(me)
 通过构造函数来创建对象, 添加的属性是在自身实例下。
 Object.create() es6创建对象的另一种方式，可以理解为继承一个对象, 添加的属性是在原型下。：
 
-```
+```tsx
 var a = {  rep : 'apple' }
 var b = new Object(a)
 console.log(b) // {rep: "apple"}
@@ -54,7 +54,7 @@ console.log(b.__proto__) // {}
 
 ## Object.create()
 
-```
+```tsx
 var a = { rep: 'apple' }
 var b = Object.create(a)
 console.log(b)  // {}
@@ -65,7 +65,7 @@ console.log(b.__proto__) // {rep: "apple"}
 
 先看看我们经常使用的{}创建的对象是什么样子的
 
-```
+```tsx
 var o = {a:1};
 console.log(o)
 ```
@@ -73,7 +73,7 @@ console.log(o)
 ![](/img/blog/28/2.png)
 
 再看看使用Object.create()创建对象：
-```
+```tsx
 var o = Object.create(null,{
     a:{
            writable:true,
@@ -89,7 +89,7 @@ console.log(o)
 
 
 我们再把上面的例子改为{}
-```
+```tsx
 var o = Object.create({},{
     a:{
            writable:true,
@@ -105,7 +105,7 @@ console.log(o)
 
 创建的对象和使用{}创建对象已经很相近了，但是还是有一点区别：多了一层proto嵌套。
 我们最后再来改一下：
-```
+```tsx
 var o = Object.create(Object.prototype,{
     a:{
            writable:true,

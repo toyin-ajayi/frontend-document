@@ -16,7 +16,7 @@ window.resize事件能帮我们监听窗口大小的变化。
 - 但是reize事件会在一秒内触发将近60次，所以很容易在改变窗口大小时导致性能问题。- 只有window对象才有resize事件，而不是具体到某个元素的变化。
 - 如果我们只想监听某个元素的变化的话，这种操作就很浪费性能了。
 
-```
+```tsx
 window.onresize = function() {
 	const width = getStyle(dom, 'width');
 	const height = getStyle(dom, 'height');
@@ -30,7 +30,7 @@ function getStyle(ele,attr){
 ```
 
 用setInterval的方式进行监听DOM的变化。核心代码如下：
-```
+```tsx
 let timer = 0；
 timer = setInterval(() => {
     const style = {
@@ -42,7 +42,7 @@ timer = setInterval(() => {
 
 ## ResizeObserver实例
 
-```
+```tsx
 // 导入兼容模块 如果支持也可以不用polyfill
 import ResizeObserver from 'resize-observer-polyfill';
 const element1 = document.getElementById('div1');

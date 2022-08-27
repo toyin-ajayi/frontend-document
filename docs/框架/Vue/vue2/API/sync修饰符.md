@@ -6,18 +6,18 @@
 
 ## 语法糖
 
-```
+```tsx
 <comp :foo.sync="bar"></comp>
 ```
 
 会转化为
 
-```
+```tsx
 <comp :foo="bar" @update:foo="val => bar = val"></comp>
 ```
 
 当子组件需要更新 foo 的值时，它需要显式地触发一个更新事件：
-```
+```tsx
 this.$emit('update:foo', newValue)
 ```
 

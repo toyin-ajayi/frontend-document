@@ -13,7 +13,7 @@
 
 ![图片无法加载](./img/冒泡排序.gif)
 
-```
+```tsx
 function bubbleSort(arr){
     for(let i=0;i<arr.length-1;i++){
         for(let j=0;j<arr.length-i-1;j++){
@@ -41,7 +41,7 @@ console.log(bubbleSort(arr).toString())
 
 ![图片无法加载](./img/选择排序.gif)
 
-```
+```tsx
 function selectionSort(arr) {
     let minIndex
     for(let i = 0; i<arr.length; i++){
@@ -69,7 +69,7 @@ console.log(selectionSort(arr).toString())
 
 ![图片无法加载](./img/插入排序.gif)
 
-```
+```tsx
 function insertSort(arr) {
     for(let i = 1;i<arr.length;i++){// 外循环表示有序的长度
         for(let j=i;j>=0;j--){
@@ -121,7 +121,7 @@ console.log(insertSort2(arr2).toString())
 ![图片无法加载](./img/归并排序.png)
 
 
-```
+```tsx
 // 实验一下数组分治  中间递归划分 直到只有一个元素
 function mergeSortTest(arr) {
   if (arr.length > 1) {
@@ -206,7 +206,7 @@ console.log(arred.toString());
 
 ![图片无法加载](./img/快速排序2.png' align='center)
 
-```
+```tsx
 // 第一版非原地排序，空间复杂度较高
 // 思想比较是一致的，比较好理解但不推荐使用
 function quickSortRecursion (arr) {
@@ -305,7 +305,7 @@ console.log(arr2.toString())
 
 ![图片无法加载](./img/堆排序.gif)
 
-```
+```tsx
 function swap(arr, a, b) {
   [arr[a], arr[b]] = [arr[b], arr[a]];
 }
@@ -372,7 +372,7 @@ console.log(heapSort(arr).toString()); //4,5,6,7,8,8,22,23,26,34,42
 
 ![图片无法加载](./img/计算排序.gif)
 
-```
+```tsx
 // 排序的数组必须是整数才行
 // 空间复杂度比其他的排序要高，尤其是一个数很大，其他数很小的时候，会浪费很多空间
 function countingSort(arr) {

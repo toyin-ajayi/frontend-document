@@ -9,7 +9,7 @@
 临时死区(Temporal Dead Zone)，简写为 TDZ。
 
 let 和 const 声明的变量不会被提升到作用域顶部，如果在声明之前访问这些变量，会导致报错：
-```
+```tsx
 console.log(typeof value); // Uncaught ReferenceError: value is not defined
 let value = 1;
 
@@ -17,7 +17,7 @@ let value = 1;
 
 这是因为 JavaScript 引擎在扫描代码发现变量声明时，要么将它们提升到作用域顶部(遇到 var 声明)，要么将声明放在 TDZ 中(遇到 let 和 const 声明)。访问 TDZ 中的变量会触发运行时错误。只有执行过变量声明语句后，变量才会从 TDZ 中移出，然后方可访问。
 
-```
+```tsx
 var value = "global";
 
 // 例子1
@@ -39,7 +39,7 @@ var value = "global";
 ## let 与 for循环的问题
 
 看一下用var和let的对比
-```
+```tsx
 var funcs = [];
 for (var i = 0; i < 3; i++) {
     funcs[i] = function () {
@@ -50,7 +50,7 @@ funcs[0](); // 3
 
 ```
 
-```
+```tsx
 var funcs = [];
 for (let i = 0; i < 3; i++) {
     funcs[i] = function () {
@@ -65,7 +65,7 @@ let 不提升，不能重复声明，不能绑定全局作用域等等特性，�
 如果是不重复声明，在循环第二次的时候，又用 let 声明了 i，应该报错呀，就算因为某种原因，重复声明不报错，一遍一遍迭代，i 的值最终还是应该是 3 呀，还有人说 for 循环的
 设置循环变量的那部分是一个单独的作用域，就比如：
 
-```
+```tsx
 for (let i = 0; i < 3; i++) {
   let i = 'abc';// 没有跳出循环
   console.log(i);
@@ -78,7 +78,7 @@ for (let i = 0; i < 3; i++) {
 
 果我们把 let 改成 var 
 
-```
+```tsx
 for (var i = 0; i < 3; i++) {
   var i = 'abc';// i被覆盖了 跳出循环
   console.log(i);
@@ -100,7 +100,7 @@ let 声明在循环内部的行为是标准中专门定义的，不一定就与 
 每次迭代循环时都创建一个新变量，并以之前迭代中同名变量的值将其初始化。
 执行函数的时候，根据词法作用域就可以找到正确的值，其实你也可以理解为 let 声明模仿了闭包的做法来简化循环过程
 
-```
+```tsx
 var funcs = [];
 for (let i = 0; i < 3; i++) {
     funcs[i] = function () {
@@ -113,7 +113,7 @@ funcs[0](); // 0
 
 相当于：
 
-```
+```tsx
 // 伪代码
 (let i = 0) {
     funcs[0] = function() {

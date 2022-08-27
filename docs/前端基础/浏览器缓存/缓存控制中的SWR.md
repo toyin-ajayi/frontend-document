@@ -17,7 +17,7 @@ stale-while-revalidate 指令应当与 max-age 配合使用，超过 max-age 指
 
 ## 用法
 
-```
+```tsx
 Cache-Control: max-age=600, stale-while-revalidate=30
 ```
 
@@ -57,7 +57,7 @@ swr 即 stale-while-revalidate 的缩写，虽然得名于此，swr 只是借用
 
 这个库还支持依赖请求，如 B 依赖 A 的返回结果作为请求参数，通常的写法如下：
 
-```
+```tsx
 const { data: a } = await fetch('/api/a')
 const { data: b } = await fetch(`/api/b?id=${a.id}`)
 ```

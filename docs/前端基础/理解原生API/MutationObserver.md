@@ -25,7 +25,7 @@ MutationObserver 将响应函数改成异步调用，可以不用在每次 DOM �
 通过往构造函数 MutationObserver 中传入一个函数作为参数来初始化一个 MutationObserver 实例，该函数会在每次发生 DOM 发生变化的时候调用。
 
 MutationObserver 的函数的第一个参数即为单个批处理中的 DOM 变化集。每个变化包含了变化的类型和所发生的更改。
-```
+```tsx
 var mutationObserver = new MutationObserver(function(mutations) {
   mutations.forEach(function(mutation) {
     console.log(mutation);
@@ -40,7 +40,7 @@ var mutationObserver = new MutationObserver(function(mutations) {
 observe－开始进行监听。接收两个参数－要观察的 DOM 节点以及一个配置对象。
 disconnect－停止监听变化。
 takeRecords－触发回调前返回最新的批量 DOM 变化。
-```
+```tsx
 
 var observer = new MutationObserver(callback);
 

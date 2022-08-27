@@ -18,7 +18,7 @@ X-Forwarded-For 是一个扩展头。HTTP/1.1（RFC 2616）协议并没有对它
 
 来自 4.4.4.4 的一个请求，header 包含这样一行
 
-```
+```tsx
 X-Forwarded-For: 1.1.1.1, 2.2.2.2, 3.3.3.3
 
 ```
@@ -27,7 +27,7 @@ X-Forwarded-For: 1.1.1.1, 2.2.2.2, 3.3.3.3
 
 而 X-Real-IP，没有相关标准，上面的例子，如果配置了 X-Read-IP，可能会有两种情况
 
-```
+```tsx
 // 最后一跳是正向代理，可能会保留真实客户端IP
 X-Real-IP: 1.1.1.1
 // 最后一跳是反向代理，比如Nginx，一般会是与之直接连接的客户端IP
@@ -39,13 +39,13 @@ X-Real-IP: 3.3.3.3
 
 在实际应用中，我们可能需要获取用户的 ip 地址，比如做异地登陆的判断，或者统计 ip 访问次数等，通常情况下我们使用 request.getRemoteAddr()就可以获取到客户端 ip，但是当我们使用了 nginx 作为反向代理后，使用 request.getRemoteAddr()获取到的就一直是 nginx 服务器的 ip 的地址
 
-```
+```tsx
 proxy_set_header    X-real-ip $remote_addr;// 将客户端真实 ip 地址放到 header的 x-real-ip 字段，然后直接从这个字段来取客户端的 ip 地址就可以获取到真实 IP 了。
 ```
 
 ## 反向代理 IP 的处理
 
-```
+```tsx
 proxy_set_header Host $http_host;
 proxy_set_header X-Real-IP $remote_addr;
 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

@@ -30,7 +30,7 @@ RPC的核心并不在于使用什么协议。RPC的目的是让你在本地调�
 * 网络传输：网络传输库可以自己写socket，或者用asio，ZeroMQ，Netty之类。
 
 
-```
+```tsx
 // Client端 
 //    int l_times_r = Call(ServerAddr, Multiply, lvalue, rvalue)
 1. 将这个调用映射为Call ID。这里假设用最简单的字符串当Call ID的方法

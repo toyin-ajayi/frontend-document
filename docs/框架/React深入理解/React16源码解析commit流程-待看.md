@@ -1,6 +1,6 @@
 看一个删除节点的Tag
 
-```
+```tsx
 function deleteChild(returnFiber: Fiber, childToDelete: Fiber): void {
     if (!shouldTrackSideEffects) {
         return;
@@ -17,7 +17,7 @@ function deleteChild(returnFiber: Fiber, childToDelete: Fiber): void {
 }
 ```
 commit阶段会通过 effectTag标记 识别操作类型，所以我们先来看看 effectTag 有哪些类型：
-```
+```tsx
 // Don't change these two values. They're used by React Dev Tools.
 export const NoEffect = /*              */ 0b00000000000;
 export const PerformedWork = /*         */ 0b00000000001;
@@ -40,7 +40,7 @@ export const ShouldCapture = /*         */ 0b10000000000;
 ```
 此函数主要是遍历EffectList，根据effectTag，调用对应commit方法，进而调用react-dom提供的操作DOM的方法，渲染UI，操作DOM的方法有：
 
-```
+```tsx
 {
   getPublicInstance,
   supportsMutation,

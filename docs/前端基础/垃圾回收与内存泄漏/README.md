@@ -26,7 +26,7 @@
 
 ### 看一个相互关联对象实例
 
-```
+```tsx
 function marry(man, woman) {
   woman.husband = man;
   man.wife = woman;
@@ -49,7 +49,7 @@ let family = marry({
 
 现在让我们移除两个引用：
 
-```
+```tsx
 delete family.father;
 delete family.mother.husband;
 ```
@@ -79,7 +79,7 @@ delete family.mother.husband;
 - 相反，如果包含对这个值引用的变量又取得了另外一个值，则这个值的引用次数减 1。
 - 当这个值的引用次数变成 0 时，则说明没有办法再访问这个值了，因而就可以将其占用的内存空间回收回来。
 
-```
+```tsx
 function test(){
         var a = {} ; // a的引用次数为0
         var b = a ; // a的引用次数加1，为1
@@ -96,7 +96,7 @@ b 的引用计数是 0，c 也是 0，b，c 被清除，那 a 的次数又会被
 
 如果两个对象相互引用，尽管他们已不再使用，垃圾回收不会进行回收，导致内存泄露。
 
-```
+```tsx
 function f(){
   var o = {};
   var o2 = {};
@@ -120,14 +120,14 @@ f();
 
 ### 意外的全局变量
 
-```
+```tsx
 function foo(arg) {
     bar = "this is a hidden global variable";
 }
 
 ```
 
-```
+```tsx
 function foo() {
     this.variable = "potential accidental global";
 }
@@ -146,7 +146,7 @@ foo();
 
 在节点 node 或者数据不再需要时，定时器依旧指向这些数据。所以哪怕当 node 节点被移除后，interval 仍旧存活并且垃圾回收器没办法回收，它的依赖也没办法被回收，除非终止定时器。
 
-```
+```tsx
 var someResource = getData();
 setInterval(function() {
     var node = document.getElementById('Node');
@@ -162,7 +162,7 @@ setInterval(function() {
 
 在数据结构中存储 DOM 节点。假设你想快速更新表格中几行的内容。如果在字典或数组中存储对每个 DOM 行的引用，就会产生两个对同一个 DOM 元素的引用：一个在 DOM 树中，另一个在字典中。如果你决定删除这些行，你需要记住让两个引用都无法访问。
 
-```
+```tsx
 var elements = {
     button: document.getElementById('button'),
     image: document.getElementById('image')
@@ -187,7 +187,7 @@ function removeButton() {
 
 JavaScript 开发的一个关键方面是闭包：一个内部函数可以访问外部（封闭）函数的变量。由于 JavaScript 运行时的实现细节，可能以如下方式泄漏内存：
 
-```
+```tsx
 var theThing = null;
 var replaceThing = function () {
   var originalThing = theThing;
@@ -214,7 +214,7 @@ setInterval(replaceThing, 1000);
 意思就是闭包造成的内存泄漏是旧版本 IE 的 bug，真正情况下的闭包不会造成内存泄漏。
 这段代码创建了一个元素，当它被点击的时候变红，但同时它也会发生内存泄露。为什么？因为对 el 的引用不小心被放在一个匿名内部函数中。这就在 JavaScript 对象（内部监听函数）和本地对象之间（el）创建了一个循环引用。el.onclick->function function[scope].el->el
 
-```
+```tsx
  function addHandler() {
      var el = document.getElementById('el');
      el.onclick = function() {

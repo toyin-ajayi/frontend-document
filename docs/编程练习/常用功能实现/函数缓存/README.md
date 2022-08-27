@@ -4,7 +4,7 @@
 在平时的开发过程中，我们也应该尽量把无副作用的“纯计算”提取出来实现成“纯函数”，尤其是涉及到大量重复计算的过程，使用纯函数+函数缓存的方式能够大幅提高程序的执行效率。 
 ## Memoize
 我们可以创建一个独立的函数来记忆任何函数。我们将此函数称为memoize。在传入相同的参数时直接返回上次缓存的结果，这样在计算大量有重复数据时，可以提供性能，
-```
+```tsx
         function memoize(func) {
           const cache = {};
           return function(...args) {
@@ -28,7 +28,7 @@
 memoizedSum在第一次执行时将执行结果缓存在了闭包中的缓存对象cache中，因此第二次执行时，由于输入参数相同，直接返回了缓存的结果。
 ## 更好的选择是使用ES6+支持的Map对象
 
-```
+```tsx
 		const memoize2 = fn => {
 		  const cache = new Map();
 		  const cached = function(...val) {
@@ -39,7 +39,7 @@ memoizedSum在第一次执行时将执行结果缓存在了闭包中的缓存对
 		};
 ```
 或者
-```
+```tsx
 // 记录重复计算的值
 function memo(func){
   const cache = new Map();
@@ -58,7 +58,7 @@ function memo(func){
 ```
 
 ## 看个函数缓存优化递归的题
-```
+```tsx
 给定不同面额的硬币 coins 和一个总金额 amount。
 编写一个函数来计算可以凑成总金额所需的最少的硬币个数。
 如果没有任何一种硬币组合能组成总金额，返回  -1。
@@ -73,7 +73,7 @@ function memo(func){
 ```
 因为递归往下运算会出现不同节点函数参数相同的情况，这种情况是不需要反复计算的
 将递归的入口改为缓存的函数，有相同的参数直接返回结果就行了
-```
+```tsx
 
 function minCoin(coins, amount) {
   // 如果amount为0表示刚刚把钱兑换完 返回0

@@ -16,14 +16,14 @@
 
 在main.js里定义一个变量
 
-```
+```tsx
 const mock = false; // 可以根据环境变量来影响
 if(mock){
   require('./mock/api'); // 运行中加载
 }
 ```
 定义mock接口
-```
+```tsx
 // mock/api.js
 import Mock from 'mockjs'
 Mock.mock('/api/user/login',{

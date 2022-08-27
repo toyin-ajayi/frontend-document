@@ -4,7 +4,7 @@
 
 如下：假设三层 div 都有事件监听，这时我们点击的小的蓝方框，事件执行的顺序是怎么样的呢
 
-```
+```tsx
 <div id="s1" style="height: 400px;width: 400px;border: 1px solid red">红
     <div id="s2" style="height: 200px;width: 200px;border: 1px solid yellow">
         黄
@@ -39,7 +39,7 @@ addEventListener 第三个参数默认值是 false，表示在事件冒泡阶段
 
 ## 测试事件冒泡-点击蓝色
 
-```
+```tsx
     s1 = document.getElementById('s1')
     s2 = document.getElementById('s2')
     s3 = document.getElementById('s3')
@@ -60,7 +60,7 @@ addEventListener 第三个参数默认值是 false，表示在事件冒泡阶段
 
 ## 测试事件捕获-点击蓝色
 
-```
+```tsx
 s1.addEventListener("click",function(e){
         console.log("红 捕获事件");
     },true);
@@ -85,7 +85,7 @@ s1.addEventListener("click",function(e){
 
 ![](/img/blog/24/1.png)
 
-```
+```tsx
     s1.addEventListener("click",function(e){
         console.log("红 冒泡事件");
     },false);
@@ -117,7 +117,7 @@ s1.addEventListener("click",function(e){
 其实我们可以在 li 的父级加一个事件监听，这就相当于把事件监听委托给了 ul
 我们点击 li 的时候是会打出值的
 
-```
+```tsx
 <ul id="ul">
     <li>1</li>
     <li>2</li>
@@ -129,7 +129,7 @@ s1.addEventListener("click",function(e){
 </ul>
 ```
 
-```
+```tsx
 ul = document.getElementById('ur')
 
     ul.addEventListener("click",function(e){
@@ -144,7 +144,7 @@ ul = document.getElementById('ur')
 ##onclick 事件分析
 onclick 不能像 addEventListener 那样指定是事件类型，它只能是事件冒泡
 
-```
+```tsx
     s1.onclick=function(){
         console.log('红')
     }
@@ -168,7 +168,7 @@ onclick 不能像 addEventListener 那样指定是事件类型，它只能是事
 这是 W3C 的标准方法，stopPropagation 是事件对象(Event)的一个方法，作用是阻止目标元素的冒泡事件，但是会不阻止默认行为。
 IE 使用的是 IE 则是使用 e.cancelBubble = true
 
-```
+```tsx
 function stopBubble(e) {
 //如果提供了事件对象，则这是一个非IE浏览器
 if ( e && e.stopPropagation )
@@ -194,7 +194,7 @@ preventDefault 它是事件对象(Event)的一个方法，作用是取消一个�
 
 javascript 的 return false 只会阻止默认行为，而是用 jQuery 的话则既阻止默认行为又防止对象冒泡。
 
-```
+```tsx
 //阻止浏览器的默认行为 总结
 function stopDefault( e ) {
     //阻止默认浏览器动作(W3C)
@@ -211,7 +211,7 @@ function stopDefault( e ) {
 
 事件的目标event.target是导致事件的最深嵌套元素是事件的目标。 你可以通过 event.stopPropagation 停止冒泡
 
-```
+```tsx
     <div id='box'>
         <div id='content'>
           <button id='button'>
@@ -241,7 +241,7 @@ button.addEventListener('click',function(e){
 
 所有的 e.target 打出来都是
 
-```
+```tsx
     <button id='button'>
       Click!
     </button>
@@ -250,7 +250,7 @@ button.addEventListener('click',function(e){
 
 ## 最后注意事件监听的适配性
 > 主要是低版本的浏览器，可能需要适配一下，下面的方法融合了低版本IE和高版本IE、谷歌、火狐等的方法
-```
+```tsx
 var EventUtil ={
     addHandler: function(element, type, handler){
         if(element.addEventListener){//标准浏览器webkit，ff

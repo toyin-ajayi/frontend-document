@@ -12,7 +12,7 @@
 
 我们可以将 " | " 看成将命令链接在一起的管道。它从一个命令获取输出，并将其作为输入送入下一个命令。管道命令的数量是任意的。
 
-```
+```tsx
 cat words.txt | grep [cC] | sort -r
 ```
 
@@ -33,7 +33,7 @@ cat words.txt | grep [cC] | sort -r
 
 倒引号括起来的字符串被 Shell 解释为命令行，在执行时，Shell 会先执行该命令行，并以它的标准输出结果取代整个倒引号部分.
 
-```
+```tsx
 Shell 解释执行:
 $ echo current directory is `pwd` current directory is /home/huoty
 命令行替换
@@ -49,7 +49,7 @@ echo $mypath
 冒号(null command [colon])。 空命令，这个命令什么都不做，但是有返回值，返回值为 0
 
 ### 重定向输入输出
-```
+```tsx
 重定向输入/输出：
 >file 重定向输出，设置file作为输出目标，以新建模式输出
 
@@ -67,7 +67,7 @@ echo $mypath
 
 ### 通配符
 
-```
+```tsx
 * 匹配任意个字符（包含0个）
 
 ？ 匹配一个字符
@@ -86,7 +86,7 @@ echo $mypath
 
 比如 ls，grep，cd，mkdir，rm 等等。
 
-```
+```tsx
 user@host:~$
 
 ```
@@ -97,7 +97,7 @@ user@host:~$
 
 可以使用下面的命令让 shell 以非交互模式运行：
 
-```
+```tsx
 sh /path/to/script.sh
 bash /path/to/script.sh
 source /path/to/script.sh
@@ -106,7 +106,7 @@ source /path/to/script.sh
 
 ## 指定脚本解释器
 
-```
+```tsx
 指定 sh 解释器
 #!/bin/sh
 复制代码
@@ -129,7 +129,7 @@ echo 用于字符串的输出。
 
 输出含变量的字符串：
 
-```
+```tsx
 name=zp
 echo "hello, ${name}"
 # Output: hello, "zp"
@@ -141,7 +141,7 @@ echo "hello, ${name}"
 
 ### 计算
 
-```
+```tsx
 path = `pwd`
 # expr 可以识别算式
 TEMP=`expr 2 + 3`
@@ -149,7 +149,7 @@ TEMP=`expr 2 + 3`
 
 计算还有其他方式
 
-```
+```tsx
 # 第1种方式 $(())
 echo $(((2+3)*4))
 
@@ -164,7 +164,7 @@ Bash 中没有数据类型，bash 中的变量可以保存一个数字、一个�
 
 访问变量的语法形式为：${var} 和 $var 。
 
-```
+```tsx
 dword="hello"  # 声明变量
 echo ${dword}  # 输出变量值
 # Output: hello
@@ -192,7 +192,7 @@ readonly rword # 只读变量
 
 ### 拼接字符串
 
-```
+```tsx
 # 使用单引号拼接
 name1='white'
 str1='hello, '${name1}''
@@ -213,7 +213,7 @@ echo ${str3}_${str4}
 
 ### 获取字符串长度
 
-```
+```tsx
 text="12345"
 echo ${#text}
 # Output:
@@ -223,7 +223,7 @@ echo ${#text}
 ### 截取子字符串
 
 #### 按下标截取
-```
+```tsx
 text="12345"
 echo ${text:2:2}
 # Output:
@@ -295,7 +295,7 @@ echo ${var:0-7}
 
 查找 ll 子字符在 hello 字符串中的起始位置。
 
-```
+```tsx
 #!/usr/bin/env bash
 
 text="hello"
@@ -313,7 +313,7 @@ bash 只支持一维数组。
 
 数组下标从 0 开始，下标可以是整数或算术表达式，其值应大于或等于 0。
 
-```
+```tsx
 # 创建数组的不同方式
 nums=([2]=2 [0]=0 [1]=1)
 colors=(red yellow "dark blue")
@@ -352,7 +352,7 @@ shell 里不同的数据运算符会有区别。字符串和数组的运算符�
 
 [ condition ] 注意 condition 前后要有空格。非空返回 0，0 为 true，否则为 false 。
 
-```
+```tsx
 # 或者（推荐）
 if [ 条件判断式 ]
 then
@@ -365,7 +365,7 @@ fi
 
 ### for 循环
 
-```
+```tsx
 #!/bin/bash
 
 
@@ -387,7 +387,7 @@ echo $SUM
 
 ### while 循环
 
-```
+```tsx
 while [ 条件判断式 ]
 do
     程序

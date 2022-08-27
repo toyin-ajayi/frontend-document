@@ -18,7 +18,7 @@
 倘若语言设计正确，那么当内部函数被调用时，this应该仍然绑定到外部函数的this变量。
 这个设计错误的后果就是方法不能利用内部函数来帮助它工作，因为内部函数的this被绑定了错误的值，所以不能共享该方法对对象的访问权
 
-```
+```tsx
 var obj = {
     val : 1,
     show : function(){alert(this.val);},//方法调用模式
@@ -44,7 +44,7 @@ obj.show();// 方法调用模式 this指向obj 弹出1
 将this绑定到创建的新对象上
 函数结束时，如果没有返回其它对象，就返回this，即新创建的对象。
 
-```
+```tsx
  var quo=function(string){
             this.status=string;
         }
@@ -60,7 +60,7 @@ obj.show();// 方法调用模式 this指向obj 弹出1
 ## 上下文调用模式（call,apply）
 
 
-```
+```tsx
 var myobject={};
 var sum = function(a,b){
 　　return a+b;
@@ -86,7 +86,7 @@ alert(sum2);
 
 ## 事件监听内部调用方法案例分析
 
-```
+```tsx
     var div=document.getElementById("one");
     function f2(){
     console.log(this)

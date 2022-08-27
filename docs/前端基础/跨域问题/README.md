@@ -12,7 +12,7 @@ postMessage是html5引入的API,postMessage()方法允许来自不同源的脚�
 第一个参数是要发送的数据，可以是任何原始类型的数据。
 第二个参数可以设置要发送到哪个url，如果当前子页面的url和设置的不一致，则会发送失败，我们设置为*，代表所有url都允许发送
 
-```
+```tsx
   <body style="border:5px solid #333;">
     <h1>this is index</h1>
     <iframe src="./iframePage.html" id="myframe"></iframe>
@@ -37,7 +37,7 @@ postMessage是html5引入的API,postMessage()方法允许来自不同源的脚�
   </script>
 ```
 
-```
+```tsx
   <script>
     //回调函数
     function receiveMessageFromIndex(event) {
@@ -57,7 +57,7 @@ postMessage是html5引入的API,postMessage()方法允许来自不同源的脚�
 因此，若两个源所用协议、端口一致，主域相同而二级域名不同的话，可以借鉴该方法解决跨域请求。
 
 如下，两个不同源但在同一个域名下，可以把他们的域名设置为相同
-```
+```tsx
   <body>
     <iframe id="iframe" src="http://child.domain.com/b.html"></iframe>
   </body>
@@ -67,7 +67,7 @@ postMessage是html5引入的API,postMessage()方法允许来自不同源的脚�
   </script>
 ```
 
-```
+```tsx
   <body>
     <iframe id="iframe" src="http://child.domain.com/b.html"></iframe>
   </body>
@@ -91,7 +91,7 @@ postMessage是html5引入的API,postMessage()方法允许来自不同源的脚�
 - 这种获取远程数据的方式看起来非常像ajax，但其实并不一样,便于客户端使用数据，逐渐形成了一种非正式传输协议，人们把它称作JSONP。
 - 传递一个callback参数给跨域服务端，然后跨域服务端返回数据时会将这个callback参数作为函数名来包裹住json数据即可。
 
-```
+```tsx
     <script type="text/javascript">
         function res (r) {  //定义回调函数接收返回结果
             console.log(r)
@@ -123,7 +123,7 @@ a.html欲与c.html跨域相互通信，通过中间页b.html来实现。 三个�
 
 实现原理：同源策略是浏览器需要遵循的标准，而如果是服务器向服务器请求就无需遵循同源策略。 node中间件实现跨域代理，是通过启一个代理服务器，实现数据的转发
 
-```
+```tsx
 var proxy = require('http-proxy-middleware');
 var options = {
   target: 'https://xxxx.xxx.xxx/abc/req',
@@ -144,7 +144,7 @@ app.use('/api', proxy(options));
 
 跨域原理： 同源策略是浏览器的安全策略，不是HTTP协议的一部分。服务器端调用HTTP接口只是使用HTTP协议，不会执行JS脚本，不需要同源策略，也就不存在跨越问题。
 
-```
+```tsx
 server {
         listen       80;
 	server_name  localhost;
@@ -164,7 +164,7 @@ server {
 
 如React，可以在package.json里配置一个Proxy属性来代理，只能在开发环境使用，生产环境需要额外配置
 
-```
+```tsx
 "proxy":{
     "/api": {
         "target": "http://172.19.5.35:9536",

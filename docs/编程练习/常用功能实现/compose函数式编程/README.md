@@ -2,7 +2,7 @@
 
 compose 就是执行一系列的任务（函数），比如有以下任务队列,每一个 step 都是一个步骤，按照步骤一步一步的执行到结尾(step4 是头部第一个元素，step1 是尾部)
 
-```
+```tsx
 let tasks = [step1, step2, step3, step4]
 ```
 
@@ -21,7 +21,7 @@ compose 大致的使用，总结下来要注意的有以下几点
 - 如果有任务就执行，并把执行结果往后传递
 - 这里是一个局部的思维，无法预知任务何时结
 
-```
+```tsx
 const compose = function(...args) {
   let length = args.length
   let count = length - 1
@@ -44,7 +44,7 @@ ES6 引入了 Promise，Promise 可以指定一个 sequence，来规定一个执
 Promise.resolve()这个函数。构建 sequence 可以使用 reduce.
 **相当于用 reduce 帮我们创建了一个链式的.then**
 
-```
+```tsx
 const compose = function(...args) {
   let init = args.pop()
   return function(...arg) {
@@ -61,7 +61,7 @@ const compose = function(...args) {
 
 Generator 主要使用 yield 来构建协程，采用中断，处理，再中断的流程。可以事先规定好协程的执行顺序，然后再下次处理的时候进行参数（结果）交接，有一点要注意的是，由于执行的第一个 next 是不能传递参数的，所以第一个函数的执行需要手动调用，再空耗一个 next，后面的就可以同步执行了。
 
-```
+```tsx
 function* iterateSteps(steps) {
   let n
   for (let i = 0; i < steps.length; i++) {
@@ -90,7 +90,7 @@ const compose = function(...steps) {
 
 其实 compose 函数做的事就是把 var a = fn1(fn2(fn3(fn4(x)))) 这种嵌套的调用方式改成 var a = compose(fn1,fn2,fn3,fn4)(x) 的方式调用。
 
-```
+```tsx
 export default function compose(...funcs) {
   if (funcs.length === 0) {
     return arg => arg
@@ -107,7 +107,7 @@ export default function compose(...funcs) {
 
 看一下 compose(fn1, fn2, fn3, fn4)根据 compose 的源码, 其实执行的就是： [fn1,fn2,fn3.fn4].reduce((a, b) => (...args) => a(b(...args)))
 
-```
+```tsx
 import {compose} from 'redux'
 let x = 10
 function fn1 (x) {return x + 1}
@@ -134,7 +134,7 @@ let b = composeFn(x) // 理论上也应该得到20
 ### reduce 改成普通写法
 
 cache就相当于上面的a，记录上一次的调用函数，然后把下一次的作为参数再穿进去
-```
+```tsx
 let cache;
 
 function compose(...fns) {

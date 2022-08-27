@@ -58,7 +58,7 @@ Immutable提供一直简单快捷的方式以判断对象是否变更，对于Re
 
 #### PureComponent 的浅比较优化
 
-```
+```tsx
  if (this._compositeType === CompositeTypes.PureClass) {
       shouldUpdate =
         !shallowEqual(prevProps, nextProps) ||
@@ -70,7 +70,7 @@ Immutable提供一直简单快捷的方式以判断对象是否变更，对于Re
 引用类型，当更改了其中的某一字段，并期望在改变之后组件可以重新渲染的时候，发现使用 PureComponent 的时候，发现组件并没有重新渲染，因为更改后的数据和修改前的数据使用的同一个内存，所有比较的结果永远都是 false, 导致组件并没有重新渲染。
 
 在shouldComponentUpdate加上一层对比,前提是props上的的属性都是immutable数据
-```
+```tsx
 import {is} from 'immutable';
  for (const key in nextProps) {
             if (!is(thisProps[key], nextProps[key])) {
@@ -82,7 +82,7 @@ import {is} from 'immutable';
 #### 状态组件state更新优化
 
 错误的写法：
-```
+```tsx
     this.state = fromJS({
       person: {
         name: 'xuxuan',
@@ -100,7 +100,7 @@ import {is} from 'immutable';
 
 所以：
 
-```
+```tsx
 this.state = {
     person: fromJS({
         name: 'xuxuan',
@@ -133,7 +133,7 @@ this.setState({
 #### 全局挂载用combineReducers
 
  在redux中，全局state必须是immutable的，这点毋庸置疑是我们使用immutable来优化redux的核心
-```
+```tsx
 import { combineReducers } from "redux-immutable";
 import { reducer as recommendReducer } from "../application/Recommend/store/index";
 import { reducer as singersReducer } from "../application/Singers/store/index";
@@ -160,7 +160,7 @@ export default combineReducers({
 
 Action提交到reducer中的数据必须是immutable
 
-```
+```tsx
 import { fromJS } from 'immutable';
 
 const defaultState = fromJS({
@@ -187,7 +187,7 @@ export default (state = defaultState, action) => {
 
 Action提交到reducer中的数据必须是immutable
 与服务端ajax交互中返回的callback统一封装，第一时间转换成immutable数据
-```
+```tsx
 import { fromJS } from 'immutable';
 import { getBannerRequest, getRecommendListRequest } from '../../../api/request';
 
@@ -218,13 +218,13 @@ export const getBannerList = () => {
 #### index.js
 
 view提交到action中的数据必须是immutable 这里是用了redux-thunk这个中间件
-```
+```tsx
 import thunk from "redux-thunk";
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 ```
 所以传给dispatch是一个函数，函数执行完反的就是带有immutable数据的action
 
-```
+```tsx
 ·····
 const { bannerList, recommendList, songsCount, enterLoading } = props;
 

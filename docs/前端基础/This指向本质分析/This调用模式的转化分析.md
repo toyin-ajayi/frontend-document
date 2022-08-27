@@ -2,7 +2,7 @@
 
 ### 对象a最后调用fn
 
-```
+```tsx
 var name = "windowsName";
     var a = {
         name: "Cherry",
@@ -18,7 +18,7 @@ var name = "windowsName";
 ### window最后调用fn
 
 这里是先把fn方法赋值到了全局，然后再执行的，所以this指向全局（window）
-```
+```tsx
     var name = "windowsName";
     var a = {
         name: "Cherry",
@@ -37,7 +37,7 @@ var name = "windowsName";
 
 ### 你可能遇到过这样的 JS 面试题：
 
-```
+```tsx
 var obj = {
   foo: function(){
     console.log(this)
@@ -61,12 +61,12 @@ JS（ES5）里面有三种函数调用形式：
 但第三种调用形式，才是正常调用形式：
     func.call(context, p1, p2)
 其他两种都是语法糖，可以等价地变为 call 形式：
-```
+```tsx
 func(p1, p2)等价于 func.call(undefined, p1, p2);
 obj.child.method(p1, p2) 等价于 obj.child.method.call(obj.child, p1, p2);
 ```
 至此我们的函数调用只有一种形式：
-```
+```tsx
 func.call(context, p1, p2)
 ```
 
@@ -77,7 +77,7 @@ this 是你 call 一个函数时传的 context，由于你从来不用 call 形�
 
 先看 func(p1, p2) 中的 this 如何确定：
 当你写下面代码时
-```
+```tsx
 function func(){
   console.log(this)
 }
@@ -105,7 +105,7 @@ bar() 的调用如下：
 - 由于没有传 context
 - 所以 this 就是 undefined
 - 最后浏览器给你一个默认的 this —— window 对象    
-```
+```tsx
 var obj = {
   foo: function(){
     console.log(this)
@@ -118,7 +118,7 @@ bar() // 内部this是window
 ```
 
 ## [ ] 语法
-```
+```tsx
 function fn (){ console.log(this) }
 var arr = [fn, fn2]
 arr[0]() // 这里面的 this 又是什么呢？ 

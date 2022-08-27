@@ -1,7 +1,7 @@
 ## Event
 
 Event() 构造函数, 创建一个新的事件对象 Event。
-```
+```tsx
 let myEvent = new Event(typeArg, eventInit);
 ```
 - typeArg  ： DOMString 类型，表示创建事件的名称；
@@ -24,7 +24,7 @@ CustomEvent 与 Event 的主要区别是可以传递detail字段的参数
 - 创建一个事件
 - 然后DOM去dispatchEvent这个事件
 - 如果DOM有对监听这个类型的监听就会触发回调
-```
+```tsx
 // 创建事件
 let myEvent = new CustomEvent("pingan", {
 	detail: { name: "wangpingan" }

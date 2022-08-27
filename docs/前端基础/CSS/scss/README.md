@@ -146,7 +146,7 @@ body.ies div a {
   }
 ```
 &.is-active 选择的是同时满足两个类名的元素类似`.suggestion-item.is-active`这样写
-```
+```tsx
 <li class="suggestion-item is-active">anydream</li>
 ```
 
@@ -363,7 +363,7 @@ $twoWidth: 40px;
 
 编译后 CSS 代码
 
-```
+```tsx
 
 .leng {
   width: 240px;
@@ -385,7 +385,7 @@ https://sass-lang.com/documentation/modules
 
 @extend 背后最基本的想法是，如果.seriousError @extend .error， 那么样式表中的任何一处.error 都用.error.seriousError 这一选择器组进行替换。这就意味着相关样式会如预期那样应用到.error 和.seriousError
 
-```
+```tsx
 //通过选择器继承继承样式
 .error {
   border: 1px solid red;
@@ -403,7 +403,7 @@ https://sass-lang.com/documentation/modules
 
 这段代码没有被 @extend 调用，他并没有产生任何代码块，只是静静的躺在你的某个 SCSS 文件中。只有通过 @extend 调用才会产生代码：
 
-```
+```tsx
 //SCSS
 %mt5 {
   margin-top: 5px;
@@ -434,7 +434,7 @@ https://sass-lang.com/documentation/modules
 
 相当动态设置选择器或者设置一些变量
 
-```
+```tsx
 #scss
 $name: foo;
 $attr: border;
@@ -451,7 +451,7 @@ p.foo {
 布尔运算 (Boolean Operations)
 SassScript 支持布尔值的 and, or, 和 not 运算。
 
-```
+```tsx
 and运算
 #scss
 $age:10;
@@ -499,7 +499,7 @@ SassScript 支持数字的加减乘除、取整等运算 (+, -, *, /, %)，如�
 - 如果值被圆括号包裹
 - 如果值是算数表达式的一部分
 
-```
+```tsx
 p {
   font: 10px/8px;             // Plain CSS, no division
   $width: 1000px;
@@ -511,7 +511,7 @@ p {
 }
 ```
 编译为
-```
+```tsx
 p {
   font: 10px/8px;
   width: 500px;

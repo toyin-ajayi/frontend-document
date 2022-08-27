@@ -15,7 +15,7 @@ parseInt('3', 2) //基数为 2（2 进制）表示的数中，最大值小于 3�
 
 #### 有了上道题的基础这个有输出什么
 
-```
+```tsx
 ['10','10','10','10','10'].map(parseInt)
 ```
 
@@ -30,7 +30,7 @@ parseInt('3', 2) //基数为 2（2 进制）表示的数中，最大值小于 3�
 
 #### 输出什么
 
-```
+```tsx
 Promise.resolve(1)
   .then(2)
   .then(Promise.resolve(3))
@@ -48,7 +48,7 @@ Promise.resolve(1)
 
 #### 输出什么
 
-```
+```tsx
 new Promise((r, e) => {
   e('123')
 })
@@ -77,7 +77,7 @@ new Promise((r, e) => {
 
 #### 1. 输出什么
 
-```
+```tsx
 async function async1() {
   console.log("async1 start");
     // 这里也是放入下一次微任务？ 因为执行async2 拿到的是一个Promise，而CO内部需要用.then来获取resolve的值
@@ -110,7 +110,7 @@ async1 end->
 
 #### 2. 代码输出什么
 
-```
+```tsx
 const myPromise = () =>
   Promise.resolve('I have resolved')
 
@@ -134,7 +134,7 @@ secondFunc();
 
 解析
 
-```
+```tsx
 await xxx
 // await 下面的代码
 doB()
@@ -164,7 +164,7 @@ secondFunc()生成自动执行器后，会往下执行，取出第一个微任�
 
 #### 3. 一道面试题
 
-```
+```tsx
 async function async1() {
  console.log('async1 start');
 
@@ -210,7 +210,7 @@ script start->async1 start->async2->promise1->script end->async1 end->promise2->
 
 #### 4. 下面代码的输出是什么?
 
-```
+```tsx
 let a = 3;
 let b = new Number(3);
 let c = 3;
@@ -318,7 +318,7 @@ getPersonInfo`${person} is ${age} years old`;
 
 ##### 输出什么
 
-```
+```tsx
 var count = 0;
 
 console.log(typeof count === "number");
@@ -342,7 +342,7 @@ console.log(!!typeof count === "number");
 
 ##### 输出什么
 
-```
+```tsx
 // 全局执行的
 if(!("a" in window)){
     var a = 10;
@@ -361,7 +361,7 @@ JavaScript 引擎首先会扫描所有的变量声明，然后将这些变量声
 
 ##### 输出什么
 
-```
+```tsx
 // 变种题
 (function(){
  var  x = c =  b = {a:1}
@@ -378,7 +378,7 @@ console.log(c,b)
 - 首先`x.a`会报错 error , x is not defined：外面拿不到函数内部的变量
 - 排除报错后 打出{a: 1} {a: 1}：c 和 b 并不是被 var 声明的函数作用域变量，而是没有声明，直接被挂载到了全局
 
-```
+```tsx
 (function()
   var x; /* 局部变量,外部没法访问*/
   b = {a:1}; /* 全局变量,window.b被赋值, 外部可以访问到*/
@@ -392,7 +392,7 @@ console.log(c,b)
 
 ##### 输出什么
 
-```
+```tsx
 function foo(something){
   this.a = something;
 }
@@ -416,7 +416,7 @@ console.log(bar.a);
 <details><summary><b>答案</b></summary>
 <p>
 
-```
+```tsx
 console.log(obj1.a) // 2 , 方法调用模式 改变this执行到调用对象
 
 var  bar = new obj1.foo(4); // 这里产生了一个实例

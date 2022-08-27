@@ -10,7 +10,7 @@
 
 ## 两个项目在一个文件夹里
 
-```
+```tsx
 $ cd /path/to/example
 npm link ../module
 ```
@@ -48,7 +48,7 @@ npm-link-module 会被链接到 npm-link-example/node_modules 下面。
 
 正在开发的项目 npm-link-module 被挂载到全局 node_modules,然后使用模块的 example 去连接全局的 npm-link-module，全局起到一个中转的作用。
 
-```
+```tsx
 moduleA -> global = global.moduleA 存在
 
 example -> moduleA(global.moduleA) = example 指向了 moduleA
@@ -59,7 +59,7 @@ example -> moduleA(global.moduleA) = example 指向了 moduleA
 ## 入口文件
 
 经过上面的链接到开发的module里时，在package里声明一下从哪里进入
-```
+```tsx
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -74,7 +74,7 @@ example -> moduleA(global.moduleA) = example 指向了 moduleA
 ## 问题
 
 可能遇到的问题
-```
+```tsx
 There are three common reasons you might be seeing it:
 
 You might have mismatching versions of React and React DOM.
@@ -85,7 +85,7 @@ You might have more than one copy of React in the same app.
 
 解决办法：在module中去link我们example里面的react就不会有两个版本了。
 
-```
+```tsx
 // module里
 npm link ../example/node_modules/react
 ```

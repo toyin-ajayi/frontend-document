@@ -80,7 +80,7 @@ git stash pop　　　 //将改动pop到自己当前的分支
 应用场景2： 有人与我改动同一分支
 我在本地修改好后，发现远程分支已经被改动了，此时我本地也被改动了就造成了冲突，无法push或者pull。
 此时可以使用git stash：
-```
+```tsx
 git stash //把本地的改动暂存起来
 git pull  //拉取远端分支（此时本地分支会回滚到上次commit的情况，新的改动都存在了stash中）
 git stash pop // 将栈顶改动重新加回本地分支，就可以继续修改了，当然，如果改好了就是add,commit,push啥的。。
@@ -149,7 +149,7 @@ origin 为git地址的标志，可以建立当前分支与远程分支的映射�
 ## 本地分支推送到远端仓库并建立连接
 本地分支推送到远程服务器时，远程分支自动创建，推送本地分支到远程：
 
-```
+```tsx
 git push --set-upstream <remote_host_name> <local_branch_name>:<remote_branch_name>
 <remote_host_name>：远程 Git 服务器名称，一般为origin
 <local_branch_name>：本地分支名称
@@ -165,7 +165,7 @@ git push --set-upstream <remote_host_name> <branch_name>
 
 ## 远程创建分支拉取到本地开发
 
-```
+```tsx
 git fetch 拉取远程分支到本地但不会合并
 git branch -a 查看本地和远程的分支
 git checkout -b local/dev  origin/dev  本地创建dev分支并切换过去 然后再与远程分支创建联系，会自动拉取远程的更新到本地的这个分支
@@ -174,7 +174,7 @@ git pull origin dev 现在是本地的dev分支 建立了联系然后远程又�
 git push origin dev 建立联系后其实dev都可以不用写
 ```
 上面的git checkout -b可能会出错，因为本地可能没有远程分支的相关信息
-```
+```tsx
 git checkout -b Q3 origin/Q3
 复制代码这个时候操作失败提示如下：
 
@@ -195,20 +195,20 @@ git pull origin Q3
 
 
 
-```
+```tsx
 // 一般master分支是不动的 dev有了一个完整功能的提升和测试完成直接合到master
     >>> git checkout develop
 ```
 
 ### step 2: 从 dev 上分出一个功能性分支 feature-discuss 
 
-```
+```tsx
     >>> git checkout -b feature-discuss
 ```
 
 ### step 3: 将本地的分支推送的远程，并创建关联，然后就可以多次推送了
 
-```
+```tsx
 // 这里只是推送本地分支到远程
 git push origin feature-discuss:feature-discuss
 
@@ -222,7 +222,7 @@ git push
 
 ### step 4: 把做好的功能合并到`develop`中
 
-```
+```tsx
     >>> git checkout develop
     # 回到develop分支
 
@@ -246,7 +246,7 @@ git push
 
 ### step5 远程的 master 有更新需要拉下了
 
-```
+```tsx
 git fetch origin master//取回origin主机的master分支。
 git branch -a//-a 查看所有 -r查看远程
 * master
@@ -257,7 +257,7 @@ git branch -a//-a 查看所有 -r查看远程
 
 使用`git merge`命令或者`git rebase`命令，在本地分支上合并远程分支。
 
-```
+```tsx
 git merge origin/master
 
 
@@ -272,7 +272,7 @@ git merge origin/master
 
 两个分支,test 和 master，提交如下：
 
-```
+```tsx
       D---E test
      /
 A---B---C---F master
@@ -280,7 +280,7 @@ A---B---C---F master
 
 在 master 执行 git merge test,然后会得到如下结果：
 
-```
+```tsx
       D--------E
      /          \
 A---B---C---F----G   test, master
@@ -288,7 +288,7 @@ A---B---C---F----G   test, master
 
 在 master 执行 git rebase test，然后得到如下结果：
 
-```
+```tsx
 A---B---D---E---C'---F'   test, master
 ```
 
@@ -314,7 +314,7 @@ git rebase -i hash值 // 把这次hash提交之后的所有提交进行整合
 git rebase -i 第一次的hash 第四次的hash // 
 
 
-```
+```tsx
 pick f9a2daa add 1.txt
 // 需要合并提交且不要commit信息就把pick改为fixup  f dd0326f add 2.txt 
 f dd0326f add 2.txt 
@@ -348,7 +348,7 @@ f 9728be5 add 3.txt
   - 然后git rebase --continue 
   
 下面是为gitignore冲突的提示，照着上面的做就能解决
-```
+```tsx
 Using index info to reconstruct a base tree...
 M       .gitignore
 Falling back to patching base and 3-way merge...
@@ -368,7 +368,7 @@ To abort and get back to the state before "git rebase", run "git rebase --abort"
 
 ### 还有pull rebase
 
-```
+```tsx
 git pull = git fetch + git merge FETCH_HEAD 
 
 git pull --rebase =  git fetch + git rebase FETCH_HEAD 
@@ -409,7 +409,7 @@ Merge branch 'feature/x' of github.com:xxx/learn-git into feature/x
            e - f - g Feature
 ```
 现在将提交f应用到master分支。
-```
+```tsx
 # 切换到 master 分支
 $ git checkout master
 
@@ -471,7 +471,7 @@ git rm -r --cached 文件夹名字
 
 - git push origin HEAD --force
 
-```
+```tsx
 --soft – 缓存区和工作目录都不会被改变 
 --mixed – 默认选项。缓存区和你指定的提交同步，但工作目录不受影响 
 --hard – 缓存区和工作目录都同步到你指定的提交
@@ -516,13 +516,13 @@ git reset 是把 HEAD 向后移动了一下，而 git revert 是 HEAD 继续前�
 
 直接修改远程仓库地址：
 
-```
+```tsx
 git remote set-url origin 你新的远程仓库地址
 ```
 
 先删除在添加你的远程仓库
 
-```
+```tsx
 git remote rm origin
 git remote add origin 你的新远程仓库地址
 ```
@@ -555,7 +555,7 @@ Git 中的 tag 指向一次 commit 的 id，通常用来给开发分支做一个
 
 ### 如何打标签
 
-```
+```tsx
 git add .
 git commit -m “fixed some bugs”
 git tag -a 0.1.3 -m “Release version 0.1.3″
@@ -565,14 +565,14 @@ git tag -a 0.1.3 -m “Release version 0.1.3″
 
 - tags参数表示提交所有tag至服务器端，普通的git push origin master操作不会推送标签到服务器端。
 - 如果指定特性的taggit push origin [tagname]
-```
+```tsx
 git push origin master
 git push origin --tags
 ```
 
 ### 删除标签的命令
 
-```
+```tsx
 git tag -d 0.1.3  本地
 git push origin :refs/tags/0.1.3  远程
 ```
@@ -592,7 +592,7 @@ git push origin :refs/tags/0.1.3  远程
 - body: commit 具体修改内容, 可以分为多行, 建议符合 50/72 formatting
 - footer: 一些备注, 通常是 BREAKING CHANGE 或修复的 bug 的链接.
 
-```
+```tsx
 <type>(<scope>): <subject> //这一行就是header
 // 空一行
 <body>
@@ -608,12 +608,12 @@ git的hook可以理解成当执行如git add、git commit等git操作时的回�
 ### 实现commitlint检测
 这里做一个代码提交规范的hook
 添加commitlint校验
-```
+```tsx
 $ npm i -D @commitlint/config-conventional @commitlint/cli
 ```
 在项目更目录下建立配置文件 commitlint.config.js 或者 .commitlintrc.js
 
-```
+```tsx
 module.exports = {
     extents:[
         "@commitlint/config-conventional"
@@ -655,7 +655,7 @@ module.exports = {
 ```
 
 结合git hook来检验commit message,这样当你的提交不符合规范时就会阻止你提交
-```
+```tsx
 $ npm i -D husky
 
 //package.json
@@ -675,10 +675,10 @@ lint-staged 就是基于此种场景开发的，其中 staged 是 Git 里面的�
 
 就是每次只对当前修改后的文件进行扫描，即进行git add加入到stage区的文件进行扫描即可
 
-```
+```tsx
 npm install -D lint-staged
 ```
-```
+```tsx
 "scripts": {
   "precommit": "lint-staged"
 },
@@ -721,7 +721,7 @@ pull request 请求对方(原项目)拉取(合并)自己的改动
 
 那如何保持 Fork 来的仓库同步，这时候需要用下面的指令来添加上游厂库，然后
 
-```
+```tsx
 将开源厂库添加进我们的 remote 仓库中，将其命名为 upstream
 $ git remote add upstream https://github.com/exercism/python.git
 

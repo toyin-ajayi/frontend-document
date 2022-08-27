@@ -10,7 +10,7 @@ Object.assign的作用：
 如果目标对象中的属性具有相同的键，则属性将被源对象中的属性覆盖。
 后来的源对象的属性将类似地覆盖早先的属性。
 
-```
+```tsx
 Object.assign({}, prevState, partialState);
 ```
 
@@ -20,7 +20,7 @@ Component组件的state不会进行对比，只要setState就一定会触发渲�
 
 所以需要pureComponent来做优化，对state和props都做浅比较
 
-```
+```tsx
  if (this._compositeType === CompositeTypes.PureClass) {
       shouldUpdate =
         !shallowEqual(prevProps, nextProps) ||

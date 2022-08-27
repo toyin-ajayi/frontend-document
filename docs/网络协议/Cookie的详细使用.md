@@ -18,11 +18,11 @@ Cookie 主要用于以下三个方面：
 ### 主域名不同
 
 比如在www.baidu.com下开启控制台，然后写入Cookie：
-```
+```tsx
 document.cookie='myname=huaminlai;path=/;domain=.google.com';// 无效
 ```
 上面这种写法是不会生效的，应为在www.baidu.com这个域下，只能设置百度网页的Cookie：
-```
+```tsx
 document.cookie='myname=laihuamin;path=/;domain=.baidu.com';// 有效
 ```
 ### 次级域名不同
@@ -71,7 +71,7 @@ version | Cookie使用的版本号。0表示遵循Netscape的Cookie规范，1表
 ### path
 
 path这个属性默认是'/'，这个值匹配的是web的路由
-```
+```tsx
 //默认路径
 www.baidu.com
 //blog路径
@@ -96,13 +96,13 @@ http不仅是无状态的，还是不安全的协议，容易被劫持，当这�
 
 ## js操作cookie
 
-```
+```tsx
 document.cookie = "userId=nick123; expires=Wed, 15 Jan 2020 12:00:00 UTC; path=/user; domain=mysite.com"
 ```
 
 ### 读取Cookie
 
-```
+```tsx
 //  有编码的话需要使用encodeURIComponent decodeURIComponent这两个API
 function getCookieValue(name) {
   const nameString = name + "="
@@ -122,7 +122,7 @@ function getCookieValue(name) {
 
 正则方式：
 
-```
+```tsx
 function getCookieValue(name) {
   let result = document.cookie.match("(^|[^;]+)\\s*" + name + "\\s*=\\s*([^;]+)")
   return result ? result.pop() : ""
@@ -133,13 +133,13 @@ function getCookieValue(name) {
 ### 修改Cookie
 
 
-```
+```tsx
 document.cookie = "userId=new_value"
 ```
 
 ### 删除Cookie
 
-```
+```tsx
 document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
 
 ```
@@ -148,7 +148,7 @@ document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC;"
 
 一个set-cookie只能设置一个cookie, 当你想设置多个, 需要添加同样多的set-cookie
 服务端可以设置cookie的所有选项: expires, domain, path, secure, HttpOnly(比刚刚多了一个HttpOnly表示不允许Js来读取)
-```
+```tsx
 设置cookie
 基础设置：
 
@@ -205,7 +205,7 @@ res.writeHead(200, {
 
 ### A网站需要做的工作
 在 http://a.com 指向的html页面中加入
-```
+```tsx
  <img src="http://laravel-site1.app/set_cookie/?uid=rovast-blog" >
 ```
 
@@ -214,7 +214,7 @@ res.writeHead(200, {
 ### B网站需要做的工作
 
 Ｂ网站的路由控制器中需要返回一个透明1px图片同时设定cookie即可
-```
+```tsx
     // laravel 示例
     Route::get('set_cookie', function (Request $request) {
         return response(base64_decode('iVBOR......vDMAAAAASUVORK5CYII='), 200)

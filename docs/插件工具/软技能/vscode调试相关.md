@@ -2,7 +2,7 @@
 
 - 下载好debugger for chrome 这个插件
 
-```
+```tsx
 {
     // 使用 IntelliSense 了解相关属性。 
     // 悬停以查看现有属性的描述。
@@ -28,7 +28,7 @@
 
 ##  Chrome 远程调试 Node
 
-```
+```tsx
 node --inspect .\dist\index.js
 Debugger listening on ws://127.0.0.1:9229/b50197d4-c86e-42c1-9770-418d54cae652
 For help, see: https://nodejs.org/en/docs/inspector
@@ -43,7 +43,7 @@ For help, see: https://nodejs.org/en/docs/inspector
 
 其中 9222 是浏览器远程调试的接口，需要在 Chrome 浏览器运行的时候加参数指定，只需可执行程序命令后面添加 –remote-debugging-port=9222 就可以了。
 
-```
+```tsx
 {
   "version": "0.2.0",
   "configurations": [
@@ -72,7 +72,7 @@ For help, see: https://nodejs.org/en/docs/inspector
 ### Vue 的 webpack 配置
 
 在config的dev里添加这两个修改
-```
+```tsx
     devtool: 'eval-source-map',
     cacheBusting : false,
 ```
@@ -80,7 +80,7 @@ For help, see: https://nodejs.org/en/docs/inspector
 ### launch
 
 重新起一个chrome来跑调试的程序
-```
+```tsx
 {
     // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.
@@ -110,7 +110,7 @@ For help, see: https://nodejs.org/en/docs/inspector
 右键点击 Chrome 的快捷方式图标，选择属性
 在目标一栏，最后加上--remote-debugging-port=9222 注意要用空格隔开
 
-```
+```tsx
 {
     // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.
@@ -135,7 +135,7 @@ For help, see: https://nodejs.org/en/docs/inspector
 ```
 ### React 简单调试
 
-```
+```tsx
 
 {
     "version": "0.2.0",
@@ -162,7 +162,7 @@ For help, see: https://nodejs.org/en/docs/inspector
 
 TS的一半是需要编译到js然后执行，那么其实很不方便调试，可以使用ts-node来直接运行
 
-```
+```tsx
 {
     // 使用 IntelliSense 了解相关属性。 
     // 悬停以查看现有属性的描述。

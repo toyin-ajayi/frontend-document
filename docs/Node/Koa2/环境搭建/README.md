@@ -2,31 +2,31 @@
 
 ## 全局安装 koa 的脚手架
 
-```
+```tsx
 cnpm install -g koa-generator
 ```
 
 ## 采用 ejs 后端渲染模板建立项目
 
-```
+```tsx
 koa2 -e koa2-project
 ```
 
 这个命令执行完后还需要安装依赖
 
-```
+```tsx
 cnpm install
 ```
 
 然后运行
 
-```
+```tsx
 cnpm run dev
 ```
 
 ## 项目的入口 app.js 分析
 
-```
+```tsx
 const Koa = require('koa')
 const app = new Koa()
 const views = require('koa-views')
@@ -86,14 +86,14 @@ module.exports = app
 
 ### 变量的使用
 
-```
+```tsx
     <h1><%= title %></h1>
     <p>EJS Welcome to <%= title %></p>
 ```
 
 为什么能导入 title 这个变量是因为在 app 注册了路径
 
-```
+```tsx
 // 注册后端编译模版渲染路径
 app.use(views(__dirname + '/views', {
   extension: 'ejs'
@@ -111,7 +111,7 @@ router.get('/', async (ctx, next) => {
 >就是用<%  %>把关键字和变量包起来
 
 条件语句
-```
+```tsx
     <% if (locals.isNarrow) { %>
     <style>
         body {
@@ -123,7 +123,7 @@ router.get('/', async (ctx, next) => {
     <% } %>
 ```
 循环语句
-```
+```tsx
 <% blogList.forEach(blog => { %>
     <div class="item-wrapper">
         <span><%= blog.createdAtFormat%></span>
@@ -133,7 +133,7 @@ router.get('/', async (ctx, next) => {
 
 ### 组件的使用
 
-```
+```tsx
             <li class="nav-item">
                 <a class="nav-link" href="/">
                     <i class="fa fa-home"></i>
@@ -142,17 +142,17 @@ router.get('/', async (ctx, next) => {
             </li>
 ```
 在另一个页面就可以用include来导入上面的组件
-```
+```tsx
 <%- include('component/header', { title: '主页'})%>
 ```
 
 ## MySQL 安装与连接
 
-```
+```tsx
 npm install --save mysql2
 ```
 以下可以看到直接使用mysql来连接和查询还是比较麻烦的，有封装好的工具sequelize
-```
+```tsx
 // get the client
 const mysql = require('mysql2');
  
@@ -177,14 +177,14 @@ connection.query(
 ## Sequelize 安装使用
 
 sequelize是对mysql操作的一个封装简化，所以安装好了mysql后就可以安装使用工具
-```
+```tsx
 cnpm i --save sequelize 
 ```
 sequelize的使用可以参照这个中文的文档[https://demopark.github.io/sequelize-docs-Zh-CN/](https://demopark.github.io/sequelize-docs-Zh-CN/)
 这里也有一份增删改查，外键，分页，多表联查的例子`[Sequelize](../../Sequelize/src)`
 
 Sequelize有一个缺点就是需要你自己去使用seq.define去与表创建模型关联
-```
+```tsx
 const User = seq.define("user", {
   //id会自动创建，并设为主键、自增
   userName: {
@@ -207,18 +207,18 @@ const User = seq.define("user", {
 
 ## sequelize-automate 自动生成models
 
-```
+```tsx
  cnpm install --save sequelize-automate
 ```
 
-```
+```tsx
   // 配置一条命令
   "scripts": {
     "models":"sequelize-automate -c \"./sequelize-automate.config.json\""
   },  
 ```
 用sequelize-automate.config.json配置一些数据库的相关信息
-```
+```tsx
 {
     "dbOptions": {
       "database": "sequelize_test",
@@ -236,13 +236,13 @@ const User = seq.define("user", {
   }
 ```
 
-```
+```tsx
 cnpm run models 就直接生成好了
 ```
 
 ## 安装eslint
 
-```
+```tsx
 // 安装eslint-loader 在webpack中解析
 // 安装babel-eslint  对Babel解析器的包装与ESLint兼容
 // -D 安装在开发依赖环境 devDependencies 原--save-dev的简写
@@ -250,7 +250,7 @@ npm i eslint eslint-loader babel-eslint -D
 
 ```
 然后配置一个.eslintignore和.eslintrc.js文件即可
-```
+```tsx
 //.eslintrc.js
 module.exports = {
     "parser": "babel-eslint",
@@ -277,12 +277,12 @@ module.exports = {
 
 cross-env 主要是让你的设置的环境变量能在每一个系统上跑，windows mac linux都适用
 
-```
+```tsx
 cnpm i cross-env -S
 ```
 
 封装环境变量然后倒入到需要的文件，这样可以做到统一处理，以后需要添加修改只需修改一处代码
-```
+```tsx
 const ENV = process.env.NODE_ENV
 
 module.exports = {
@@ -295,23 +295,23 @@ module.exports = {
 }
 ```
 现在我们运行一条指令就可以带上环境变量
-```
+```tsx
 cross-env NODE_ENV=production pm2 start pm2.conf.json
 ```
 
 ## redis安装与使用
 
-```
+```tsx
 PS D:\redis> D:\redis\redis-server.exe redis.windows.conf
 [20572] 15 Apr 14:16:18.502 # Creating Server TCP listening socket *:6379: bind: No error
 ```
 
-```
+```tsx
 PS D:\redis> D:\redis\redis-cli
 127.0.0.1:6379> 
 ```
 然后可以通过 
-```
+```tsx
 set key value//设置
 get key// 获取
 ```
@@ -319,12 +319,12 @@ get key// 获取
 ## node 操作 redis
 
 安装redis插件用来连接redis
-```
+```tsx
 cnpm i redis -S
 ```
 
 node连接已经启动好的redis服务
-```
+```tsx
 const redis = require('redis')
 
 let REDIS_CONF = {
@@ -346,7 +346,7 @@ redisClient.on('ready', res => {
 ```
 
 set和get方法需要封装一下，就是把JS对象转化成JSON字符串即可
-```
+```tsx
 function set(key, val, timeout = 60 * 60) {
     if (typeof val === 'object') {
         val = JSON.stringify(val)
@@ -379,7 +379,7 @@ function get(key) {
 
 之前安装的插件是node原生连接redis，这里使用Koa中间件来连接
 koa-redis
-```
+```tsx
 cnpm i koa-redis koa-generic-session -S
 ```
 首先我们知道ctx.cookie是可以直接操作cookie的，但是session是一种会话机制，一般我们采用cookie来存储生成的sessionID，但没有现成的办法来操作sessionID的生成与存储模式
@@ -390,7 +390,7 @@ cnpm i koa-redis koa-generic-session -S
 - 往cookie写入sessionID，并加密
 - 将sessionID对应的数据储存到redis缓存中
 
-```
+```tsx
 const session = require('koa-generic-session')
 const redisStore = require('koa-redis')
 // session 配置
@@ -410,7 +410,7 @@ app.use(session({
 ```
 
 现在注册完这个中间件后你可以直接使用ctx.session来操作你的session数据，然后由中间件来帮助你生成sessionID,写入cookie，真实数据存入redis
-```
+```tsx
 const router = require('koa-router')()
 
 router.get('/login', async (ctx, next) => {
@@ -437,11 +437,11 @@ router.get('/login', async (ctx, next) => {
 
 ## 测试环境 Jest
 
-```
+```tsx
 cnpm i jest -D
 ```
 配置下script命令
-```
+```tsx
   "scripts": {
     "test": "cross-env NODE_ENV=test jest ./src --runInBand --forceExit --colors"
   },
@@ -455,11 +455,11 @@ cnpm i jest -D
 ## API 接口测试
 
 如果需要测试接口我们还需要一个测试接口的插件
-```
+```tsx
 cnpm i supertest -D
 ```
 导入之前app.js里的实例化的app对象，调用它原型链是的一个callback方法生成server对象用于请求
-```
+```tsx
 const request = require('supertest')
 // 执行app里面的callback函数 返回一个(res,req)=>{}的函数 相当于是请求的一个回调函数
 const callback = require('../../app').callback()

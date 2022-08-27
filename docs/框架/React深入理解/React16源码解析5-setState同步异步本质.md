@@ -12,7 +12,7 @@
 ## setState
 
 我们调用this.setState方法的时候，调用了this.updater.enqueueSetState
-```
+```tsx
 Component.prototype.setState = function(partialState, callback) {
   this.updater.enqueueSetState(this, partialState, callback, 'setState');
 };
@@ -23,7 +23,7 @@ Component.prototype.setState = function(partialState, callback) {
 this.updater 是在哪个地方进行赋值的我们暂时不用关心，只需要知道他被赋值为classComponentUpdater
 
 classComponentUpdater和之前render流程里面的ReactDOM.render中scheduleRootUpdate非常的相似。其实他们就是同一个更新原理
-```
+```tsx
 const classComponentUpdater = {
   // ......
   enqueueSetState(inst, payload, callback) {
@@ -66,7 +66,7 @@ scheduleWork里会执行requestWork方法，这和之前讲过的render流程一
 
 requestWork中可以看到有多个if判断，这里就是setState在不同的场景使用会出现同步和异步的根本原因
 
-```
+```tsx
 function requestWork(root, expirationTime) {
   // 将根节点添加到调度任务中
   addRootToSchedule(root, expirationTime)
@@ -104,7 +104,7 @@ function requestWork(root, expirationTime) {
 
 React有着一套自己的合成事件机制，在一个事件调用的时候会经过一些处理，这里不详细描述，最重要的一个函数就是interactiveUpdates$1，在执行一个事件的时候会先调用这个函数
 
-```
+```tsx
 handleClick(){
     this.setState({
         name: '吴彦祖'
@@ -126,7 +126,7 @@ handleClick(){
 - try finally 语句;先执行一个事件里的代码最后才更新
 - isBatchingUpdates = previousIsBatchingUpdates;合成事件里setTimeout能马上更新的原因
 
-```
+```tsx
 function interactiveUpdates$1(fn, a, b) {
   if (isBatchingInteractiveUpdates) {
     return fn(a, b);
@@ -157,7 +157,7 @@ function interactiveUpdates$1(fn, a, b) {
 
 interactiveUpdates$1这个方法中把 isBatchingUpdates 设为了 true ,导致在 requestWork 方法中， isBatchingUpdates 为 true ，但是 isUnbatchingUpdates 是 false ，而被直接return了。
 
-```
+```tsx
 //requestWork
   if (isBatchingUpdates) {
     if (isUnbatchingUpdates) {
@@ -176,7 +176,7 @@ interactiveUpdates$1这个方法中把 isBatchingUpdates 设为了 true ,导致�
 
 interactiveUpdates$1最后执行了一个try finally语法，会先执行 try 代码块中的语句，然后再执行 finally 中的代码，而 fn(a, b) 是在try代码块中执行相关的事件回调，而在finally里才有 performSyncWork(); 也就是说我们写的事件监听函数在try中执行，但更新在finally里，这就导致了所谓的"异步"，state并没有马上更新并渲染到UI上，而是等到事件执行完之后才更新的
 
-```
+```tsx
   try {
     return fn(a, b);
   } finally {
@@ -196,7 +196,7 @@ interactiveUpdates$1最后执行了一个try finally语法，会先执行 try �
 
 导致最后下次事件循环的时候去执行队列里的 setState 时候， requestWork 走的是和原生事件一样的 expirationTime === Sync if分支， 可以同步拿到最新的state值。
 
-```
+```tsx
 class App extends Component {
 
   state = { val: 0 }
@@ -238,7 +238,7 @@ Fiber Reconciler 的执行阶段：
 
 
 现在回过头来看requestWork里的第一个if判断
-```
+```tsx
 function requestWork(){
     ...
     if (isRendering) {
@@ -250,7 +250,7 @@ function requestWork(){
 
 和合成事件一样，当 componentDidmount 执行的时候，isRendering为true，react内部并没有更新就先return了，执行完componentDidmount  后才去 commitUpdateQueue 更新。这就导致你在 componentDidmount 中 setState 完去console.log拿的结果还是更新前的值。
 
-```
+```tsx
 class App extends Component {
 
   state = { val: 0 }
@@ -287,7 +287,7 @@ componentDidUpdate的参数prevProps或prevState比较上一次更新的值和�
 
 原生事件的调用栈就比较简单了，因为没有走合成事件的那一大堆，直接触发click事件，到 requestWork ,在requestWork里由于 expirationTime === Sync 的原因，直接走了 performSyncWork 去更新，并不像合成事件或钩子函数中被return，所以当你在原生事件中setState后，能同步拿到更新后的state值。
 
-```
+```tsx
 class App extends Component {
 
   state = { val: 0 }
@@ -320,7 +320,7 @@ class App extends Component {
 #### setState传入对象会合并对象
 
 点击一次就调用两次 setState()，但是，count 每一次却还是只增加了 1
-```
+```tsx
 class IncrementByObject extends React.Component {
     constructor(props) {
         super(props);
@@ -361,7 +361,7 @@ class IncrementByObject extends React.Component {
 #### setState传入函数
 
 这样点一次就可以增加3
-```
+```tsx
  // 此处设置调用两次 setState()
     increment() {
         // 采用传入函数的方式来更新 state
@@ -386,7 +386,7 @@ React加入fiber架构后，最选调度之前通过enqueueUpdate函数维护的
 
 getStateFromUpdate函数外面是对UpdateQueue队列的一个while循环，比如我们连续setState三次，那每次都会创建一个update实例通过enqueueUpdate放入fiber的UpdateQueue中，这里就是把这三次的state合并计算出一个最终的值以提高性能
 
-```
+```tsx
  while (update !== null) {
     // ...省略...
 
@@ -410,7 +410,7 @@ getStateFromUpdate函数外面是对UpdateQueue队列的一个while循环，比�
 ```
 
 getStateFromUpdate 函数主要功能是将存储在更新对象update上的partialState与上一次的prevState进行对象合并，生成一个全新的状态 state。
-```
+```tsx
 function getStateFromUpdate<State>(
   workInProgress: Fiber,
   queue: UpdateQueue<State>,
@@ -462,7 +462,7 @@ Object.assign的作用：
 
 之前提过在合成事件中或者在生命周期了state是不会马上刷新的，是在事件执行完后也就是try finally的finally里才真正刷新，这就导致了每次Object.assign的partialState都是this.state.count + 1，而state的count在三次setState的时候都不会改变都是0，所以计算过程可以简化如下：
 
-```
+```tsx
 Object.assign({}, {count:0}, {count:1});
 Object.assign({}, {count:0}, {count:1});
 Object.assign({}, {count:0}, {count:1});
@@ -476,7 +476,7 @@ Object.assign({}, {count:0}, {count:1});
 如果是一个回调函数function
 可以发现`if (typeof payload === 'function')`这里对传入的是否是方法做了判断，如果是方法，就执行
 
-```
+```tsx
 partialState = payload.call(instance, prevState, nextProps);
 ```
   
@@ -484,7 +484,7 @@ instance对于类组件来说，这里保存类组件的实例在外层的 updat
 
 这里其实只看payload和prevState就行了，payload是我们通过setState传入的回调函数，返回最新的state，while循环调用getStateFromUpdate每次传入的是resultState，也就是说接受的state都是上一轮计算之后的新值，因此循环计算的过程可以简化如下：
 
-```
+```tsx
 Object.assign({}, {count:0}, {count:1});
 Object.assign({}, {count:0}, {count:2});
 Object.assign({}, {count:0}, {count:3});
@@ -499,7 +499,7 @@ Object.assign({}, {count:0}, {count:3});
 
 ## 总结流程
 
-```
+```tsx
 触发状态更新（根据场景调用不同方法）
 
     |

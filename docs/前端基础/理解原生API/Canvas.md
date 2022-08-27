@@ -18,7 +18,7 @@ ctx = canvas.getContext("2d")：
 - ctx.fillStyle：指定路径填充的颜色和样式（默认为黑色）。
 - ctx.strokeStyle：指定路径线条的颜色和样式（默认为黑色）。
 
-```
+```tsx
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
@@ -36,7 +36,7 @@ ctx.lineTo(100, 200);
 - ctx.miterLimit：指定交点菱形的长度，默认为 10。该属性只在lineJoin属性的值等于miter时有效。
 - ctx.getLineDash()：返回一个数组，表示虚线里面线段和间距的长度。
 - ctx.setLineDash()：数组，用于指定虚线里面线段和间距的长度。
-```
+```tsx
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
@@ -63,7 +63,7 @@ ctx.stroke();
 - ctx.getLineDash()：返回一个数组，表示虚线里面线段和间距的长度。
 - ctx.setLineDash()：数组，用于指定虚线里面线段和间距的长度。
 
-```
+```tsx
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
@@ -86,7 +86,7 @@ ctx.stroke();
 - ctx.strokeRect()：绘制矩形边框。
 - ctx.clearRect()：指定矩形区域的像素都变成透明。
 
-```
+```tsx
 // 绘制一个正方形，左上角坐标为(10, 10)，宽和高都为 100。
 ctx.rect(10, 10, 100, 100);
 ctx.fill();
@@ -99,7 +99,7 @@ ctx.fill();
 
 arc()方法的x和y参数是圆心坐标，radius是半径，startAngle和endAngle则是扇形的起始角度和终止角度（以弧度表示），anticlockwise表示做图时应该逆时针画（true）还是顺时针画（false），这个参数用来控制扇形的方向（比如上半圆还是下半圆）。
 
-```
+```tsx
 // 格式
 ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise);
 
@@ -109,7 +109,7 @@ ctx.arc(5, 5, 5, 0, 2 * Math.PI, true);
 
 ## 图像处理方法
 
-```
+```tsx
 var image = new Image();
 
 image.onload = function() {
@@ -127,7 +127,7 @@ image.src = 'image.png';
 ```
 ## toDataURL 导出 Base64
 
-```
+```tsx
 function convertCanvasToImage(canvas) {
   var image = new Image();
   image.src = canvas.toDataURL('image/png');
@@ -138,7 +138,7 @@ function convertCanvasToImage(canvas) {
 ## 转Blob+压缩
 
 压缩质量quality 0~1
-```
+```tsx
 canvas.toBlob(function (blobObj) {
     let imgSrc = window.URL.createObjectURL(blobObj)
 	document.getElementById('img').src = imgSrc

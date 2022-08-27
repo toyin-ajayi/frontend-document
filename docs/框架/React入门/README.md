@@ -78,7 +78,7 @@ React 只关注解决纯粹的问题： View 层。设计思想是单向数据�
 
 ## 递归组件
 
-```
+```tsx
 class Item extends React.Component {
   render() {
     const list = this.props.children || [];
@@ -106,7 +106,7 @@ class Item extends React.Component {
 
 高阶组件（HOC，Higher-Order Components）不是组件，而是一个函数，它会接收一个组件作为参数并返回一个经过改造的新组件：
 
-```
+```tsx
 const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
 ```
@@ -117,7 +117,7 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 - 条件渲染，控制组件的渲染逻辑（渲染劫持），常见场景,权限控制;
 - 捕获/劫持被处理组件的生命周期，常见场景,组件渲染性能追踪、日志打点
 
-```
+```tsx
 import React,{Component} from 'react';
 
 const Seventeen = WrappedComponent =>
@@ -157,7 +157,7 @@ export default Seventeen(WrappedComponent)
 
 当你从组件的 render 方法返回一个元素时，该元素将被挂载到 DOM 节点中离其最近的父节点：
 
-```
+```tsx
 render() {
   // React 挂载了一个新的 div，并且把子元素渲染其中
   return (
@@ -170,7 +170,7 @@ render() {
 
 Portal 提供了一种将子节点渲染到存在于父组件以外的 DOM 节点的优秀的方案。domNode 是真实的节点
 
-```
+```tsx
 render() {
   // React 并*没有*创建一个新的 div。它只是把子元素渲染到 `domNode` 中。
   // `domNode` 是一个可以在任何位置的有效 DOM 节点。
@@ -185,7 +185,7 @@ render() {
 
 有些后台返回是 html 格式字段,就需要用到 innerHTML 属性
 
-```
+```tsx
 export default class TwentyFive extends React.Component {
   render() {
     return (
@@ -197,7 +197,7 @@ export default class TwentyFive extends React.Component {
 
 ## 动态绑定 className
 
-```
+```tsx
 render(){
   const flag=true
   return (
@@ -224,7 +224,7 @@ render(){
 
 ## JSX 做表达式判断时候，需要强转为 boolean 类型，如：
 
-```
+```tsx
 render() {
   const b = 0;
   return <div>
@@ -242,12 +242,12 @@ render() {
 ## 为什么每次都需要引入React
 
 不写一般JSX都会直接报错
-```
+```tsx
 import React from 'react'
 ```
 原因：因为JSX语法会被编译：
 
-```
+```tsx
 import React, { Component } from 'react';
 
 class Process extends Component {
@@ -261,7 +261,7 @@ class Process extends Component {
 ```
 
 转义为React.createElement 来创建DOM书，所以需要
-```
+```tsx
 import React, { Component } from 'react';
 
 class Process extends Component {
@@ -296,7 +296,7 @@ React 在 Dev mode（strictMode） 下会刻意执行两次渲染，以防止组
 如果组件每次的state和props是一样的，就应该返回一样的结果，若返回结果不一样，说明代码中可能存在副作用。
 
 如示例中的count。这样写是不推崇的。
-```
+```tsx
 import React from 'react'
 
 let count = 0;

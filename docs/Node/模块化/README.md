@@ -2,7 +2,7 @@
 
 如果想查看当前模块，可以直接使用console直接打印一下module对象。
 
-```
+```tsx
 console.dir(module);
 // 打印结果：
 Module {
@@ -28,7 +28,7 @@ Module {
 module.exports === exports
 
 好比在每一个模块定义最开始的地方写了这么一句代码：var exports = module.exports
-```
+```tsx
 // 模块的构造函数
 function Module(id, parent) {
   this.id = id;
@@ -62,7 +62,7 @@ node中引入模块的机制
 
 3、优先从缓存中加载
 浏览器会缓存静态脚本文件以提高页面性能一样，Node对引入过的模块也会进行缓存。与浏览器不同的是：Node缓存的是编译执行之后的对象而不是静态文件。
-```
+```tsx
 console.log('模块requireA开始加载...')
 exports = function() {
     console.log('Hi')
@@ -78,7 +78,7 @@ console.log(mod1 === mod2) // true
 ## require.context
 
 如页面需要导入多个组件,可以用正则去匹配所有适合的文件，批量操作
-```
+```tsx
 const path = require('path')
 const files = require.context('@/components/home', false, /\.vue$/)
 const modules = {}

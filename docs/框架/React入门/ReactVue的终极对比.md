@@ -20,7 +20,7 @@ React：通过bable为内部的JSX语法包含一层React.createElement,直接�
 React： HOC=》render prop=》hooks
 
 render prop 是一个用于告知组件需要渲染什么内容的函数 prop,Mouse是复用的逻辑，render的参数能拿到这个组件内部状态，然后传入Cat，然后让UI去渲染Cat。
-```
+```tsx
 class MouseTracker extends React.Component {
   render() {
     return (
@@ -46,7 +46,7 @@ Vue：指令Vue.directive('mouse',。。。），或者是mixin。mixin的组件
 
 
 组件间vue与react的数据流向都是单向的由父向子，并且子组件不允许改变props，两者并没有什么区别，而类似input中的v-model不过是逻辑复用的一种方式或者说是一种声明式的语法糖，同样的为组件使用v-model依然是一种语法糖，但是数据的流向仍然是清晰的单向流动。
-```
+```tsx
   <input type="text" v-model="mes">  此时mes值就与input的值进行双向绑定
 
     实际上上面的代码是下面代码的语法糖。

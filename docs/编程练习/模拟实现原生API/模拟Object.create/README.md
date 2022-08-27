@@ -1,6 +1,6 @@
 ## 先看一个例子————优化后的组合继承
 
-```
+```tsx
 function Super(name){
     this.name = name;
     this.colors = ["red", "blue", "green"];
@@ -43,7 +43,7 @@ instance2.sayAge()    //20
 
 ### 疑问
 为什么要这么写？
-```
+```tsx
 function F(){
 }
 F.prototype = Super.prototype; 
@@ -51,7 +51,7 @@ Sub.prototype = new F();    // 继承了Super 原型链上的方法
 ```
 而不是
 
-```
+```tsx
 Sub.prototype = Super.prototype; 
 ```
 
@@ -61,7 +61,7 @@ Sub.prototype = Super.prototype;
 
 下面的方法没有办法区分一个对象是直接由它的子类实例化还是父类
 下面这是第一个方法无法判断
-```
+```tsx
 instance1 instanceof Sub//true
 instance1 instanceof Super//true
 
@@ -72,14 +72,14 @@ instance1 instanceof Super//true
 ## 最后有了Object.create来规范原型的继承
 
 上面的封装一下
-```
+```tsx
 function F(){
 }
 F.prototype = Super.prototype; 
 Sub.prototype = new F();    // 继承了Super 原型链上的方法
 ```
 改为
-```
+```tsx
 function myCreateObject(obj){
 	function F(){}
 	F.prototype = obj;//重写F的原型，将他指向传入的obj，这就相当于继承自obj

@@ -23,7 +23,7 @@ DNS，就是 Domain Name System 的缩写，翻译过来就是域名系统，是
 > 真实名称记录（英语：Canonical Name Record），即CNAME记录，是域名系统（DNS）的一种记录。CNAME记录用于将一个域名（同名）映射到另一个域名（真实名称），域名解析服务器遇到CNAME记录会以映射到的目标重新开始查询
 
 假设有下述DNS zone：
-```
+```tsx
 NAME                    TYPE   VALUE
 --------------------------------------------------
 bar.example.com.        CNAME  foo.example.com.
@@ -35,13 +35,13 @@ foo.example.com.        A      192.0.2.23
 可以使用CNAME记录将“bar.example.com”指向“foo.example.com”。因此，可能会有人随意的将bar.example.com称作是foo.example.com的“CNAME”。然而事实并非如此，bar.example.com的“CNAME”是foo.example.com，因为CNAME的意思是真实名称，而右侧才是真实名称，才是CNAME。
 
 这则误会在《RFC 2181》“DNS规范的解释”一章中有提到。应当说左侧标签是右侧真实名称的一个同名。即下述CNAME记录：
-```
+```tsx
 bar.example.com.        CNAME  foo.example.com.
 ```
 应当读作：bar.example.com的真实名称是foo.example.com。请求访问bar.example.com的客户端会得到foo.example.com返回的结果。
 
 CNAME可以避免全量修改指向，也常用于CDN
-```
+```tsx
 假如这个时候我又想给原域名取几个小名儿，分别叫www.cc.com和www.kk.com那么存在下列指向关系：
 
 www.yy.com → www.xx.com → 1.1.1.1

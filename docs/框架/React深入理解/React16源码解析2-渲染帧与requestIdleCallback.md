@@ -23,13 +23,13 @@
 
 在事件循环的一次 Tick 中， 如果要执行的逻辑太多会一直阻塞下一个 Tick，所有异步过程都会被阻塞。 一个流畅的页面中，JavaScript 引擎中的执行队列可能是这样的：
 
-```
+```tsx
 执行 JS -> 空闲 -> 绘制（16ms）-> 执行 JS -> 空闲 -> 绘制（32ms）-> ...
 ```
 
 如果在某个时刻有太多 JavaScript 要执行，就会丢掉一次帧的绘制：
 
-```
+```tsx
 执行很多 JS...（20ms）-> 空闲 -> 绘制（32ms）-> ...
 
 ```
@@ -37,7 +37,7 @@
 
 ### 避免交错读写样式
 
-```
+```tsx
 // 触发一次 Layout
 var h = div.clientHeight
 div.style.height = h + 20
@@ -46,7 +46,7 @@ var w = div.clientWidth
 div.style.width = w + 20
 ```
 每次 Layout 触发都会阻塞当前脚本。 如果把交错的读写分隔开，就可以减少触发 Layout 的次数：
-```
+```tsx
 // 触发一次 Layout
 var h = div.clientHeight
 var w = div.clientWidth
@@ -84,7 +84,7 @@ window.requestAnimationFrame() 告诉浏览器——你希望执行一个函数�
 使用requestAnimationFrame，当页面处于未激活的状态下，该页面的屏幕刷新任务会被系统暂停，由于requestAnimationFrame保持和屏幕刷新同步执行，所以也会被暂停。当页面被激活时，动画从上次停留的地方继续执行，节约 CPU 开销。
 
 
-```
+```tsx
 let count = 0;
 let rafId = null;
 /**
@@ -105,7 +105,7 @@ requestAnimationFrame(requestAnimation);
 
 ```
 取消操作
-```
+```tsx
 cancelAnimationFrame(handle);
 ```
 
@@ -131,7 +131,7 @@ options 可选
 
 但是在浏览器繁忙的时候，可能不会有盈余时间，这时候requestIdleCallback回调可能就不会被执行。 为了避免饿死，可以通过requestIdleCallback的第二个参数指定一个超时时间。
 
-```
+```tsx
 window.requestIdleCallback(callback[, options])
 // 示例
 let handle = window.requestIdleCallback((idleDeadline) => {
@@ -171,7 +171,7 @@ let handle = window.requestIdleCallback((idleDeadline) => {
 expriationTime = 当前时间+任务优先级的常量
 
 任务级各自的对应的常量数值都是不同的，具体的内容如下:
-```
+```tsx
 var maxSigned31BitInt = 1073741823;
 
 // Times out immediately
@@ -212,7 +212,7 @@ requestIdleCallback这个函数的兼容性并不是很好，并且它还有一�
 
 多种定时器中，唯有 requestAnimationFrame 具备一定的精确度，因此 requestAnimationFrame 就是当下实现 requestIdleCallback 的一个步骤
 
-```
+```tsx
     var requestAnimationFrameWithTimeout = function(callback) {
       rAFID = requestAnimationFrame(function(timestamp) {
         clearTimeout(rAFTimeoutID);

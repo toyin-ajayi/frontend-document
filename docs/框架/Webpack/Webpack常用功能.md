@@ -24,7 +24,7 @@ output.publicPath，不仅可以影响虚拟目录的取值，也影响利用htm
 umd是一种思想，就是一种兼容 commonjs,AMD,CMD 的兼容写法，define.amd / define.cmd / module 等判断当前支持什么方式，
 UMD先判断支持Node.js的模块（exports）是否存在，存在则使用Node.js模块模式。再判断是否支持AMD（define是否存在），存在则使用AMD方式加载模块。都不行就挂载到 window 全局对象上面去
 
-```
+```tsx
 (function (root, factory) {
 if (typeof define === 'function' && (define.amd || define.cmd)) {
 //AMD,CMD
@@ -50,7 +50,7 @@ return {};
 有些时候我们想要开发一个库，如lodash、underscore这些，这些库既可以用commonjs和amd的方式使用，也可以通过script标签的方式引入使用，目前很多库都是支持这几种使用方式的。
 
 这时候我们就可以使用library和libraryTarget了，我们只需要用用es6的方式写代码，如何编译成umd就交给webpack了。
-```
+```tsx
 libraryTarget: “var”（default）
 output.library 会将值作为变量声明导出（当使用 script 标签时，其执行后在全局作用域可用）。
 libraryTarget: “window”
@@ -75,7 +75,7 @@ libraryTarget: “umd”
 
 ### webpack.DefinePlugin
 > Webpack 4.3 后的mode参数配置后可以自动添加环境变量
-```
+```tsx
 new webpack.DefinePlugin({
   // Definitions...
 });
@@ -111,6 +111,6 @@ console.log(NUMBER,BOOL);// 12 true
 
 一般用来定义环境变量
 
-```
+```tsx
   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
 ```

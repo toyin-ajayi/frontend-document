@@ -8,7 +8,7 @@ Vue 会对 options 中的每个 computed 属性也用 watcher 去包装起来，
 
 首先在组件初始化的时候，会进入到初始化 computed 的函数
 源码目录/src/core/instance/state.js
-```
+```tsx
 // initState会在new Vue()时执行
 export function initState (vm: Component) {
   /*
@@ -25,7 +25,7 @@ export function initState (vm: Component) {
 
 可以看到Watcher的getter就是我们computed上的方法
 
-```
+```tsx
 function initComputed (vm, computed) {
   // 往组件实例上添加一个_computedWatchers属性，保存所有的computed watcher
   const watchers = vm._computedWatchers = Object.create(null)
@@ -53,7 +53,7 @@ function initComputed (vm, computed) {
 - watcher.evaluate()会将this.dirty = false
 - 接着会执行Watcher的this.get()
 - 最终其实就是执行知识点getter：this.getter() 也就是expOrFn 这个就是computed上的方法
-```
+```tsx
 constructor (vm, expOrFn, cb, options, isRenderWatcher) {
     this.vm = vm
     if (isRenderWatcher) {
@@ -75,7 +75,7 @@ constructor (vm, expOrFn, cb, options, isRenderWatcher) {
 
 接下来我们还是在这个文件中找到defineComputed的实现
 
-```
+```tsx
 export function defineComputed (target, key, userDef) {
   /* other */
 
@@ -91,7 +91,7 @@ export function defineComputed (target, key, userDef) {
 }
 ```
 createComputedGetter在defineProperty的sharedPropertyDefinition里的get属性上。 也就是说t劫持了target（VM）的key （sum）属性的，取sum的时候返回的是computed里sum函数返回的结果
-```
+```tsx
 function createComputedGetter (key) {
 
   // 返回一个函数，也就是我们在上一个函数中那个get函数
@@ -121,7 +121,7 @@ function createComputedGetter (key) {
 ## 现在开始调用
 
 第一次页面渲染时模板中的{{computedA}}通过上面的调用栈分析
-```
+```tsx
   // 拿到一个get函数
   sharedPropertyDefinition.get = createComputedGetter(key)
   // 这个函数的主要功能是computed属性的get进行了重写
@@ -129,7 +129,7 @@ function createComputedGetter (key) {
 ```
 computed的get劫持被触发，执行computedA.get() 转到函数createComputedGetter中。然后首次的话会执行evaluate
 这个函数其实很清晰，它先求值，然后把 dirty 置为 false。
-```
+```tsx
 evaluate () {
   // 调用 get 函数求值
   this.value = this.get()
@@ -147,7 +147,7 @@ evaluate () {
 
 this.getter.call(vm, vm)就是computed的某个计算方法。
 
-```
+```tsx
 get () {
   pushTarget(this)
   let value
@@ -176,7 +176,7 @@ get () {
 调用 渲染watcher 的 update
 
 计算watcher 的 update
-```
+```tsx
 update () {
   if (this.lazy) {
     this.dirty = true
@@ -190,7 +190,7 @@ update () {
 ## 为什么在computed里可以收集到内部访问响应式数据的依赖
 
 name 变了会什么会触发sum自动执行
-```
+```tsx
 computed:{
     sum(){
         return this.name
@@ -212,7 +212,7 @@ computed:{
 - 计算方法执行时内部如果用到了响应式数据，则再次触发响应式的get
 - 响应式get会调用Dep.denpend收集依赖，而此时收集的正是computed-Watcher
 - 计算方法执行完又把Dep.target指向render-Watcher，那这个watcher又是在哪里被收集的呢？好问题我想了一个晚上都没弄亲，直到回过头去看createComputedGetter返回的computedGetter回调，里面在执行完evaluate后执行强行执行了一个这个 懂了吧
-```
+```tsx
       if (Dep.target) { // Dep.target不可能为假 除非代码出错
         watcher.depend() // 收集依赖，这里收集的是render-watcher
       }
@@ -264,7 +264,7 @@ other 改变，直接通知 渲染watcher 更新。
 
 ## 整体流程分析
 
-```
+```tsx
 new Vue({
   template: '<div>wellcome {{fullName}}</div>',
   el: '#app',
@@ -284,7 +284,7 @@ new Vue({
 
 ## 
 
-```
+```tsx
 new Vue({
   data(){
     return {

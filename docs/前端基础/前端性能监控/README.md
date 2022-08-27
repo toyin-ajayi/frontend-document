@@ -60,7 +60,7 @@ Performance.timing 是一个只读属性，返回 PerformanceTiming 对象，该
 
 性能监控只是辅助功能，不应阻塞页面加载，因此只有当页面完成加载后，我们才进行数据获取和上报（实际上，页面加载完成前也获取不到必要信息）：
 
-```
+```tsx
  window.onload = e => {
     if (oldOnload && typeof oldOnload === 'function') {
       oldOnload(e)
@@ -102,11 +102,11 @@ Performance.timing 是一个只读属性，返回 PerformanceTiming 对象，该
 
 - 动态创建 img 标签的形式
   
-```
+```tsx
 new Image().src = reportUrl + '?msg=' + msg;
 ```
 或者
-```
+```tsx
 var i = new Image();
 i.onload = i.onerror = i.onabort = function () {
   i = i.onload = i.onerror = i.onabort = null;

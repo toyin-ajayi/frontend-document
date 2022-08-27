@@ -35,7 +35,7 @@ UI来说还需要考虑以下问题：
 expriationTime = 当前时间+任务优先级过期时间的常量 = performance.now() + timeout
 
 任务级各自的对应的常量数值都是不同的，具体的内容如下:
-```
+```tsx
    // 32位系统V8引擎里最大的整数。react用它来做IdlePriority的过期时间
    // Math.pow(2, 30) - 1
    var maxSigned31BitInt = 1073741823;
@@ -68,7 +68,7 @@ scheduleCallback两个参数：
 - 如果不传的话就会根据上述的任务优先级确定过期时间。
 
 **一：首先我们需要根据入参或者当前的优先级来确定当前callback的过期时间并生成一个真正的任务节点**
-```
+```tsx
   // schedule模块的全局变量
   var currentPriorityLevel = NormalPriority //这是一个全局变量，代表当前任务的优先级,默认为普通
   var scheduledHostCallback = null; //代表任务链表的执行器
@@ -126,7 +126,7 @@ scheduleCallback两个参数：
 - expirationTime小的节点在最前面
 - 是一条按照优先级高低降序排列的有序列表（表头优先级最大）
 
-```
+```tsx
    // 代表任务链表的第一个节点
    var firstCallbackNode = null;
    
@@ -191,7 +191,7 @@ scheduleCallback两个参数：
 
 可以这么描述，在每一帧绘制完成之后的空闲时间。这样就能保证浏览器绘制每一帧的频率能跟上系统的刷新频率，不会掉帧。
 
-```
+```tsx
 function ensureHostCallbackIsScheduled() {
   // 调度正在执行 返回 也就是不能打断已经在执行的
   if (isExecutingCallback) {
@@ -213,7 +213,7 @@ function ensureHostCallbackIsScheduled() {
 }
 ```
 
-```
+```tsx
   requestHostCallback = function(callback, absoluteTimeout) {
     // scheduledHostCallback就是flushWork
     scheduledHostCallback = callback;
@@ -241,7 +241,7 @@ function ensureHostCallbackIsScheduled() {
 
 #### animationTick 记录每一帧的截止时间
 
-```
+```tsx
 
     // rAF的回调是每一帧开始的时候，所以适合做一些轻量任务，不然会阻塞渲染。
     //rafTime就是回调拿到的帧开始时间
@@ -266,7 +266,7 @@ function ensureHostCallbackIsScheduled() {
 #### 计算一帧内实际完成渲染的时间
 
 首先了解一下消息信道
-```
+```tsx
      var channel = new MessageChannel();
      var port = channel.port2; //port2用来发消息
      channel.port1.onmessage = function(event) {
@@ -289,7 +289,7 @@ function ensureHostCallbackIsScheduled() {
 - didTimeout=false 表示帧没有过期
 - didTimeout=true 当前帧过期且当前任务过期，还是得执行这次任务
 
-```
+```tsx
 
 
      function animationTick(rafTime) {
@@ -338,7 +338,7 @@ function ensureHostCallbackIsScheduled() {
 scheduledHostCallback 也就是下面的flushWork
 
 两重while循环，外层的while循环每次都会获取当前时间，内层循环根据这个当前时间去判断任务是否过期并执行。这样当内层执行了若干任务后，当前时间又会向前推进一块。外层循环再重新获取当前时间，直到没有任务过期或者没有任务为止。
-```
+```tsx
     function flushWork(didTimeout) {
         if (didTimeout) { //任务过期
             while (firstCallbackNode !== null) {
@@ -377,7 +377,7 @@ scheduledHostCallback 也就是下面的flushWork
 ```
 
 上面的shouldYieldToHost代表当前帧过期了，取反的话就是没过期。每次while都会执行这个判断。
-```
+```tsx
     shouldYieldToHost = function() {
         // 当前帧的截止时间比当前时间小则为true，代表当前帧过期了
         return frameDeadline <= getCurrentTime();
@@ -389,7 +389,7 @@ scheduledHostCallback 也就是下面的flushWork
 ### flushFirstCallback
 
 先把该节点从链表中清掉， 然后调用callback函数， 并带入deadlineObject作为参数
-```
+```tsx
 function flushFirstCallback(node) {
   var flushedNode = firstCallbackNode;
 
@@ -432,7 +432,7 @@ function flushFirstCallback(node) {
 注：如果正在处于render阶段，我们就不需要请求调度了，因为render阶段会处理掉这个update。
 
 
-```
+```tsx
 function scheduleWork(fiber: Fiber, expirationTime: ExpirationTime) {
   // 获取FiberRoot
   const root = scheduleWorkToRoot(fiber, expirationTime);
@@ -491,7 +491,7 @@ function scheduleWork(fiber: Fiber, expirationTime: ExpirationTime) {
 它维护了一条 scheduledRoot 的单向链表，比如说 lastScheduleRoot == null，意味着我们当前已经没有要处理的 root，这时候就把 firstScheduleRoot、lastScheduleRoot、root.nextScheduleRoot 都设置为 root。如果 lastScheduleRoot !== null，则把 lastScheduledRoot.nextScheduledRoot设置为root，等 lastScheduledRoot调度完就会开始处理当前 root。
 
 是否是同步任务？是：performSyncWork 否：scheduleCallbackWithExpirationTime
-```
+```tsx
 function requestWork(root: FiberRoot, expirationTime: ExpirationTime) {
   // 将Root加入到Schedule，更新root.expirationTime
   addRootToSchedule(root, expirationTime);
@@ -571,7 +571,7 @@ function addRootToSchedule(root: FiberRoot, expirationTime: ExpirationTime) {
 
 performSyncWork这个方法同步异步都会调用，同步调用的时候没有传参数，不会进入if，所以相当于直接执行performWork(NoWork, dl);异步调用首先进入到的是**scheduleCallbackWithExpirationTime方法，然后调用 unstable_scheduleCallback的时候把performAsyncWork方法当成回调传了进去，在浏览器空闲的时候调用，且在内部维护了一个异步更新队列，根据到期时间排序**
 
-```
+```tsx
 function performAsyncWork(dl) {
   if (dl.didTimeout) {
     // 刷新所有root的nextEpirationTimeToWorkOn
@@ -600,7 +600,7 @@ function performAsyncWork(dl) {
 
 4、 unstable_scheduleCallback里面会在最后执行performAsyncWork完成在一帧空闲的时候调度然后调用performWork
 
-```
+```tsx
 function scheduleCallbackWithExpirationTime(
   root: FiberRoot,
   expirationTime: ExpirationTime,
@@ -646,7 +646,7 @@ function scheduleCallbackWithExpirationTime(
 2、如果是异步（deadline !== null）,遍历所有的root，执行完所有root中的过期任务，因为过期任务是必须要执行的。如果这一帧还有空闲时间，尽可能的执行更多任务。
 3、上面两种情况都执行了任务，看看他们调用了什么方法呢？performWorkOnRoot。
 
-```
+```tsx
 // currentRendererTime 计算从页面加载到现在为止的毫秒数
 // currentSchedulerTime 也是加载到现在的时间，isRendering === true的时候用作固定值返回，不然每次requestCurrentTime都会重新计算新的时间
 function performWork(minExpirationTime: ExpirationTime, dl: Deadline | null) {
@@ -732,7 +732,7 @@ completeRoot 提交阶段
 2、如果是同步或者任务已经过期的情况下，先renderRoot（传入参数isYieldy=false，代表任务不可以中断），随后completeRoot
 3、如果是异步的话，先renderRoot（传入参数isYieldy=true，代表任务可以中断），完了之后看看这一帧是否还有空余时间，如果有的话completeRoot，没有时间了的话，只能等下一帧了。
 4、在2、3步调用renderRoot之前还会做一件事，判断 finishedWork !== null ，因为前一个时间片可能 renderRoot 结束了没时间 completeRoot，如果在这个时间片中有完成 renderRoot 的 finishedWork 就直接 completeRoot。
-```
+```tsx
 function performWorkOnRoot(
   root: FiberRoot,
   expirationTime: ExpirationTime,
@@ -806,7 +806,7 @@ renderRoot 先将 isWorking设为true
 1、nextUnitOfWork = createWorkInProgress() 拷贝一份 fiber 节点，在 nextUnitOfWork 中修改，防止改变当前 fiberTree。nextUnitOfWork 是下一个要更新的节点，这个nextUnitOfWork, 也是root.current的alternater属性， 而它的alternate属性则指向了root.current， 形成了一个双缓冲池。
 2、进入workLoop。
 
-```
+```tsx
 // 开始渲染整颗树，这个函数在异步模式下可能会被多次执行，因为在异步模式下
 // 可以打断任务。打断也就意味着每次都得回到 root 再开始从上往下循环
 function renderRoot(
@@ -863,7 +863,7 @@ function renderRoot(
 
 还记得之前传入进来的isYieldy的么，如果为false，不可中断，不断的更新下一个节点任务（performUnitOfWork(nextUnitOfWork)），知道整棵树更新完毕。如果可以中断，通过shouldYield()判断当前帧是否还有时间更新，有时间就更新，没有时间了就不更了。
 
-```
+```tsx
 function workLoop(isYieldy) {
   // 对 nextUnitOfWork 循环进行判断，直到没有 nextUnitOfWork
   if (!isYieldy) {
@@ -889,7 +889,7 @@ function workLoop(isYieldy) {
 1、调用beginWork()更新当前任务节点
 2、如果当前fiber树已经更新到叶子节点了，则调用completeUnitOfWork更新。
 
-```
+```tsx
 // 开始组件更新
 function performUnitOfWork(workInProgress: Fiber): Fiber | null {
   // 获得 fiber 的替身，调和这一阶段都是在替身上完成的
@@ -922,7 +922,7 @@ function performUnitOfWork(workInProgress: Fiber): Fiber | null {
 
 beginWork 应该是第一个具体操作到fiber的方法，会根据我们 workInProgress.tag 来调用对应的操作方法来创建一个fiber节点，绑定到fiber tree上面，然后返回下一个工作单元(nextUnitOfWork)回到 workLoop 继续循环这个过程，直到整个fiber tree都创建完毕。
 
-```
+```tsx
 function beginWork(
   current: Fiber | null,
   workInProgress: Fiber,
@@ -992,7 +992,7 @@ function beginWork(
 执行 componentWillUpdate、shouldComponentUpdate等生命周期函数；
 完成组件实例的渲染；
 返回下一个待处理的任务单元；
-```
+```tsx
 case ClassComponent: {
     const Component = workInProgress.type;
     const unresolvedProps = workInProgress.pendingProps;
@@ -1060,7 +1060,7 @@ function updateClassComponent(
 ### finishClassComponent
 
 这个方法的最后会调用reconcileChildren进入diff算法
-```
+```tsx
 function finishClassComponent(
   current: Fiber | null,
   workInProgress: Fiber,
@@ -1164,7 +1164,7 @@ function finishClassComponent(
 
 之前我们的fiber节点上面有一个更新的队列，就是在这里使用的
 `let updateQueue = workInProgress.updateQueue;`就是取出之前维护的更新队列
-```
+```tsx
 function updateClassInstance(
   current: Fiber,
   workInProgress: Fiber,
@@ -1246,7 +1246,7 @@ function updateClassInstance(
 
 React 组件渲染之前，我们通常会多次调用setState，每次调用setState都会产生一个 update 对象。这些 update 对象会以链表的形式存在队列 queue 中。processUpdateQueue函数会对这个队列进行依次遍历，每次遍历会将上一次的prevState与 update 对象的partialState进行合并，当完成所有遍历后，就能算出最终要更新的状态 state，此时会将其存储在 workInProgress 的memoizedState属性上。
 
-```
+```tsx
 export function processUpdateQueue<State>(
   workInProgress: Fiber,
   queue: UpdateQueue<State>,
@@ -1302,7 +1302,7 @@ getStateFromUpdate 函数主要功能是将存储在更新对象update上的part
 - Object.assign 第一个参数是空对象，也就是说新的 state 对象的引用地址发生了变化。
 - Object.assign 进行的是浅拷贝，不是深拷贝。
 
-```
+```tsx
 function getStateFromUpdate<State>(
   workInProgress: Fiber,
   queue: UpdateQueue<State>,

@@ -26,7 +26,7 @@ flex-wrap属性
 - wrap：换行，第一行在上方。
 - wrap-reverse：换行，第一行在下方。
   
-```
+```tsx
 .box{
   flex-wrap: nowrap | wrap | wrap-reverse;
 }
@@ -34,7 +34,7 @@ flex-wrap属性
 
 ## Flex 容器属性
 
-```
+```tsx
 主轴方向：水平排列（默认） | 水平反向排列 | 垂直排列 | 垂直反向排列
 flex-direction: row | row-reverse | column | column-reverse;
 
@@ -56,7 +56,7 @@ align-content: stretch | flex-start | flex-end | center | space-between | space-
 
 ## Flex 项目属性
 
-```
+```tsx
 顺序：数值越小越靠前，默认为0
 order: <number>;
 
@@ -95,7 +95,7 @@ flex items 总和超出 flex 容器，会根据 flex-shrink 的设置进行压�
 如果有剩余空间，如果设置 flex-grow，子容器的实际宽度跟 flex-grow 的设置相关。如果没有设置 flex-grow，则按照 flex-basis 展示实际宽度，一般我们直接使用 flex:1 就都设置了.
 flex 的默认值是 0 1 auto:
 
-```
+```tsx
 .item {
     flex-grow: 0;
     flex-shrink: 1;
@@ -105,7 +105,7 @@ flex 的默认值是 0 1 auto:
 
 当 flex 取值为 none，则计算值为 0 0 auto，如下是等同的：
 
-```
+```tsx
 .item {flex: none;}
 .item {
     flex-grow: 0;
@@ -114,7 +114,7 @@ flex 的默认值是 0 1 auto:
 }
 ```
 当 flex 取值为 auto，则计算值为 1 1 auto，如下是等同的：
-```
+```tsx
 .item {flex: auto;}
 .item {
     flex-grow: 1;
@@ -125,7 +125,7 @@ flex 的默认值是 0 1 auto:
 
 当 flex 取值为一个非负数字，则该数字为 flex-grow 值，flex-shrink 取 1，flex-basis 取 0，如下是等同的(来自stackoverflow)：
 
-```
+```tsx
 .item {flex: 1;}
 .item {
 flex-grow : 1;    ➜ The div will grow in same proportion as the window-size       

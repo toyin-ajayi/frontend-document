@@ -15,7 +15,7 @@
 - target参数表示所要拦截的目标对象
 - handler参数也是一个对象，用来定制拦截行为
 
-```
+```tsx
 var proxy = new Proxy(target, handler);
 ```
 
@@ -41,7 +41,7 @@ var proxy = new Proxy(target, handler);
 - property 你访问的键名
 - receiver 是当前代理对象，注意，这是一个已经代理后的对象,一般情况下就是 Proxy 实例
 
-```
+```tsx
 const target = {
   name: "lorry"
 };
@@ -64,7 +64,7 @@ console.log(proxy.name); // override name
 ```
 
 ### 代理函数
-```
+```tsx
 var handler = {
   get: function(target, name) {
     if (name === 'prototype') {

@@ -9,7 +9,7 @@ fs-extra是对fs原生模块的一个扩展，全部以Promise的形式重构模
 ### 读写文件
 
 
-```
+```tsx
 // -- 异步读取文件
 fs.readFile(filePath,'utf8',function(err,data){
     console.log(data);
@@ -24,7 +24,7 @@ console.log(fileResult);//
 ```
 ### 文件写入fs.writeFile(file, data[, options], callback)
 
-```
+```tsx
 file <string> | <Buffer> | <URL> | <integer> 文件名或文件描述符。
 data <string> | <Buffer> | <TypedArray> | <DataView>
 options <Object> | <string>
@@ -33,7 +33,7 @@ encoding <string> | <null> 默认值: 'utf8'。
 mode <integer> 默认值: 0o666。
 flag <string> 参阅支持的文件系统标志。默认值: 'w'。
 ```
-```
+```tsx
 // 写入文件内容（如果文件不存在会创建一个文件）
 // 写入时会先清空文件
 fs.writeFile(filePath, 'data', function(err) {
@@ -62,7 +62,7 @@ fs.writeFile(filePath, '追加的数据', {'flag':'a'},function(err) {
 
 ### 拷贝文件-copyFile
 
-```
+```tsx
 // 将filePath文件内容拷贝到filePath1文件内容
 fs.copyFileSync(filePath, filePath1);
 let data = fs.readFileSync(filePath1, 'utf8');
@@ -71,7 +71,7 @@ console.log(data);
 ```
 ### 删除文件-unlink
 
-```
+```tsx
 // -- 异步文件删除
 fs.unlink(filePath,function(err){
 	if(err) return;
@@ -105,7 +105,7 @@ fs.open(path,flags,[mode],callback)
 - callback 回调函数
   - fd：文件描述符
 
-```
+```tsx
 var fs = require('fs'); // 引入fs模块
  
 // 打开文件

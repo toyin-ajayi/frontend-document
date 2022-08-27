@@ -10,7 +10,7 @@ autorun 。用来包装一个方法为 观察者
 autorun 是个神奇的函数，被他包装过的方法，就会变为观察者函数，并且这里有一个很重要的特性，这个函数只会观察自己依赖到的设为 observable 的值。
 
 假设person对象身上有很多个属性是 observable 的，修改这些属性值的时候不会触发 autorun 包装过的函数，只有修改 name 属性的时候才会触发。
-```
+```tsx
 autorun(function(){
     console.log(person.name);
 });
@@ -41,7 +41,7 @@ dependenceManager，这个工具类中管理了一个依赖的 map，结构是�
 
 我不清楚真正的mobx内部的唯一标识符是怎么生成的,所以我使用WeakMap,将对象(内存地址总是唯一的)作为唯一标识符,与其对应的回调函数绑定起来
 具体源码如下：
-```
+```tsx
 const dependenceManager = new WeakMap();
 
 get: function (target, key, receiver) {
@@ -68,7 +68,7 @@ const trigger = function (target, key, value,) {
 };
 ```
 
-```
+```tsx
 dependenceManager.beginCollect(handler);// dependenceManager 标记现在开始收集依赖
 handler();
 dependenceManager.endCollect();// 标记当前收集结束
@@ -78,7 +78,7 @@ dependenceManager.endCollect();// 标记当前收集结束
 
 mobx-react 提供了一个observer方法， 它是一个高阶组件，它接收 React 组件并返回一个新的 React 组件，返回的新组件能响应（通过observable定义的）状态的变化，即组件能在可观察状态变化时自动更新。observer方法是对 MobX 提供的autorun方法和 React 组件更新机制的封装，以便于在 React 中使用，你依然可以在 React 中使用autorun来更新组件。
 
-```
+```tsx
 import React, { useMemo } from "react";
 import { observable } from "mobx";
 import { observer,  useLocalStore } from "mobx-react";
@@ -115,7 +115,7 @@ MobX 可以单独使用，也可以与任何流行的 UI 框架一起使用，Gi
 
 在 mobx-react 中，可以使用 @observer 对 react 对象进行包装，使其 render 方法成为一个观察者。
 
-```
+```tsx
 // 伪代码
 var ReactMixin = {
     componentWillMount: function() {

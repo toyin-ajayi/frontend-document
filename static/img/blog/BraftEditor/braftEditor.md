@@ -3,12 +3,12 @@
 * step1:下载组件`cnpm install braft-editor --save`
 * step2:在表单域里的使用方式 
 
-```
+```tsx
 import BraftEditor from 'braft-editor';
 import 'braft-editor/dist/index.css';
 ```
 
-```
+```tsx
    <FormItem
      label="新闻内容"
    >
@@ -32,7 +32,7 @@ import 'braft-editor/dist/index.css';
 * step2:引入draft-js里面的一些函数以及lrz插件
 * 了解draft-js内部封装的一些对象 
 
-``` 
+```tsx 
 import BraftEditor from 'braft-editor';
 import {convertToRaw} from 'draft-js';
 import lrz from 'lrz'
@@ -51,7 +51,7 @@ import 'braft-editor/dist/index.css';
 
 可一看到这个对象和传统js对象还是有区别的这时我们可执行 
 
-``` 
+```tsx 
 console.log(values.context.toJS())  
 ``` 
 
@@ -62,7 +62,7 @@ console.log(values.context.toJS())
 ### getCurrentContent()
 currentContent 是一个 ContentState 对象，存放的是当前编辑器中的内容
 通过getCurrentContent()来获取
-```
+```tsx
 //values.context为EditorState对象
 const currentContent = values.context.getCurrentContent()
         console.log(currentContent)
@@ -87,7 +87,7 @@ ContentBlock 表示一个编辑器内容中的一个独立的 block，即视觉�
 而convertToRaw()正好 注输出blocks 和 entityMap 这两项。
  entityMap里面就是保存的是想图片这些媒体信息,相当于原始块对象  
  
- ``` 
+ ```tsx 
  const blockData = convertToRaw(currentContent)
  ```
 ![EditorState](img/3.png)  
@@ -97,7 +97,7 @@ ContentBlock 表示一个编辑器内容中的一个独立的 block，即视觉�
 - entityMap是一个类数组对象，并不是真的数组，需要用for in来遍历才行
 - 压缩图片是一个异步过程，当多个图片需要压缩时，for循环内部需要注意使用闭包
 - 不是每一个url都是图片的base64编码，需要先用正则验证，如果不是就无需要压缩图片加载速度也是很快的
-```
+```tsx
    for(var i in blockData.entityMap){
      ((i)=>{//自执行函数创建闭包保证i的值不会被垃圾回收
        var base64 =/^\s*data:([a-z]+\/[a-z0-9-+.]+(;[a-z-]+=[a-z0-9-]+)?)?(;base64)?,([a-z0-9!$&',()*+;=\-._~:@\/?%\s]*?)\s*$/i;
@@ -121,7 +121,7 @@ confirm组件里面的onOK事件就是一个事件监听，事件触发后注册
   
 先将上文修改过的EditorState转成HTML格式，在通过Base64转码为base64编码传给后台  
 
-```
+```tsx
 confirm({
           title: '提示',
           content: '是否保存？',

@@ -15,7 +15,7 @@ Object Function RegExp Math Date 值为对象，存放在堆内存中
 
 ### 图解存储空间
 
-```
+```tsx
 let a1 = 0; // 栈内存
 let a2 = "this is string" // 栈内存
 let a3 = null; // 栈内存
@@ -26,7 +26,7 @@ let c = [1, 2, 3]; // 变量c存在于栈中，[1, 2, 3]作为对象存在于堆
 
 ### 引用类型的赋值
 
-```
+```tsx
 let a = { x: 10, y: 20 }
 let b = a;
 b.x = 5;
@@ -55,7 +55,7 @@ console.log(a.x); // 5
 - Object.assign() 方法可以把任意多个的源对象自身的可枚举属性拷贝给目标对象，然后返回目标对象。但是 Object.assign()进行的是浅拷贝
 - Object.assign 会从左往右遍历源对象(sources)的所有属性，然后用 = 赋值到目标对象(target)
 
-```
+```tsx
 		var obj = { a: {a: "kobe", b: 39},b:1 };
 		var initalObj = Object.assign({}, obj);
 		initalObj.a.a = "wade";
@@ -65,7 +65,7 @@ console.log(a.x); // 5
 ```
 ### 扩展运算符
 
-```
+```tsx
 let obj = {a:1,b:{c:1}}
 let obj2 = {...obj};
 obj.a=2;
@@ -81,7 +81,7 @@ console.log(obj2); //{a:1,b:{c:2}}
 ### Array.prototype.slice
 - slice() 方法返回一个新的数组对象，这一对象是一个由 begin和 end（不包括end）决定的原数组的浅拷贝。原始数组的基本类型不会被改变，引用类型会被改变。
 
-```
+```tsx
 let arr = [1, 3, {
     username: ' kobe'
     }];
@@ -94,7 +94,7 @@ console.log(arr);
 
 ### Array.prototype.concat()
 
-```
+```tsx
 let arr = [1, 3, {
     username: 'kobe'
     }];
@@ -107,7 +107,7 @@ console.log(arr);
 
 ### 手写浅拷贝
 
-```
+```tsx
 function shallowCopy(src) {
     var dst = {};
     for (var prop in src) {
@@ -130,7 +130,7 @@ function shallowCopy(src) {
 - 无法拷贝对象的循环应用(即obj[key] = obj)
 
 
-```
+```tsx
 let arr = [1, 3, {
     username: ' kobe'
 }];
@@ -148,7 +148,7 @@ console.log(arr, arr4)
 - 首先这个deepClone函数并不能复制不可枚举的属性以及Symbol类型
 - 这里只是针对Object引用类型的值做的循环迭代，而对于Array,Date,RegExp,Error,Function引用类型无法正确拷贝
 - 对象成环，即循环引用 (例如：obj1.a = obj)
-```
+```tsx
 function clone(target) {
     if (typeof target === 'object') {
         let cloneTarget = Array.isArray(target) ? [] : {};
@@ -184,7 +184,7 @@ function deepClone(target, map = new WeakMap()) {
 
 ### 改递归为循环版
 
-```
+```tsx
 function deepClone(data){
     const root = {}
     const loopList = [
@@ -221,7 +221,7 @@ function deepClone(data){
 
 ### 皇帝版深拷贝
 该实例来自ConardLi大佬的github，源地址：https://github.com/ConardLi/ConardLi.github.io/tree/master/demo/deepClone
-```
+```tsx
     const mapTag = "[object Map]";
     const setTag = "[object Set]";
     const arrayTag = "[object Array]";

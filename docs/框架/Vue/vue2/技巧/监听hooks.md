@@ -1,7 +1,7 @@
 ## 内部监听
 
 应该将监听`resize`事件与销毁`resize`事件放到一起，现在两段代码分开而且相隔几百行代码，可读性比较差
-```
+```tsx
 export default {
   mounted() {
     this.chart = echarts.init(this.$el)

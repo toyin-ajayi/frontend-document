@@ -7,7 +7,7 @@
 可以传入参数，且可以分为两次传递，调用bind的时候传一次，执行返回函数的时候还可以穿一次
 
 
-```
+```tsx
 var foo = {
     value: 1
 };
@@ -128,7 +128,7 @@ call和apply实现方式基本一样，思路就是this的方法调用调用模�
 
 注意属性覆盖的问题，用Symbol返回一个唯一的键即可
 
-```
+```tsx
 Function.prototype.myCall = function(context) {
   if (typeof this !== "function") {
     // 调用call的若不是函数则报错

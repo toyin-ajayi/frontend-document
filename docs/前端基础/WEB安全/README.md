@@ -24,7 +24,7 @@ XSS 的本质是：恶意代码未经过滤，与网站正常的代码混在一�
 
 当浏览器请求 `http://xxx/search?keyword="><script>alert('XSS');</script>` 时，服务端会解析出请求参数 `keyword`，得到 `"><script>alert('XSS');</script>`，拼接到 HTML 中返回给浏览器。形成了如下的 HTML：
 
-```
+```tsx
 <div>
   您搜索的关键词是："><script>sendToMe(document.cookie);</script>
 </div>
@@ -45,7 +45,7 @@ XSS 的本质是：恶意代码未经过滤，与网站正常的代码混在一�
 客户端的脚本程序可以动态地检查和修改页面内容，而不依赖于服务器端的数据。可能引起 dom 型 xss 的：使用 innerHTML, documen.write 属性...
 DOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行恶意代码由浏览器端完成，属于前端 JavaScript 自身的安全漏洞，而其他两种 XSS 都属于服务端的安全漏洞。
 
-```
+```tsx
 <input type="text" id="input">
 <button id="btn">Submit</button>
 <div id="div"></div>
@@ -95,7 +95,7 @@ DOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行
 为了对抗 XSS ，以下转义内容(实体编码在 html 里会显示正常的特殊符号)是必不可少的：
 ![图片加载失败](./防御XSS转码.png)
 
-```
+```tsx
   function encodeForHTML(str, kwargs){
     return ('' + str)
       .replace(/&/g, '&amp;')
@@ -110,7 +110,7 @@ DOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行
 
 实例:
 
-```
+```tsx
 <input type="text" value="<%= encodeForHTML(getParameter("keyword")) %>">
 <button>搜索</button>
 <div>
@@ -121,7 +121,7 @@ DOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行
 
 经过了转义函数的处理后，最终浏览器接收到的响应为：
 
-```
+```tsx
 <input type="text" value="&quot;&gt;&lt;script&gt;alert(&#x27;XSS&#x27;);&lt;&#x2F;script&gt;">
 <button>搜索</button>
 <div>
@@ -136,7 +136,7 @@ DOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行
 
 对于链接跳转，如 `<a href="xxx"` 或 `location.href="xxx"`，要检验其内容，禁止以 javascript: 开头的链接，和其他非法的 scheme。
 
-```
+```tsx
 // 禁止 URL 以 "javascript:" 开头
 xss = getParameter("redirect_to").startsWith('javascript:');
 if (!xss) {
@@ -153,7 +153,7 @@ if (!xss) {
 
 但是这种方法很难判断因为还可以写成
 
-```
+```tsx
 http://xxx/?redirect_to=jAvascRipt:alert('XSS')
 
 http://xxx/?redirect_to=%20javascript:alert('XSS')
@@ -162,7 +162,7 @@ http://xxx/?redirect_to=%20javascript:alert('XSS')
 经过 URL 解析后变成 javascript:alert('XSS')，还是有注入的风险
 所以我们最好采取白名单法,只允许我们特点的请求头即可
 
-```
+```tsx
 // 根据项目情况进行过滤，禁止掉 "javascript:" 链接、非法 scheme 等
 allowSchemes = ["http", "https"];
 
@@ -203,7 +203,7 @@ if (valid) {
 - 验证码；强制用户必须与应用进行交互，才能完成最终请求。此种方式能很好的遏制 csrf，但是用户体验比较差。也不可能每次都要验证码
 - Referer check；请求来源限制，HTTP 头中有一个 Referer 字段，这个字段用以标明请求来源于哪个地址。通过在网站中校验请求的该字段，我们能知道请求是否是从本站发出的。我们可以拒绝一切非本站发出的请求，这样避免了 CSRF 的跨站特性。(我后台只接受 jianjiancheng.com 的请求)
 
-```
+```tsx
 const { parse } = require('url');
 module.exports = class extends think.Logic {
   indexAction() {
@@ -222,13 +222,13 @@ module.exports = class extends think.Logic {
 
 Get 请求伪造如下，而已网站可以弄一个 img，src 即为服务器接口地址
 
-```
+```tsx
 <img src=http://www.mybank.com/Transfer.php?toBankId=11&money=1000>
 ```
 
 Post 请求伪造：
 
-```
+```tsx
 <html>
     <head>
         <script type="text/javascript">
@@ -266,7 +266,7 @@ Chrome80 之前默认是 None 的，Chrome80 后默认是 Lax。
 
 如果对以前的页面造成影响最快的解决方法就是
 
-```
+```tsx
 Set-Cookie: SameSite=None;
 ```
 
@@ -275,7 +275,7 @@ Chrome 计划将Lax变为默认设置。这时，网站可以选择显式关闭S
 
 下面的设置无效。
 
-```
+```tsx
 Set-Cookie: widget_session=abc123; SameSite=None
 下面的设置有效。
 
@@ -294,7 +294,7 @@ SQL 注入攻击指的是通过构建特殊的输入作为参数传入 Web 应�
 
 以 ThinkJS 为例，假设我们写了如下一个接口:
 
-```
+```tsx
 // user.js
 module.exports = class extends think.Controller {
   async loginAction() {
@@ -314,7 +314,7 @@ module.exports = class extends think.Controller {
 
 username 就是动态构建的，当用户提交的 username 是 admin"; -- 的话，最终执行的 SQL 语句就会变成
 
-```
+```tsx
 SELECT * FROM user WHERE name = "admin"; --" AND password= "111"
 ```
 
@@ -380,7 +380,7 @@ POST 请求：数据被包含在请求体中。
 
 ![图片加载失败](./点击劫持.png)
 
-```
+```tsx
 iframe {
 width: 1440px;
 height: 900px;

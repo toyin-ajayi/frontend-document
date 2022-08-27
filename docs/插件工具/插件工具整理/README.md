@@ -9,7 +9,7 @@
 
 Path-to-RegExp模块,可以把你定义的路由字符串转为正则表达,可以用来本页面刷新时匹配菜单
 
-```
+```tsx
 npm install path-to-regexp --save
 import { pathToRegexp } from 'path-to-regexp';
 const regexp = pathToRegexp(id,[], { end: false })

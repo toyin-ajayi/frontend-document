@@ -33,7 +33,7 @@ The value associated with the property (data descriptors only).
 一个给属性提供setter的方法,如果没有setter则为undefined;该方法将接受唯一参数,并将该参数的新值分配给该属性,默认为undefined.
 
 
-```
+```tsx
 Object.defineProperty(data, 'name', {
     value: 'dreamapple',
     writable: true,// 可更改
@@ -56,7 +56,7 @@ get里面不能对本属性取值，set里面也不能对本属性赋值，不�
 descriptor 中不能 同时设置访问器 (get 和 set) 和 wriable 或 value，否则会错
 
 实例：监听设置生日修改年龄
-```
+```tsx
 var data = {name:'jjc',age:0};
 
 Object.defineProperty(data, 'birth', {

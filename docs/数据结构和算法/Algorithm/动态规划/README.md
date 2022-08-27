@@ -38,7 +38,7 @@
 
 这时我们已经可以写成一版代码：
 
-```
+```tsx
 function climbStairs(n){
     if(n===1){
         return 1
@@ -61,7 +61,7 @@ console.log(climbStairs(10))
 
 从图中可以发现有部分重复的计算，我们可以缓存下来
 
-```
+```tsx
 function memo(func){
     const cache = new Map();
     return function(...arg){
@@ -90,7 +90,7 @@ f(3) + f(4) = f(5)
 .......
 .......
 
-```
+```tsx
 function fastClimbStairs(n){
    if(n=== 1){
        return 1
@@ -165,7 +165,7 @@ i=1 j=5 ：选择了物品 1 之后，物品 1 的重量为 3，背包容量为 
 
 ### 将上述过程写出代码
 
-```
+```tsx
 function knapSack(w,val,capacity,n){
     // 我们建立的递推表
     let T = []
@@ -219,7 +219,7 @@ function knapSack(w,val,capacity,n){
 
 写成代码：
 
-```
+```tsx
 // knapSack无法判断我们选择了那些物品，得回溯去寻找
 // findValue 主要就是通过最终坐标对比上一层是否有变化，有变化就是加入了
 function findValue(w,val,capacity,n,T){
@@ -269,7 +269,7 @@ function findValue(w,val,capacity,n,T){
 
 只有是递归那么复杂度一定是偏高的，我们可以做一步缓存递归结果，优化一下
 
-```
+```tsx
 function minCoin(coins, amount) {
   // 如果amount为0表示刚刚把钱兑换完 返回0
   if (amount === 0) {
@@ -320,7 +320,7 @@ const count = memoMinCoin(coins, amount);
 我们从分解 0 元开始，一直到分解 amount 元，且每一步都按最优解来算
 到 amount 的时候就是最少的组合
 
-```
+```tsx
 // 动态规划
 function minCoinDP(coins,amount){
   // 因为要循环求min 这里把规划表填充一个最大值

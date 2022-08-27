@@ -14,15 +14,15 @@ SVG实现DOM转png时会有很多兼容性问题,之前在张鑫旭大佬的博�
 ### 错误写法
 网上现在很多写法都是
 
-```
+```tsx
 new Blob([svgXML], { type: "image/svg+xml" });
 ```
 但在这种写法回导致一些安全策略，并且污染canvas画布，最后会报如下错误
-```
+```tsx
 Uncaught DOMException: Failed to execute 'toDataURL' on 'HTMLCanvasElement'
 ```
 这里不关跨不跨域的事，没有对外部资源执行任何请求，所以设置
-```
+```tsx
 img.crossOrigin = "anonymous";
 ```
 是无效的
@@ -30,7 +30,7 @@ img.crossOrigin = "anonymous";
 ### 最后chrome能运行的写法
 >encodeURIComponent()函数通过用表示字符的UTF-8编码的一个，两个，三个或四个转义序列替换某些字符的每个实例来对URI进行编码（对于由两个"代理"组成的字符而言，将仅是四个转义序列）字符）.
 
-```
+```tsx
 // encodes characters such as ?,=,/,&,:
 console.log(encodeURIComponent('?x=шеллы'));
 // expected output: "%3Fx%3D%D1%88%D0%B5%D0%BB%D0%BB%D1%8B"
@@ -41,7 +41,7 @@ console.log(encodeURIComponent('?x=test'));
 
 在foreignObject 里的结果用encodeURIComponent来把字符串作为URI组件进行编码，最后交给image对象，然后用canvas画出来，再导出png，就不会报错
 
-```
+```tsx
       var svgXML = `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">
                 <foreignObject width="100%" height="100%">${generateXML(
                   html

@@ -5,7 +5,7 @@ Channel Messaging API的MessageChannel 接口允许我们创建一个新的消�
 
 ![图片加载失败](./img/MessageChannel.png)
 
-```
+```tsx
 const ch = new MessageChannel()
 const port1 = ch.port1
 const port2 = ch.port2

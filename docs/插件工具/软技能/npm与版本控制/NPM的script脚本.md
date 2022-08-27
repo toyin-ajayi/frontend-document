@@ -46,7 +46,7 @@ npm 支持运行package.json里“scripts”属性中的脚本，包括：
 ### 并行
 
 如果是并行执行（即同时的平行执行），可以使用&符号。
-```
+```tsx
 npm run script1.js & npm run script2.js
 
 
@@ -63,7 +63,7 @@ npm run script1.js & npm run script2.js
 
 实现方式很简单，用 && 符号按顺序把命令串联起来。
 
-```
+```tsx
 "scripts": {
     ...,
     "lint:cx": "npm run lint:js && npm run lint:jsx && npm run lint:css && npm run lint:json && npm run lint:markdown"

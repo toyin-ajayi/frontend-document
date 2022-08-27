@@ -29,7 +29,7 @@ ImmutableJS，非常棒的一个不可变数据结构的库，可以解决上面
 ### 使用方式
 
 #### 不对 draftState 修改 
-```
+```tsx
 import produce from 'immer'
 
 let currentState = {
@@ -47,7 +47,7 @@ currentState === nextState; // true
 
 #### 对 draftState 修改
 
-```
+```tsx
 let currentState = {
   a: [],
   p: {
@@ -68,7 +68,7 @@ currentState.p === nextState.p; // true
 Immer 还在内部做了一件很巧妙的事情，那就是通过 produce 生成的 nextState 是被完全冻结（freeze）的。Immer 内部使用Object.freeze方法。这样，当直接修改 nextState 时，将会报错。这使得 nextState 成为了真正的不可变数据。
 
 注意：currentState中，只冻结 currentState  跟 nextState 相比修改的部分
-```
+```tsx
 
 let nextState = produce(currentState, (draftState) => {
   draftState.p.y = 3;
@@ -85,7 +85,7 @@ console.log(nextState.p.y); // 3
 producer接受一个对象产生nextState
 
 
-```
+```tsx
 let producer = produce((draftState) => {
   draftState.x = 2
 });
@@ -101,7 +101,7 @@ recipe 是否有返回值，nextState 的生成过程不同：
 - recipe 没有返回值时：nextState 根据 draftState 生成；
 - recipe 有返回值时：nextState 根据 recipe 函数的返回值生成；
 
-```
+```tsx
 let nextState = produce(currentState, (draftState) => {
     return {
       x: 5
@@ -116,7 +116,7 @@ console.log(nextState); // {x: 5}
 recipe 函数内部的this指向 draftState ，也就是修改this与修改 recipe 的参数 draftState ，效果是一样的。
 注意：此处的 recipe 函数不能是箭头函数，如果是箭头函数，this就无法指向 draftState 了
 
-```
+```tsx
 produce(currentState, function(draftState){
   // 此处，this 指向 draftState
   draftState === this; // true

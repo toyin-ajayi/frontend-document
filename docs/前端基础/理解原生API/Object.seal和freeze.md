@@ -14,7 +14,7 @@ Object.seal()方法封闭一个对象，阻止添加新属性并将所有现有�
 比如一般的Object.defineProperty，delete都是不允许的
 
 ### 实例
-```
+```tsx
 const object1 = {
   property1: 42
 };
@@ -32,7 +32,7 @@ console.log(object1.property1);
 
 在 React 和 ReactROM 源码中，xx.development.js 代码都会使用到 Object.seal，主要是对 ref 做属性扩展限制，防止对象的 key 发生变更。
 
-```
+```tsx
 // createRef
 export function createRef(): RefObject {
   const refObject = {
@@ -46,7 +46,7 @@ export function createRef(): RefObject {
 
 ```
 
-```
+```tsx
 // useRef 相关
 function mountRef<T>(initialValue: T): {current: T} {
   const hook = mountWorkInProgressHook();
@@ -75,7 +75,7 @@ Object.freeze() 方法可以冻结一个对象。一个被冻结的对象再也�
 
 ### 实例
 
-```
+```tsx
 const obj = {
   prop: 42
 };
@@ -90,7 +90,7 @@ console.log(obj.prop);
 
 ```
 
-```
+```tsx
 let a = [0];
 Object.freeze(a); // 现在数组不能被修改了.
 
@@ -109,7 +109,7 @@ fail();
 
 被冻结的对象是不可变的。但也不总是这样。下例展示了冻结对象不是常量对象（浅冻结）。
 
-```
+```tsx
 obj1 = {
   internal: {}
 };
@@ -121,7 +121,7 @@ obj1.internal.a // 'aValue'
 ```
 ### 可以模拟深拷贝写一个深冻结
 
-```
+```tsx
 function deepFreeze(object) {
     let propNames = Object.getOwnPropertyNames(object);
     for (let name of propNames) {

@@ -69,7 +69,7 @@ function Counter() {
 
 #### useRef
 
-```
+```tsx
 const ref1 = useRef<HTMLElement>(null!); // null!是非空断言
 const ref2 = useRef<HTMLElement | null>(null);
 ```
@@ -191,7 +191,7 @@ class App extends React.Component<MyProps, MyState> {
 
 ### Event 事件对象类型
 
-```
+```tsx
 ClipboardEvent<T = Element> 剪切板事件对象
 
 DragEvent<T =Element> 拖拽事件对象
@@ -216,7 +216,7 @@ TransitionEvent<T = Element> 过渡事件对象
 当我们定义事件处理函数时有没有更方便定义其函数类型的方式呢？答案是使用 React 声明文件所提供的 EventHandler 类型别名，通过不同事件的 EventHandler 的类型别名来定义事件处理函数的类型。
 
 EventHandler 接收 E ，其代表事件处理函数中 event 对象的类型。
-```
+```tsx
     type EventHandler<E extends SyntheticEvent<any>> = { bivarianceHack(event: E): void }["bivarianceHack"];
     type ReactEventHandler<T = Element> = EventHandler<SyntheticEvent<T>>;
     type ClipboardEventHandler<T = Element> = EventHandler<ClipboardEvent<T>>;
@@ -238,7 +238,7 @@ EventHandler 接收 E ，其代表事件处理函数中 event 对象的类型。
 
 `SyntheticEvent<T = Element, E = Event>`泛型接口,即原生事件的集合，就是原生事件的组合体.您的事件处理程序将传递 SyntheticEvent 的实例，这是一个跨浏览器原生事件包装器。(官方介绍)
 
-```
+```tsx
   <button onClick={(e:SyntheticEvent<Element, Event>)=>{
 
   }}></button>
@@ -412,7 +412,7 @@ export declare interface AppProps {
 - JSX.Element -> Return value of React.createElement
 - React.ReactNode -> Return value of a component
 
-```
+```tsx
 namespace JSX {
     // ...
     interface Element extends React.ReactElement<any, any> { }
@@ -428,7 +428,7 @@ JSX.Element `extends` ReactElement ⊂ ReactNode
 
 ## Images and other non-TS/TSX files
 
-```
+```tsx
 // declaration.d.ts
 // anywhere in your project, NOT the same name as any of your .ts/tsx files
 declare module "*.png";
@@ -441,7 +441,7 @@ import * as logo from "./logo.png";
 
 高级的动态高阶组件示例，它的一些参数基于传入的组件的支柱
 
-```
+```tsx
 // inject static values to a component so that they're always provided
 export function inject<TProps, TInjectedKeys extends keyof TProps>(
   Component: React.JSXElementConstructor<TProps>,

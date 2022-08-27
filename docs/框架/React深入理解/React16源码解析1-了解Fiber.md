@@ -153,7 +153,7 @@ React 在 render 第一次渲染时，会通过 React.createElement 创建一颗
 Fiber Tree 一个重要的特点是链表结构，将递归遍历转化为循环遍历，然后配合 requestIdleCallback API, 实现任务拆分、中断与恢复。
 
 这个链接的结构是怎么构成的呢，这就要主要到之前 Fiber Node 的节点的这几个字段：
-```
+```tsx
 // 单链表树结构
 {
    return: Fiber | null, // 指向父节点
@@ -169,7 +169,7 @@ Fiber Tree 一个重要的特点是链表结构，将递归遍历转化为循环
 
 **React运行时存在3种实例**
 
-```
+```tsx
 DOM 真实DOM节点
 -------
 Instances 根据Elements创建的，对组件及DOM节点的抽象表示，Virtual DOM tree维护了组件状态以及组件与DOM树的关系。
@@ -186,7 +186,7 @@ Fiber把渲染/更新过程（递归diff）拆分成一系列小任务，每次�
 增量更新需要更多的上下文信息，之前的vDOM tree显然难以满足，所以扩展出了fiber tree（即Fiber上下文的vDOM tree），更新过程就是根据输入数据以及现有的fiber tree构造出新的fiber tree（workInProgress tree）。
 
 因此，Instance层新增了这些实例：
-```
+```tsx
 DOM
     真实DOM节点
 -------
@@ -224,7 +224,7 @@ React使用“双缓存”来完成Fiber树的构建与替换——对应着DOM�
 - 就算运行中有错误，也不会影响 View 上的数据
 
 current Fiber树中的Fiber节点被称为current fiber，workInProgress Fiber树中的Fiber节点被称为workInProgress fiber，他们通过alternate属性连接。
-```
+```tsx
 currentFiber.alternate === workInProgressFiber;
 workInProgressFiber.alternate === currentFiber;
 ```

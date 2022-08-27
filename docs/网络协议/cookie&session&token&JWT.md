@@ -15,7 +15,7 @@
 cookie 是服务器发送到用户浏览器并保存在本地的一小块数据，它会在浏览器下次向同一服务器再发起请求时被携带并发送到服务器上。
 响应头里添加set-Cookie的字段的属性就可以写入
 
-```
+```tsx
 Set-Cookie: logcookie=3qjj; expires=Wed, 13-Mar-2019 12:08:53 GMT; Max-Age=31536000; path=/;
  domain=fafa.com;secure; HttpOnly;
 ```
@@ -84,7 +84,7 @@ Json web token (JWT), 是为了在网络应用环境间传递声明而执行的�
 
 JWT是由三段信息构成的，将这三段信息文本用.链接一起就构成了Jwt字符串。
 
-```
+```tsx
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
 ```
 
@@ -93,7 +93,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 - 声明类型，这里是jwt
 - 声明加密的算法 通常直接使用 HMAC SHA256
 
-```
+```tsx
 {
   'typ': 'JWT',
   'alg': 'HS256'
@@ -113,7 +113,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 - iat: jwt的签发时间
 - jti: jwt的唯一身份标识，主要用来作为一次性token,从而回避重放攻击。
 
-```
+```tsx
 {
   "sub": "1234567890",
   "name": "John Doe",
@@ -135,7 +135,7 @@ jwt的第三部分是一个签证信息，这个签证信息由三部分组成�
 - secret
 这个部分需要base64加密后的header和base64加密后的payload使用.连接组成的字符串，然后通过header中声明的加密方式进行加盐secret组合加密，然后就构成了jwt的第三部分。
 
-```
+```tsx
 // javascript
 var encodedString = base64UrlEncode(header) + '.' + base64UrlEncode(payload);
 
@@ -154,7 +154,7 @@ JWT数据放置的地方：
 - Authorization: Bearer `<token>`
 - 跨域的时候，可以把 JWT 放在 POST 请求的数据体里。
 - 通过 URL 传输 http://www.example.com/user?token=xxx
-```
+```tsx
 fetch('api/user/1', {
   headers: {
     'Authorization': 'Bearer ' + token

@@ -5,7 +5,7 @@
 看看控制台，每 2 秒打印 Count is: 0。
 
 
-```
+```tsx
 function WatchCount() {
   const [count, setCount] = useState(0);
 
@@ -37,7 +37,7 @@ function WatchCount() {
 解决方案是让 useEffect()知道 log() 中的闭包依赖于 count.
 适当地设置依赖项后，**一旦 count 更改，useEffect() 就更新闭包。**
 
-```
+```tsx
 function WatchCount() {
   const [count, setCount] = useState(0);
 
@@ -96,14 +96,14 @@ ReactDOM.render(<App />, rootElement);
 
 你可能预期这样输出：
 
-```
+```tsx
 count is 1
 
 ```
 
 事实上，输出是这样：
 
-```
+```tsx
 count is 0
 ```
 ### 原因分析
@@ -124,7 +124,7 @@ handleResize函数利用闭包(clousre)功能访问App中的count变量，那也
 ### 解决办法
 
 这样每次count被点击的时候更新都会导致useEffect重新执行，这样就重新绑定了新的handleResize23456等，这些新的handleResize里闭包访问的值随着组件更新而更新
-```
+```tsx
   useEffect(() => {
      // 让resize事件触发handleResize
      window.addEventListener('resize', handleResize)
@@ -225,7 +225,7 @@ state 创建一个按钮，点击后让计数器自增，但是延时 3 秒后�
 
 因为每次点击执行 log 都往 setTimeout 锁了一次最新的 count 闭包的值。所有打印 012
 
-```
+```tsx
 function Counter() {
   const [count, setCount] = useState(0);
 
@@ -248,7 +248,7 @@ function Counter() {
 
 在三秒内连续点击三次，那么 count 的值最终会变成 3，而随之而来的输出结果
 
-```
+```tsx
 0
 1
 2
@@ -260,7 +260,7 @@ function Counter() {
 - 点击按键 “Increase async” 在异步模式下以 1 秒的延迟递增计数器
 - 在同步模式下，点击按键 “Increase sync” 会立即增加计数器。
 
-```
+```tsx
 function DelayedCount() {
   const [count, setCount] = useState(0);
   function handleClickAsync() {
@@ -294,7 +294,7 @@ function DelayedCount() {
 
 为了解决这个问题，可以使用函数方法来更新 count 状态：
 
-```
+```tsx
 function DelayedCount() {
   const [count, setCount] = useState(0);
 

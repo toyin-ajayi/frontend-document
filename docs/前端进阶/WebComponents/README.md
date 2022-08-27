@@ -45,7 +45,7 @@ Web Components 包含以下生命周期函数：
 
 #### 第一种手动创建元素
 
-```
+```tsx
 class CustomTitle extends HTMLElement {
     constructor() {
       super();
@@ -76,13 +76,13 @@ customElements.define('custom-element', CustomTitle)
 
 ```
 
-```
+```tsx
 <custom-element>红色字体的段落！</custom-element>
 ```
 
 #### 第二种可以使用字符串拼接
 
-```
+```tsx
 class CustomTitle extends HTMLElement {
     constructor() {
     super()
@@ -107,7 +107,7 @@ customElements.define('custom-element', CustomTitle)
 
 #### 最后可以通过 Templates 模板创建
 
-```
+```tsx
 //html
 
 <template id="custom-title-template">
@@ -139,7 +139,7 @@ window.customElements.define('custom-title', CustomTitle)
 
 HTML 模板定义了新的元素，描述一个基于 DOM 标准用于客户端模板的途径。模板允许你声明标记片段，它们可以被解析为 HTML。这些片段在页面开始加载时不会被用到，之后运行时会被实例化。
 
-```
+```tsx
 <template id="custom-template>
      <h1>HTML Templates are rad</h1>
 </template>
@@ -156,14 +156,14 @@ slot 标签允许开发者通过特定接入点来动态替换模板中的 HTML 
 
 假设一个标签`<greeting-hello>`，属性传参允许指定 hello 的对象，像是这样：
 
-```
+```tsx
 <greeting-hello who="world">
 <greeting-hello who="Reco">
 ```
 
 Slot 插槽传参可以传递复杂的 HTML 片段，像是这样：
 
-```
+```tsx
 <greeting-hello>
 	<b slot="who">Reco</b>
 </greeting-hello>
@@ -184,13 +184,13 @@ Slot 插槽传参可以传递复杂的 HTML 片段，像是这样：
 
 可以这样将 Shadow DOM 附加到一个节点上：
 
-```
+```tsx
 element.attachShadow({mode: 'close'});
 ```
 
 attachShadow 函数接受一个含 mode 属性的对象作为参数。Shadow DOM 可以打开或关闭。打开时使用 element.shadowRoot 就可以拿到 DOM 子树，反之如果关闭了则会拿到 null。接着创建一个 Shadow DOM 就会创建一个阴影的边界，在封装节点的同时封装样式。默认情况下该节点内部的所有样式会被限制仅在这个影子树里生效，于是样式选择器写起来就短得多了。Shadow DOM 通常可以和 HTML 模板结合使用：
 
-```
+```tsx
 const shadowRoot = element.attachShadow({mode: 'close'});
 shadowRoot.appendChild(templateContent.cloneNode(true));
 ```
@@ -211,7 +211,7 @@ HTML 模板(HTML Templates)允许你创建新的模板，同样的，HTML 引用
 
 否则，这个属性会返回一个表示引入的 HTML 文件的文档对象，类似于 document。比如说，在上边的代码基础上，可以这样做：
 
-```
+```tsx
 // head
 <link rel="import" href="/path/to/imports/stuff.html">
 // js

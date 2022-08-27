@@ -11,7 +11,7 @@
 - 如果构造函数有返回的值并且为基本类型的话则没有影响，返回值毫无意义；
 - 如果返回值的类型为object，那这个返回值会被正常使用
 
-```
+```tsx
 function Test(name) {
   this.name = name
   return 1
@@ -33,7 +33,7 @@ console.log(t.name) // 'undefined'
 
 ## 实现方式
 因为 new 是关键字，所以无法直接覆盖，所以我们写一个函数，命名为 myNew，来模拟 new 的效果。用的时候是这样的：
-```
+```tsx
 function person() {
     ……
 }
@@ -46,7 +46,7 @@ var person = myNew(person, ……)
 ## 实现过程
 因为 new 的结果是一个新对象，所以在模拟实现的时候，我们也要建立一个新对象，假设这个对象叫 obj，因为 obj 会具有 Otaku 构造函数里的属性，想想经典继承的例子，我们可以使用 Otaku.apply(obj, arguments)来给 obj 添加新的属性。
 
-```
+```tsx
 function myNew() {
 //用new Object() 的方式新建了一个对象 obj
     var obj = new Object(),
@@ -64,7 +64,7 @@ function myNew() {
 
 ## 验证myNew
 
-```
+```tsx
 function person(name, age) {
     this.name = name;
     this.age = age;
@@ -92,7 +92,7 @@ person.sayYourName(); // I am Kevin
 
 ## New的其他简洁写法
 
-```
+```tsx
 function myNew(Con, ...args) {
   let obj = {}
 //等同于 obj.__proto__ = Con.prototype

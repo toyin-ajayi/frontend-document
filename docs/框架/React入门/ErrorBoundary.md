@@ -11,7 +11,7 @@ ErrorBoundary 只能捕获子组件的 render 错误，有一定的局限性，�
 ## 创建一个 ErrorBoundary 组件
 
 避免错误渲染白屏做异常中间处理的嵌套组件
-```
+```tsx
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);

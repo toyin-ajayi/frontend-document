@@ -7,7 +7,7 @@
 
 函数在调用的时候会在调用栈（call stack）中存有记录，每一条记录叫做一个调用帧（call frame），每调用一个函数，就向栈中push一条记录，函数执行结束后依次向外弹出，直到清空调用栈，参考下图：
 
-```
+```tsx
 function foo () { console.log(111); }
 function bar () { foo(); }
 function baz () { bar(); }
@@ -23,7 +23,7 @@ baz();
 
 如果对上面的例子做如下修改：
 
-```
+```tsx
 function foo () { console.log(111); }
 function bar () { return foo(); }
 function baz () { return bar(); }
@@ -52,7 +52,7 @@ baz();
 
 当一个函数尾调用自身，就叫做尾递归。
 
-```
+```tsx
 function foo () {
     return foo();
 }
@@ -68,7 +68,7 @@ function foo () {
 ### 求阶乘普通版
 
 
-```
+```tsx
 function factorial (num) {
     if (num === 1) return 1;
     return num * factorial(num - 1);
@@ -83,7 +83,7 @@ factorial(500000);       // Uncaught RangeError: Maximum call stack size exceede
 ### 尾递归来计算阶乘
 
 通过尾递归，我们把复杂度从O(n)降低到了O(1)，如果数据足够大的话，会节省很多的计算时间。
-```
+```tsx
 'use strict';
 
 function factorial (num, total) {
@@ -111,7 +111,7 @@ factorial(500000, 1);           // 分情况
 
 1. ES6参数默认值
 
-```
+```tsx
 'use strict';
 
 function factorial (num, total = 1) {
@@ -126,7 +126,7 @@ factorial(10);               // 3628800
 
 1.用一个符合语义的函数去调用改写后的尾递归函数
 
-```
+```tsx
 function tailFactorial (num, total) {
     if (num === 1) return total;
     return tailFactorial(num - 1, num * total);
@@ -148,7 +148,7 @@ factorial(10);               // 3628800
 - 将原来函数的里面所代码（不包括我们上面的迭代函数和迭代变量初始化）包在一个 while (true) 迭代循环里面。Tip：加一个 label 用于标识循环。
 - 递归终止的 return 不变，尾递归的 return 替换成迭代函数，并且 continue 掉上面的迭代循环。
 
-```
+```tsx
 尾递归代码：
 
 function fact(n, r) { // <= 这里把 n, r 作为迭代变量提出来

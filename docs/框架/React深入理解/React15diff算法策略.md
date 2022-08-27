@@ -53,7 +53,7 @@ React针对这一现象提出了一种优化策略：允许开发者对同一层
 
 通过key可以准确地发现新旧集合中的节点都是相同的节点，因此无需进行节点删除和创建，只需要将旧集合中节点的位置进行移动，更新为新集合中节点的位置
 源码：
-```
+```tsx
 _updateChildren: function(nextNestedChildrenElements, transaction, context) {
   var prevChildren = this._renderedChildren;
   var nextChildren = this._reconcilerUpdateChildren(

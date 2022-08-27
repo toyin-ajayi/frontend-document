@@ -21,7 +21,7 @@
 - ajax 请求
   异步回调嵌套会导致代码难以维护，并且不方便统一处理错误，不能 try catch 会陷入回调地狱
 
-```
+```tsx
 fs.readFile(A, 'utf-8', function(err, data) {
     fs.readFile(B, 'utf-8', function(err, data) {
         fs.readFile(C, 'utf-8', function(err, data) {
@@ -59,7 +59,7 @@ Promise 一定程度上解决了回调地狱的问题，Promise 最早由社区�
 
 ### Promise 是一个构造函数，new Promise 返回一个 promise 对象
 
-```
+```tsx
 const promise = new Promise((resolve, reject) => {
        // 异步处理
        // 处理结束后、调用resolve 或 reject
@@ -68,7 +68,7 @@ const promise = new Promise((resolve, reject) => {
 
 ### then 方法注册 当 resolve(成功)/reject(失败)的回调函数
 
-```
+```tsx
 
 // onFulfilled 参数是用来接收promise成功的值,
 // onRejected 参数是用来接收promise失败的原因
@@ -77,7 +77,7 @@ promise.then(onFulfilled, onRejected);
 
 ```
 
-```
+```tsx
 const promise = new Promise((resolve, reject) => {
    resolve('fulfilled'); // 状态由 pending => fulfilled
 });
@@ -103,7 +103,7 @@ Promise 对象的 then 方法返回一个新的 Promise 对象，因此可以通
 
 ### 解决层层回调问题
 
-```
+```tsx
 //对应上面第一个node读取文件的例子
 function read(url) {
     return new Promise((resolve, reject) => {
@@ -124,7 +124,7 @@ read(A).then(data => {
 });
 ```
 
-```
+```tsx
 //对应第二个ajax请求例子
 ajax(url)
   .then(res => {
@@ -143,7 +143,7 @@ ajax(url)
 
 catch() 方法返回一个 Promise，并且处理拒绝的情况。它的行为与调用 Promise.prototype.then(undefined, onRejected) 相同。 (事实上, calling obj.catch(onRejected) 内部 calls obj.then(undefined, onRejected)).
 
-```
+```tsx
 p.catch(onRejected);
 
 p.catch(function(reason) {
@@ -165,7 +165,7 @@ reason rejection 的原因。
 
 执行`f2()`，无法通过 try/catch 捕获 promise.reject，控制台抛出`Uncaught (in promise)`
 
-```
+```tsx
 function f2() {
   try {
     Promise.reject('出错了');
@@ -178,7 +178,7 @@ function f2() {
 
 改成 await/async 后，执行`f()`就能在 catch 中捕获到错误了，并不会抛出`Uncaught (in promise)`
 
-```
+```tsx
 async function f() {
   try {
     await Promise.reject('出错了')
@@ -206,7 +206,7 @@ Generator 函数有多种理解角度。语法上，首先可以把它理解成�
 Generator 函数的调用方法与普通函数一样，也是在函数名后面加上一对圆括号。不同的是，调用 Generator 函数后，该函数并不执行，返回的也不是函数运行结果，而是一个指向内部状态的指针对象，也就是上一章介绍的遍历器对象（Iterator Object）。
 下一步，必须调用遍历器对象的 next 方法，使得指针移向下一个状态。也就是说，每次调用 next 方法，内部指针就从函数头部或上一次停下来的地方开始执行，直到遇到下一个 yield 表达式（或 return 语句）为止。换言之，Generator 函数是分段执行的，yield 表达式是暂停执行的标记，而 next 方法可以恢复执行。
 
-```
+```tsx
 function* foo () {
   var index = 0;
   while (index < 2) {
@@ -229,7 +229,7 @@ Co 函数库约定，yield 命令后面只能是 Thunk 函数或 Promise 对象�
 
 可以简单实现下：
 
-```
+```tsx
 function co(it) {
     return new Promise(function (resolve, reject) {
         function step(d) {
@@ -250,7 +250,7 @@ function co(it) {
 
 比如我们有个生成器函数是 r(),直接扔进 co 里自动执行
 
-```
+```tsx
 function* r() {
     let content1 = yield read('1.txt', 'utf8');
     let content2 = yield read(content1, 'utf8');
@@ -266,7 +266,7 @@ co(r()).then(function (data) {
 
 我们可以通过 Generator 函数解决回调地狱的问题，可以把之前的回调地狱例子改写为如下代码：
 
-```
+```tsx
 const co = require('co');
 co(
 function* read() {
@@ -283,7 +283,7 @@ function* read() {
 
 ```
 
-```
+```tsx
 function *fetch() {
     yield ajax(url, () => {})
     yield ajax(url1, () => {})
@@ -311,7 +311,7 @@ let result3 = it.next()
 
 async 重点是自带了执行器，相当于把我们要额外做的(写执行器/依赖 co 模块)都封装了在内部。比如：
 
-```
+```tsx
 async function fn(args) {
  // ...
 }
@@ -319,7 +319,7 @@ async function fn(args) {
 
 等同于：
 
-```
+```tsx
 function fn(args) {
  return spawn(function* () {
    // ...
@@ -357,7 +357,7 @@ function spawn(genF) { //spawn函数就是自动执行器，跟简单版的思�
 
 - 当调用一个 async 函数时，会返回一个 Promise 对象。
 
-```
+```tsx
     async function async1() {
       return "1"
     }
@@ -393,7 +393,7 @@ await后面的函数会先执行一遍(比如await Fn()的Fn ,并非是下一行
 
 ### async await 异常处理
 
-```
+```tsx
 let last;
 async function throwError() {
     await Promise.reject('error');//这里就是异常
@@ -409,7 +409,7 @@ throwError().then(success => console.log('成功', success,last))
 `async`里如果有多个 await 函数的时候，如果其中任一一个抛出异常或者报错了，都会导致函数停止执行，直接`reject`;
 怎么处理呢，可以用`try/catch`，遇到函数的时候，可以将错误抛出，并且继续往下执行。
 
-```
+```tsx
 let last;
 async function throwError() {
     try{
@@ -430,7 +430,7 @@ throwError().then(success => console.log('成功', last))
 
 简单说 , async/awit 就是对上面 gennerator 自动化流程的封装 , 让每一个异步任务都是自动化的执行 , 当第一个异步任务 readFile(A)执行完如上一点说明的, async 内部自己执行 next(),调用第二个任务 readFile(B);
 
-```
+```tsx
 这里引入ES6阮一峰老师的例子
 const fs = require('fs');
 
@@ -461,7 +461,7 @@ read().then((data) => {
 
 ### 注意 await 下面的代码执行的时机
 
-```
+```tsx
 async function async1() {
     console.log('async1 start')
     await async2()
@@ -488,7 +488,7 @@ new Promise((resolve) => {
 
 执行顺序：
 
-```
+```tsx
 async1 start
 async2
 1
@@ -500,7 +500,7 @@ async1 end//注册在async2()的.then里，推迟了一个时序
 
 新版 V8 中执行的时序等价于(激进优化后与老版不同)：
 
-```
+```tsx
 function async1(){
     console.log('async1 start');
     const p = async2();

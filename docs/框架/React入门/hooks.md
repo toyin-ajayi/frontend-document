@@ -12,7 +12,7 @@
 
 ### Fiber节点的数据结构
 
-```
+```tsx
 function FiberNode(
   tag: WorkTag,
   pendingProps: mixed,
@@ -49,7 +49,7 @@ function FiberNode(
 
 Hooks中，React并不知道我们调用了几次useState，所以在保存state这件事情上，React想出了一个比较有意思的方案，那就是调用useState后设置在memoizedState上的对象长
 
-```
+```tsx
 {
   baseState,
   next,
@@ -77,7 +77,7 @@ react会生成一个Fiber树，每个组件在Fiber树上都有对应的节点Fi
 
 ## 模拟实现useState
 
-```
+```tsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -158,7 +158,7 @@ useLayoutEffect和useEffect类似，但是不同的是：
 
 这种方式，父组件改变props后，子组件重新渲染，由于直接使用的props，所以我们不需要做什么就可以正常显示最新的props
 
-```
+```tsx
 class Child extends Component {
     render() {
         return <div>{this.props.someThings}</div>
@@ -170,7 +170,7 @@ class Child extends Component {
 
 这种方式，由于我们使用的是state，所以每当父组件每次重新传递props时，我们需要重新处理下，将props转换成自己的state，这里就用到了 componentWillReceiveProps。
 
-```
+```tsx
     componentWillReceiveProps(nextProps) {
         this.setState({
             text: nextProps.text
@@ -203,7 +203,7 @@ const [number,setNumber] = useState(0) 也就是说每次都会生成一个新�
 useCallback：接收一个内联回调函数参数和一个依赖项数组（子组件依赖父组件的状态，即子组件会使用到父组件的值） ，useCallback 会返回该回调函数的 
 memoized 版本，该回调函数仅在某个依赖项改变时才会更新
 
-```
+```tsx
 const memoizedCallback = useCallback(
   () => {
     doSomething(a, b);
@@ -213,7 +213,7 @@ const memoizedCallback = useCallback(
 ```
 
 useMemo：把创建函数和依赖项数组作为参数传入 useMemo，它仅会在某个依赖项改变时才重新计算 memoized 值。这种优化有助于避免在每次渲染时都进行高开销的计算
-```
+```tsx
 // 这里useMemo第一个参数返回的是函数的计算结果，是一个量
 const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 ```
@@ -227,7 +227,7 @@ useCallback(fn, deps) 相当于 useMemo(() => fn, deps)。useMemo返回的变量
 
 ### 避免闭包导致hooks状态未更新
 
-```
+```tsx
 function DelayedCount() {
   const [count, setCount] = useState(0);
 
@@ -258,7 +258,7 @@ setCount后不会马上更新，会被后面的合并，setCount最后替换成0
 - 不同点：
   - 类中的 setState 是合并，而函数组件中的 setState 是替换。
   - hooks前者每次更新后state都是新值，换而言之其实是不可变数据的概念。而后者使用后，其实更新state部分的值，引用本身并无改变。
-```
+```tsx
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
@@ -288,12 +288,12 @@ ReactDOM.render(<DelayedCount />, rootElement);
 
 ### 避免useState重复初始化
 
-```
+```tsx
 // 直接传入一个值，在每次 render 时都会执行 createRows 函数获取返回值
 const [rows, setRows] = useState(createRows(props.count));
 ```
 改为传入一个函数
-```
+```tsx
 // createRows 只会被执行一次
 const [rows, setRows] = useState(() => createRows(props.count));
 ```
@@ -322,7 +322,7 @@ const [rows, setRows] = useState(() => createRows(props.count));
 ## 在多个 Hook 之间传递信息
 由于 Hook 本身就是函数，因此我们可以在它们之间传递信息。
 
-```
+```tsx
   const [recipientID, setRecipientID] = useState(1);
   const isRecipientOnline = useFriendStatus(recipientID);
 ```
@@ -360,7 +360,7 @@ const [rows, setRows] = useState(() => createRows(props.count));
   }
 ```
 
-```
+```tsx
 usePrevious.js:45 1
 usePrevious.js:51 3
 usePrevious.js:34 prevCount 0

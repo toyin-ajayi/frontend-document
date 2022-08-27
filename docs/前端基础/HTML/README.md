@@ -6,7 +6,7 @@
 
 意义：根据内容的结构化（内容语义化），选择合适的标签（代码语义化）便于开发者阅读和写出更优雅的代码的同时让浏览器的爬虫和机器很好地解析
 
-```
+```tsx
 article、footer、header、nav、section，
 表单控件，calendar、date、time、email、url、search;
 ```
@@ -48,7 +48,7 @@ Navigator 对象包含有关浏览器的信息。
 
 一开始就构建站点的完整功能，然后针对浏览器测试和修复。比如一开始使用 CSS3 的特性构建了一个应用，然后逐步针对各大浏览器进行 hack 使其可以在低版本浏览器上正常浏览。
 
-```
+```tsx
 .transition { /*渐进增强写法*/
   -webkit-transition: all .5s;
      -moz-transition: all .5s;
@@ -66,7 +66,7 @@ Navigator 对象包含有关浏览器的信息。
 
 ## meta viewport 相关
 
-```
+```tsx
 <!DOCTYPE html>  H5标准声明，使用 HTML5 doctype，不区分大小写
 <head lang=”en”> 标准的 lang 属性写法
 <meta charset=’utf-8′>    声明文档使用的字符编码
@@ -109,13 +109,13 @@ Navigator 对象包含有关浏览器的信息。
 - maximum-scale：允许用户缩放到的最大比例
 - user-scalable：用户是否可以手动缩放
 
-```
+```tsx
 <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 ```
 
 ![图片加载失败](./img/viewport属性.png)
 
-```
+```tsx
 <meta name="viewport" content="width=device-width,initial-sacle=1">
 ```
 
@@ -160,7 +160,7 @@ DOCTYPE 是 document type (文档类型) 的缩写。`<!DOCTYPE >`声明位于�
 >https://developer.mozilla.org/zh-CN/docs/Web/HTML/Preloading_content
 
 浏览器会在遇到如下link标签时，立刻开始下载main.js(不阻塞parser)，并放在内存中，但不会执行其中的JS语句。当资源真正被使用的时候立即执行，就无需等待网络的消耗。
-```
+```tsx
 <link rel="preload" href="/main.js" as="script">
 ```
 
@@ -180,7 +180,7 @@ css里面定义了字体的url。那么直到浏览器开始解析CSS了才会�
 
 Prefetch 是一个低优先级的资源提示，允许浏览器在后台（空闲时）获取将来可能用得到的资源，并且将他们存储在浏览器的缓存中。一旦一个页面加载完毕就会开始下载其他的资源，然后当用户点击了一个带有 prefetched 的连接，它将可以立刻从缓存中加载内容。有三种不同的 prefetch 的类型，link，DNS 和 prerendering
 
-```
+```tsx
 资源预加载：<link rel="prefetch" href="test.css">
 DNS预解析：<link rel="dns-prefetch" href="//haitao.nos.netease.com">
 http预连接：<link rel="prefetch" href="//www.kaola.com"> 将建立对该域名的TCP链接
@@ -230,7 +230,7 @@ preload 和 prefetch 混用的话，并不会复用资源，而是会重复加�
 若 css 中有应用于已渲染到 DOM 树的元素的选择器，且设置了 @font-face 规则时，会触发字体文件的加载。
 而字体文件加载中时，DOM 中的这些元素，是处于不可见的状态。对已知必加载的 font 文件进行预加载，除了有性能提升外，更有体验优化的效果。
 在我们的场景中，已知 antd.css 会依赖 font 文件，所以我们可以对这个字体文件进行 preload:
-```
+```tsx
 <link rel="preload" as="font" crossorigin href="https://at.alicdn.com/t/font_zck90zmlh7hf47vi.woff">
 ```
 

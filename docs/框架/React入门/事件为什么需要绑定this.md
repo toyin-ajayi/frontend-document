@@ -6,7 +6,7 @@ onClick在组件上只是一个变量而已，它用于指向我们绑定的方�
 
 真正执行我们绑定方法的地方是在合成事件里的invokeGuardedCallback方法
 
-```
+```tsx
 function invokeGuardedCallback(name, func, a) {
   try {
     func(a);

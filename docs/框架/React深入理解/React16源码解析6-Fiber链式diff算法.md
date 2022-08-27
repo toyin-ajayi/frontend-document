@@ -22,7 +22,7 @@ react总结：
 
 还记得之前传入进来的isYieldy的么，如果为false，不可中断，不断的更新下一个节点任务（performUnitOfWork(nextUnitOfWork)），知道整棵树更新完毕。如果可以中断，通过shouldYield()判断当前帧是否还有时间更新，有时间就更新，没有时间了就不更了。
 
-```
+```tsx
 function workLoop(isYieldy) {
   // 对 nextUnitOfWork 循环进行判断，直到没有 nextUnitOfWork
   if (!isYieldy) {
@@ -97,7 +97,7 @@ class 组件的调和过程大致分为两个部分：
 -  节点的类型相同
 -  满足上面两点节点只是变化了内容，不需要创建新的节点，可以复用的
 
-```
+```tsx
 if (child.key === key) {
   if (
     child.tag === Fragment
@@ -126,7 +126,7 @@ if (child.key === key) {
 >即returnFiber父节点的child有多个,父节点的child指针只指向currentFirstChild，然后通过sibling指针指向兄弟节点
 
 #### 循环遍历数组
-```
+```tsx
 let newIdx = 0 // 新数组的索引
 for (; oldFiber !== null && newIdx < newChildren.length; newIdx++) {
   // 遍历老的节点
@@ -158,7 +158,7 @@ for (; oldFiber !== null && newIdx < newChildren.length; newIdx++) {
 
 - 老的节点已经遍历完了：当出现老的节点已经遍历完了的情况时，就会开始第二轮遍历。这轮遍历的逻辑很简单，只需要把剩余新的节点全部创建完毕即可。
 
-```
+```tsx
 if (oldFiber === null) {
   // 如果老的节点已经被复用完了，对剩下的新节点进行操作
   for (; newIdx < newChildren.length; newIdx++) {
@@ -192,7 +192,7 @@ if (oldFiber === null) {
 
 这种策略就是从 div 下面的所有子节点去找有没有可以复用的节点，而不是像 TextNode 一样，只是找第一个 child 是否可以复用，如果当前节点的 key 不同，就代表肯定不是同一个节点，所以把当前节点删除，然后再去找当前节点的兄弟节点，直到找到 key 相同，并且节点的类型相同，否则就删除所有的子节点。
 
-```
+```tsx
 // 找到 key 相同的节点，就会复用当前节点
 while (child !== null) {
   if (child.key === key) {
@@ -217,7 +217,7 @@ while (child !== null) {
 ```
 
 如果没有找到可以复用的节点，然后就重新创建节点:
-```
+```tsx
 // 前面的循环已经把该删除的已经删除了，接下来就开始创建新的节点了
 if (element.type === REACT_FRAGMENT_TYPE) {
   const created = createFiberFromFragment(
@@ -249,7 +249,7 @@ if (element.type === REACT_FRAGMENT_TYPE) {
 答案是：老的数组和新的数组里面都有这个元素，而且位置不相同。
 从两个数组中找到相同元素(是指可复用的节点)，方法有很多种，来看看 React 是如何高效的找出来的。
 把所有老数组元素按 key 或者是 index 放 Map 里，然后遍历新数组，根据新数组的 key 或者 index 快速找到老数组里面是否有可复用的。
-```
+```tsx
 function mapRemainingChildren(
  returnFiber: Fiber,
  currentFirstChild: Fiber,
@@ -274,7 +274,7 @@ function mapRemainingChildren(
 
 这个 mapRemainingChildren 就是将老数组存放到 Map 里面。元素有 key 就 Map 的键就存 key，没有 key 就存 index，key 一定是字符串，index 一定是 number，所以取的时候是能区分的，所以这里用的是 Map，而不是对象，如果是对象，属性是字符串，就没办法区别是 key 还是 index 了。
 现在有了这个 Map，剩下的就是循环新数组，找到 Map 里面可以复用的节点，如果找不到就创建，这个逻辑基本上跟 updateSlot 的复用逻辑很像，一个是从老数组链表中获取节点对比，一个是从 Map 里获取节点对比。
-```
+```tsx
 // 如果前面的算法有复用，那么 newIdx 就不从 0 开始
 for (; newIdx < newChildren.length; newIdx++) {
   const newFiber = updateFromMap(

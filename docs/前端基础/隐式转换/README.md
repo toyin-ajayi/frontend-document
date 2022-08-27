@@ -16,7 +16,7 @@
 >如果valueOf不存在或者valueOf方法返回的不是原始类型的值，就会尝试调用对象的toString方法，也就是会遵循对象的ToString规则，然后使用toString的返回值作为ToPrimitive的结果。
 
 valueOf  toString方法返回值
-```
+```tsx
 var num = new Number('123');
 num.valueOf(); // 123
 
@@ -53,7 +53,7 @@ Math.toString(); // "[object Math]"
 - 在数值运算里，会优先调用valueOf()，如 a + b;
 - 在字符串运算里，会优先调用toString(),如alert(c).
 
-```
+```tsx
 // 一个没有提供 Symbol.toPrimitive 属性的对象，参与运算时的输出结果
 var obj1 = {};
 console.log(+obj1);     // NaN
@@ -74,7 +74,7 @@ Symbol.toPrimitive被调用时,会接受一个字符串参数，表示当前运�
 - Number:该场合需要转成数值
 - String:该场合需要转成字符串
 - Default:该场合可以转成数值，也可以转成字符串。
-```
+```tsx
 // 接下面声明一个对象，手动赋予了 Symbol.toPrimitive 属性，再来查看输出结果
 var obj2 = {
   [Symbol.toPrimitive](hint) {
@@ -106,7 +106,7 @@ console.log(obj2 + ""); // "true"  -- hint 参数值是 "default"
 
 ### TOBoolean
 
-```
+```tsx
   Boolean(null) // false
   Boolean(undefined) // false
   Boolean('') // flase
@@ -170,7 +170,7 @@ undefined
 - 2.当一侧为Number类型，另一侧为原始类型，则将原始类型转换为Number类型。
 - 3.当一侧为Number类型，另一侧为引用类型，将引用类型和Number类型转换成字符串后拼接。
 
-```
+```tsx
 1 - true // 0
 1 - null //  1
 1 * undefined //  NaN
@@ -192,7 +192,7 @@ undefined
 - ECMAScript 规范中规定 null 和 undefined 之间互相宽松相等，并且也与其自身相等，但和其他所有的值都不宽松相等
 - 当原始类型和引用类型做比较时，对象类型会依照 ToPrimitive 规则转换为原始类型
 
-```
+```tsx
   [] == ![] // true
 
   [] == 0 // true
@@ -230,7 +230,7 @@ undefined
 ### 如何让：a == 1 && a == 2 && a == 3
 
 重写valueOf方法
-```
+```tsx
 const a = {
    value:[3,2,1],
    valueOf: function () {return this.value.pop(); },
@@ -240,13 +240,13 @@ const a = {
 ## Object.js()
 
 这个方法可以用于处理 NaN, -0 和 +0的比较
-```
+```tsx
 0 == ' ' //true
 null == undefined //true
 [1] == true //true
 ```
 
-```
+```tsx
 Object.is(0 , ' '); //false
 Object.is(null, undefined); //false
 Object.is([1], true); //false

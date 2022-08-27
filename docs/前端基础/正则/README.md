@@ -1,7 +1,7 @@
 ## exec()和match()区别
 - ### 当采用非全局匹配的时候，两个方法的返回值完全一样。
 - ### match和exec都只匹配一次，且都会把分组抽出来放到数组后面
-```
+```tsx
     (function(){
         
         let str="antzoane";
@@ -14,7 +14,7 @@
 ![](/img/blog/20/1.png)
 - #### 当为全局匹配的时候，match方法返回一个存放所有匹配内容的数组（无视子表达式的匹配）。
 - #### exex方法返回数组不会存储所有的匹配，仅存储第一个匹配到的内容（存储在数字第一个元素），第二个元素存储第一个子表达式匹配到的内容，第三个元素存储第二个子表达式匹配到的内容，以此类推
-```
+```tsx
     (function(){
        
         let str="antzoane";
@@ -29,7 +29,7 @@
 
 ## match()和分组匹配
 
-```
+```tsx
     var reg = /(\d{4})-(\d{2})-(\d{2})/;
     var dateStr = '2018-04-18';
     var s=dateStr.match(reg);
@@ -47,7 +47,7 @@
 ## replace()和分组捕获
 ### 全部匹配添加修饰
 
-```
+```tsx
     var str="0816-2323263";
     var reg=/(\d+)(-)(\d+)/g;
     var str2=str.replace(reg,"($1)-$3");//全部匹配添加修饰
@@ -55,7 +55,7 @@
 ```
 ### (?`<name>`)与(?:exp)
 
-```
+```tsx
 var str1="123478basd-12aaaaa";
     var reg1=/(\d+)([a-z]+)(\d+)(?<rename>[a-z]+)/g;
     var str21=str1.replace(reg1,"$1hhhhh$<rename>");//(?<name>)捕获文本到名称为name的组里  (?:exp)匹配exp,不捕获匹配的文本，也不给此分组分配组号
@@ -63,7 +63,7 @@ var str1="123478basd-12aaaaa";
 ```
 ### 匹配需要删除的部分然后置空
 
-```
+```tsx
  var str23="123478basd12asdsa";
     var reg2=/[a-z]+/g;
     var str22=str23.replace(reg2,"");//匹配需要删除的部分然后置空
@@ -72,7 +72,7 @@ var str1="123478basd-12aaaaa";
 ## 贪婪与懒惰
 
 - ###  在量词后面加个问号表示懒惰，尽可能少的匹配
-```
+```tsx
    
     var str="abc8defghij7klngon8qrstwxy7";
     var reg1=/8[a-zA-Z0-9]*7/;
@@ -92,7 +92,7 @@ var str1="123478basd-12aaaaa";
    - (?!exp)匹配后面跟的不是exp的位置
    - (?<!exp)匹配前面不是exp的位置
 
-```
+```tsx
     (function(){
         var str="http://www.sina.com.cn ";
         var reg1= new RegExp(/.+(:)/g);
@@ -104,7 +104,7 @@ var str1="123478basd-12aaaaa";
     })();
 ```    
 ![](/img/blog/20/5.png)
-```
+```tsx
     (function(){
         var a = "价格是123456789.6754";
         var reg4= new RegExp(/(\d)(?=(\d{3})+\.)/g);
@@ -114,7 +114,7 @@ var str1="123478basd-12aaaaa";
     })();
 ```
 ![](/img/blog/20/6.png)
-```   
+```tsx   
     (function(){
         let str="ABCD01:$23.45";
         let reg1=/\$[0-9.]+/g;
@@ -130,7 +130,7 @@ var str1="123478basd-12aaaaa";
    - 匹配固定位数时，不能/[1-9]\d{4,11}/这样写，这样输入15位也会从15位中成功匹配11位
    - 只能用^和$匹配字符串开始和结束位置，然后再匹配中间的位数(^$不是从哪里开始匹配
 
-```
+```tsx
     function check(val) {
         console.log(val)
         var reg = /^[1-9]\d{4,8}[0-9]$/;//匹配5到10位qq号

@@ -37,7 +37,7 @@
 
 ## 借助构造函数实现继承（经典继承）
 
-```
+```tsx
  function Parent1() {
    this.name = 'parent1';
  }
@@ -59,7 +59,7 @@
 
 ## 借助原型链实现继承
 
-```
+```tsx
 function Parent2() {
   this.name = 'parent2';
   this.play = [1, 2, 3];
@@ -85,7 +85,7 @@ console.log(new Child2);
 是指将原型链和构造函数的相结合，发挥二者之长的一种继承模式。其思路是使用原型链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承。这样，即通过在原型上定义方法实现了函数复用，又能够保证每个实例都有它自己的属性。
 
 ### 初级版
-```
+```tsx
 function Super(name){
     this.name = name;
     this.colors = ["red", "blue", "green"];
@@ -123,7 +123,7 @@ instance2.sayAge()    //20
 
 ### 优化后的组合继承
 
-```
+```tsx
 function Super(name){
     this.name = name;
     this.colors = ["red", "blue", "green"];
@@ -166,7 +166,7 @@ instance2.sayAge()    //20
 
 ### 疑问1
 为什么要这么写？
-```
+```tsx
 function F(){
 }
 F.prototype = Super.prototype; 
@@ -174,12 +174,12 @@ Sub.prototype = new F();    // 继承了Super 原型链上的方法
 ```
 而不是
 
-```
+```tsx
 Sub.prototype = Super.prototype; 
 ```
 下面的方法没有办法区分一个对象是直接由它的子类实例化还是父类呢？
 下面这是第一个方法无法判断
-```
+```tsx
 instance1 instanceof Sub//true
 instance1 instanceof Super//true
 
@@ -190,7 +190,7 @@ instance1 instanceof Super//true
 
 ### 疑问2
 为什么不用
-```
+```tsx
 Sub.prototype.__proto__ = Super.prototype
 ```
 避免修改__proto__属性的最明显的原因是可移植性的问题。并不是所有的平台都支持修改对象原型的特性，所以无法编写可移植的代码。
@@ -203,7 +203,7 @@ Sub.prototype.__proto__ = Super.prototype
 借助原型可以基于已有的对象创建新对象， 同时还不必因此创建自定义类型
 在myCreateObject()函数内部, 先创建一个临时性的构造函数, 然后将传入的对象作为这个构造函数的原型,最后返回了这个临时类型的一个新实例.
 
-```
+```tsx
 function myCreateObject(o){
 	function F(){}
 	F.prototype = o;//重写F的原型，将他指向传入的o，这就相当于继承自o
@@ -222,7 +222,7 @@ alert(person.friends);//"Van,Louis,Nick,Rob,Style"
 从本质上讲, myCreateObject() 对传入其中的对象执行了一次浅复制.所用的子类都指向传入的person对象  
 
 object.create() 方法规范化了上面的原型式继承.  上篇文章有这个方法的详细解释
-```
+```tsx
 var person = {
 	friends : ["Van","Louis","Nick"]
 };
@@ -245,7 +245,7 @@ console.log(anotherPerson)
 
 核心：在原型式继承的基础上，增强对象，返回构造函数
 函数的主要作用是为构造函数新增属性和方法，以增强函数
-```
+```tsx
 function createAnother(original){
   var clone = myCreateObject(original); // 通过调用 myCreateObject() 函数创建一个新对象，myCreateObject是一个任何能够返回对象的函数
   clone.sayHi = function(){  // 以某种方式来增强对象
@@ -270,7 +270,7 @@ anotherPerson.sayHi(); //"hi"
 1.  使用借用构造函数(`call`)来**继承父类this声明的属性/方法**
 2.  通过寄生式封装函数设置父类prototype为子类prototype的原型来继**承父类的prototype声明的属性/方法**。
 组合继承有一个会两次调用父类的构造函数造成浪费的缺点，寄生组合继承就可以解决这个问题。
-```
+```tsx
 function inheritPrototype(subType, superType){
     //原型式继承：浅拷贝superType.prototype对象作为superType.prototype为新对象的原型
     // 内部会自带_proto_指向：prototype.__proto__ = superType.prototype;
@@ -304,7 +304,7 @@ SubType.prototype.sayAge = function(){
 优缺点：这是一种完美的继承方式。
 Object.create可以用如下函数代替
 
-```
+```tsx
 function myCreateObject(o){
 	function F(){}
 	F.prototype = o;//重写F的原型，将他指向传入的o，这就相当于继承自o

@@ -60,7 +60,7 @@
 添加新产品时，需要编写新的具体产品类,一定程度上增加了系统的复杂度
 考虑到系统的可扩展性，需要引入抽象层，在客户端代码中均使用抽象层进行定义，增加了系统的抽象性和理解难度
 
-```
+```tsx
 class User {
   constructor(name = '', viewPage = []) {
     this.name = name;
@@ -118,7 +118,7 @@ let user = userFactory.create('user');
 
 instance 通过闭包存一个起来判断全局是不是只有一个实例
 
-```
+```tsx
 class Modal {
     login() {
         console.log('login...');
@@ -170,7 +170,7 @@ console.log(m1 === m2) // true
 
 Adapter 类继承了 Target，重写 small 函数，最后通过适配器，把港式 big 转成了大陆的 small 了。
 
-```
+```tsx
 // 目标角色实现 大陆的小头
 class Target {
     small(){
@@ -225,7 +225,7 @@ adapter.small();
 
 ### 实例
 
-```
+```tsx
 class Circle {
     draw() {
         console.log('画一个圆形');
@@ -300,7 +300,7 @@ decorator.draw(); //画一个圆形，画一个红色边框
 
 ### 实例
 
-```
+```tsx
 // 红灯
 class RedLight {
     constructor (state) {
@@ -375,7 +375,7 @@ setInterval(() => {
 
 ### 实例
 
-```
+```tsx
 /*策略类*/
 var levelOBJ = {
     "A": function(money) {
@@ -428,7 +428,7 @@ console.log(calculateBouns('A',10000)); // 40000
 
 ### 实例
 
-```
+```tsx
 class EventEmitter{
     constructor(){
         this._events  = this._events||new Map()

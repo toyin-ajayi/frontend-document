@@ -52,7 +52,7 @@ document.onscroll = throttle(function () {
 
 不用闭包后结构会很简单
 
-```
+```tsx
 <script type="text/javascript">
 			var timer = null;// 记录上一次的延时器
 			function debounce() {
@@ -68,7 +68,7 @@ document.onscroll = throttle(function () {
 
 但为了能不污染全局，和有一定封装性建议还是用闭包裹一下
 
-```
+```tsx
     function debounce(func, time) {
       let timer;
       return function(...arg) {

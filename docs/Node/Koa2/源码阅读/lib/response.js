@@ -473,7 +473,7 @@ module.exports = {
    *
    * Examples:
    *
-   * ```
+   * ```tsx
    * this.append('Link', ['<http://localhost/>', '<http://localhost:3000/>']);
    * this.append('Set-Cookie', 'foo=bar; Path=/; HttpOnly');
    * this.append('Warning', '199 Miscellaneous warning');

@@ -23,7 +23,7 @@ SPA 是 single page web application 的简称，译为单页 Web 应用。
 - hashchange 是 hash 值发生改变的调用的函数
   基于以上三点我们可以写一个路由实例
 
-```
+```tsx
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -106,7 +106,7 @@ History 接口允许操作浏览器的曾经在标签页或者框架里访问的
 当活动历史记录条目更改时，将触发 popstate 事件。如果被激活的历史记录条目是通过对 history.pushState（）的调用创建的，或者受到对 history.replaceState（）的调用的影响，popstate 事件的 state 属性包含历史条目的状态对象的副本。
 需要注意的是调用 history.pushState()或 history.replaceState()不会触发 popstate 事件。只有在做出浏览器动作时，才会触发该事件，如用户点击浏览器的回退按钮（或者在 Javascript 代码中调用 history.back()）
 
-```
+```tsx
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -189,7 +189,7 @@ nginx location 匹配规则
 
 
 
-```
+```tsx
 location / {
     root /code/app1/build;
     index index.html index.htm;

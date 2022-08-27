@@ -2,7 +2,7 @@
 
 React 为函数组件提供了一个 memo 方法，它和 PureComponent 在数据比对上唯一的区别就在于 只进行了 props 的浅比较，因为函数组件是没有 state 的。
 
-```
+```tsx
 function Home () {
     //xxx
 } 
@@ -13,7 +13,7 @@ export default React.memo (Home);
 
 当你不需要在 fragment 标签中添加任何 prop 且你的工具支持的时候，你可以使用 短语法：
 
-```
+```tsx
 function ListItem({ item }) {
   return (
     <>
@@ -27,7 +27,7 @@ function ListItem({ item }) {
 
 ## 使用useMemo缓存大量的计算
 
-```
+```tsx
 // 避免这样做
 function Component(props) {
   const someProp = heavyCalculation(props.item);
@@ -44,7 +44,7 @@ function Component(props) {
 
 ## 小图标以base64打包嵌入页面
 
-```
+```tsx
  module: {
     // 编译器
     //noPars:/jquery/,// 比如我引入了jquery 它不依赖其他的包，就不需要解析 直接打包
@@ -74,7 +74,7 @@ function Component(props) {
 原理 [git项目地址](https://github.com/ant-design/babel-plugin-import)
 在babel转码的时候，把整个库‘antd’的引用，变为'antd/lib/button'具体模块的引用。这样webpack收集依赖module就不是整个antd，而是里面的button.
 
-```
+```tsx
 import { Button } from 'antd';
 ReactDOM.render(<Button>xxxx</Button>);
 
@@ -99,7 +99,7 @@ ReactDOM.render(<_button>xxxx</_button>);
 #### 懒加载
 
 结合动态载入import()返回一个Promise，我们可以根据状态来显示Loading，Loadable这个库已经封装好了
-```
+```tsx
 import Loadable from 'react-loadable';
 import Loading from './my-loading-component';
 const LoadableComponent = Loadable({
@@ -126,7 +126,7 @@ export default class App extends React.Component {
 react-loadable 还提供了 preload 功能
 假如有统计数据显示，用户在进入首页之后大概率会进入 About 页面，那我们就在首页加载完成的时候去加载 about.js，这样等用户跳到 About 页面的时候，js 资源都已经加载好了，用户体验会更好。
 
-```
+```tsx
 componentDidMount() {
   LoadableAbout.preload();
 }
@@ -142,7 +142,7 @@ componentDidMount() {
 - 这两个页面都引用了utils.js
 
 
-```
+```tsx
 
 const LoadablePageA = Loadable({
   loader: () => import(/* webpackChunkName: "pageA" */ '@/pageA'),
@@ -165,7 +165,7 @@ const LoadablePageB = Loadable({
 好的现在有个问题， 你打包就会发现pageA.js 和pageB.js 里面都打包了 utils.js，重复了
 所有在webpack配置的时候需要先将公共代码提出去
 
-```
+```tsx
 module: {...},
 optimization: {
   splitChunks: {
@@ -189,7 +189,7 @@ plugins: ...
 ```
 
 reuseExistingChunk详细解释
-```
+```tsx
  cacheGroups: {
       Chunk 1 : {
         test: / A, B, C三个模块/,
@@ -208,7 +208,7 @@ reuseExistingChunk详细解释
 - Chunk 2 (named two): modules B, C
 
 第一种配置：
-```
+```tsx
 {
   minChunks: 2,
   reuseExistingChunk: false // default
@@ -224,7 +224,7 @@ reuseExistingChunk详细解释
 
 
 第二种配置：
-```
+```tsx
 {
   minChunks: 2,
   reuseExistingChunk: true
@@ -244,7 +244,7 @@ Chunk 2 (named two): modules B, C
 动态导入主要应用场景是延迟加载方法，对于组件来说，并不是很适用，但是React.lazy对于组件的加载则是有比较大的帮助。
 注意：目前明确指出，React.lazy和suspense并不适用于服务端渲染
 既然是延迟加载，就会有一个加载过程，之前在渲染的时候，基本我们自都是顶一个一个`<Loading>`组件，然后通过变量控制进行操作，如果加载完成，取消掉则`<Loading>`组件。
-```
+```tsx
 
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 
@@ -263,7 +263,7 @@ function MyComponent() {
 
 fallback 属性接受任何在组件加载过程中你想展示的 React 元素。你可以将 Suspense 组件置于懒加载组件之上的任何位置。你甚至可以用一个 Suspense 组件包裹多个懒加载组件。
 
-```
+```tsx
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
 
@@ -284,7 +284,7 @@ function MyComponent() {
 
 ### 基于路由的代码分割
 
-```
+```tsx
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React, { Suspense, lazy } from 'react';
 

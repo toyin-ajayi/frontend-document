@@ -7,7 +7,7 @@
 注意：BrowserRouter采用了Redux类似思想，在最顶层Provider里提供context，来进行全局子组件通信
 
 
-```
+```tsx
 import React from 'react';
 import {Provider} from './context';
 // 
@@ -70,7 +70,7 @@ export default class BrowserRouter extends React.Component{
 - 从React的context API全局对象中拿到history
 - 监听a标签点击事件调用history跳转
 
-```
+```tsx
 class Link extends React.Component {
 
     
@@ -174,7 +174,7 @@ class Route extends React.Component {
 
 Switch组件其实就是包装在Route外面的一层组件，它会对Route进行筛选后返回唯一Route，如果 没有Switch的话，可以渲染多个Route代表的组件
 
-```
+```tsx
 import React from 'react';
 import {Consumer} from './context';
 import pathToRegExp from 'path-to-regexp';
@@ -203,7 +203,7 @@ export default class Switch extends React.Component{
 ## Redirect
 对于没有匹配到的Route会默认重定向渲染Redirect，其实就是直接改变url和BrowserRouter中state.pathname导致重新渲染组件
 
-```
+```tsx
 import React from 'react';
 import {Consumer} from './context';
 export default class Redirect extends React.Component{
@@ -222,7 +222,7 @@ export default class Redirect extends React.Component{
 
 是一个高阶组件，前面提到只有Router渲染出来的组件才有match、location、history三个属性,但普通的组件也想用怎么办？
 可以在外面套一层Route组件，从而得到这三个属性，这种做法叫高阶组件withRoute。
-```
+```tsx
 import React from 'react';
 import Route from './Route'
 let withRouter = (Component) =>{

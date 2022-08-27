@@ -17,7 +17,7 @@ js 函数有一个内部属性 [[scope]]，当函数创建的时候，就会保�
 
 执行 foo 函数，先从 foo 函数内部查找是否有局部变量 value，如果没有，就根据书写的位置，查找上面一层的代码，也就是 value 等于 1，所以结果会打印 1。
 
-```
+```tsx
 var value = 1;
 
 function foo() {
@@ -74,7 +74,7 @@ JavaScript 引擎创建了执行上下文栈（Execution context stack，ECS）�
 当 JavaScript 引擎首次读取你的脚本时，它会创建一个全局执行上下文并将其推入当前的执行栈。每当发生一个函数调用，引擎都会为该函数创建一个新的执行上下文并将其推到当前执行栈的顶端。
 引擎会运行执行上下文在执行栈顶端的函数，当此函数运行完成后，其对应的执行上下文将会从执行栈中弹出，上下文控制权将移到当前执行栈的下一个执行上下文。
 
-```
+```tsx
 let a = 'Hello World!';
 
 function first() {
@@ -100,7 +100,7 @@ console.log('Inside Global Execution Context');
 5. 当 first() 函数执行完成后，它的执行上下文从当前执行栈中弹出，上下文控制权将移到全局执行上下文。
    一旦所有代码执行完毕，Javascript 引擎把全局执行上下文从执行栈中移除。
 
-```
+```tsx
 // 伪代码
 
 ECStack = [
@@ -137,7 +137,7 @@ ECStack.pop(first);
 - 例如，当 JavaScript 代码引用 parseInt() 函数时，它引用的是全局对象的 parseInt 属性。全局对象是作用域链的头，还意味着在顶层 JavaScript 代码中声明的所有变量都将成为全局对象的属性。
 - 可以通过 this 引用，在客户端 JavaScript 中，全局对象就是 Window 对象。
 
-```
+```tsx
 console.log(this);// this 引用，在客户端 JavaScript 中，全局对象就是 Window 对象。
 
 console.log(this instanceof Object);//全局对象是由 Object 构造函数实例化的一个对象。
@@ -165,7 +165,7 @@ console.log(this.a);
 2. 函数声明
 3. 变量声明
 
-```
+```tsx
 function foo(a) {
   var b = 2;
   var c=3;
@@ -190,7 +190,7 @@ foo(1);
   - 将变量名作为变量对象的属性，值设置为 undefined。
   - 如果该变量名在变量对象中已存在，为防止与函数名冲突，则跳过，不进行任何操作。
 
-```
+```tsx
 VO = {
     arguments: {
         0: 1,
@@ -208,7 +208,7 @@ VO = {
 上下文创建完成之后，就会开始执行代码，这个时候，会完成变量赋值，函数引用，以及执行其他代码。
 注意：在创建阶段函数的变量的值就是函数引用，在这个阶段就被同名的变量又重新赋值了
 
-```
+```tsx
 AO = {
     arguments: {
         0: 1,
@@ -226,7 +226,7 @@ AO = {
 这就是常说的什么函数声明提升优先于变量声明提升
 提升只是说法，其本质就是执行执行上下文的创建和执行产生的影响
 
-```
+```tsx
 function test(arg){
   console.log(arg);  // function arg(){console.log('hello world') }
   var arg = 'hello';
@@ -246,7 +246,7 @@ test('hi');
 ### 注意一些if语句的块级作用域
 
 如上的分析，JavaScript引擎首先会扫描所有的变量声明，然后将这些变量声明移动到顶部，if内部也不例外，如果按照下面这么写很有可能出BUG，因为`"a" in window`是true，a先被扫描注册到了全局
-```
+```tsx
 // 不会进入if语句
 if(!("a" in window)){
     var a = 10;
@@ -256,7 +256,7 @@ console.log(a); // undefined
 ```
 这时候有两种改进写法，一种是直接用let a = 10,还可以
 
-```
+```tsx
 if(window.a==undefined){
     var a = 10;
     console.log(123)
@@ -301,7 +301,7 @@ console.log(a); // 10
 
 ### 举个例子
 
-```
+```tsx
 var a = 20;
 
 function test() {
@@ -319,7 +319,7 @@ test();
 执行过程
 1.test 函数在全局上下文中被创建，保存全局上下文的变量对象组成的作用域链到内部属性[[scope]]
 
-```
+```tsx
 test.[[scope]] = [
     globalContext.VO
 ];
@@ -327,7 +327,7 @@ test.[[scope]] = [
 
 2.创建 test 函数执行上下文，test 函数执行上下文被压入执行上下文栈
 
-```
+```tsx
 ECStack = [
     testContext,
     globalContext
@@ -336,7 +336,7 @@ ECStack = [
 
 3.test 函数并不立刻执行，开始做准备工作，第一步：复制[[scope]]属性到函数上下文，创建了作用域链
 
-```
+```tsx
 testContext = {
     Scope: testscope.[[scope]],
 }
@@ -344,7 +344,7 @@ testContext = {
 
 4.第二步：用 arguments 创建活动对象，随后初始化活动对象，加入形参、函数声明、变量声明
 
-```
+```tsx
 testscopeContext = {
     AO: {
         arguments: {
@@ -358,7 +358,7 @@ testscopeContext = {
 
 5.第三步：将活动对象压入 testscope 作用域链顶端
 
-```
+```tsx
 testscopeContext = {
     AO: {
         arguments: {
@@ -372,7 +372,7 @@ testscopeContext = {
 
 6.准备工作做完，开始执行函数，随着函数的执行，修改 AO 的属性值
 
-```
+```tsx
 testscopeContext = {
     AO: {
         arguments: {
@@ -386,7 +386,7 @@ testscopeContext = {
 
 7.查找到 b 的值，返回后函数执行完毕，函数上下文从执行上下文栈中弹出
 
-```
+```tsx
 ECStack = [
     globalContext
 ];
@@ -395,7 +395,7 @@ ECStack = [
 8.如果 test 内部含有 innerTest 函数，则在该 innerTest 函数创建时将 test 上下文中的作用域链传入(testscopeContext.Scope)
 然后后循环执行和 test 相同的步骤
 
-```
+```tsx
 var a = 20;
 
 function test() {
@@ -412,7 +412,7 @@ test();
 
 全局，函数 test，函数 innerTest 的执行上下文先后创建。我们设定他们的变量对象分别为 VO(global)，VO(test), VO(innerTest)。而 innerTest 的作用域链，则同时包含了这三个变量对象，所以 innerTest 的执行上下文可如下表示。
 
-```
+```tsx
 innerTestContext  = {
     AO: {...},  // 变量对象
     Scope: [VO(innerTest), VO(test), VO(global)], // 作用域链

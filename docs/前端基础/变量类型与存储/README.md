@@ -44,7 +44,7 @@ Object Function RegExp Math Date 值为对象，存放在堆内存中
 
 ### 图解存储空间
 
-```
+```tsx
 let a1 = 0; // 栈内存
 let a2 = "this is string" // 栈内存
 let a3 = null; // 栈内存
@@ -56,7 +56,7 @@ let c = [1, 2, 3]; // 变量c存在于栈中，[1, 2, 3]作为对象存在于堆
 
 ### 引用类型的赋值
 
-```
+```tsx
 let a = { x: 10, y: 20 }
 let b = a;
 b.x = 5;
@@ -69,7 +69,7 @@ console.log(a.x); // 5
 ## 还有一种比较特殊的包装类型
 
 为什么可以在一个基本类型字符串上调用方法？
-```
+```tsx
 String.prototype.giveLydiaPizza = () => {
   return "Just give Lydia pizza already!";
 };

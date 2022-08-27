@@ -1,6 +1,6 @@
 ## React-Router-V3
 
-```
+```tsx
 
 import React from "react";
 import { render } from "react-dom";
@@ -43,7 +43,7 @@ render(<App />, document.getElementById("root"));
 PrimaryLayout组件的this.props.children，这时是undefined。
 IndexRoute就是解决这个问题，显式指定Home是根路由的子组件，即指定默认情况下加载的子组件
 使用 {props.children} 来嵌套组件，嵌套出来的结果如下
-```
+```tsx
 <PrimaryLayout>
     <HomePage/>
 <PrimaryLayout/>
@@ -77,7 +77,7 @@ IndexRoute就是解决这个问题，显式指定Home是根路由的子组件，
 
 这种相当于注册一个事件，的url发生改变的时候，上层的Router会监听到，并更新渲染整个下层，下层的route满足`/PropsButton`匹配，就去发布渲染PropsButton组件，有点发布订阅的感觉（我也不知能不能怎么说，先这么理解一哈
 
-```
+```tsx
 <Route path="/PropsButton" component={PropsButton} />
 ```
 
@@ -96,7 +96,7 @@ IndexRoute就是解决这个问题，显式指定Home是根路由的子组件，
 ### 一个路由渲染多个组件的样式问题
 
 比如下面我们想让两个路由渲染的组件并排，只需要给个公共父节点即可操作
-```
+```tsx
   <div style={{display:'flex'}}>
     <Route path="/PropsButton" component={PropsButton} />
     <Route path="/PropsButton" component={ComplexSelector} />
@@ -107,11 +107,11 @@ IndexRoute就是解决这个问题，显式指定Home是根路由的子组件，
 
 ### params
 
-```
+```tsx
 <Route path='/user/:name' component={UserPage}></Route>
 this.props.history.push("/user/sam");
 ```
-```
+```tsx
  this.props.params.name
 ```
 
@@ -122,7 +122,7 @@ query方式可以传递任意类型的值，但是页面的URL也是由query的�
 优点：刷新页面不会掉参数
 缺点：不安全，没有加密
 
-```
+```tsx
 // 跳转
  this.props.history.push({
         pathname: '/user',
@@ -135,7 +135,7 @@ this.props.location.query
 ### state
 
 state方式类似于post，依然可以传递任意类型的数据，而且可以不以明文方式传输。
-```
+```tsx
 this.props.history.push({
         pathname: '/user',
         state: data,

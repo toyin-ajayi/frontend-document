@@ -11,7 +11,7 @@ createElement的参数
 - attrs是属性对象
 - children是 0 到多个子结点（解构赋值实现
 
-```
+```tsx
 function createElement(tag, attrs, ...children) {
   return {
     tag,
@@ -23,7 +23,7 @@ function createElement(tag, attrs, ...children) {
 
 ## 需要一个Render函数来渲染
 
-```
+```tsx
 ReactDOM.render(<App/>,document.getElementById('root'));
 ```
 App这个组件是要被babel用createElement解析成一个多层嵌套的对象，这个对象就是我们页面UI描述，也就是虚拟DOM树，我们对这个对象递归渲染即可得到页面。
@@ -40,7 +40,7 @@ App这个组件是要被babel用createElement解析成一个多层嵌套的对�
 ## 类组件的实现
 
 这是一个标准的React组件写法
-```
+```tsx
 class Counter extends React.Component {
   constructor(props) {
     super(props);

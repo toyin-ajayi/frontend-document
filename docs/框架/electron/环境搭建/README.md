@@ -34,7 +34,7 @@
 - Dev：直接用http://localhost:3000即可（以及内部帮我们打包运行了
 - Pro：一般我们可以个性化配置webpack打包到renderer/index.html，那我们就加载这个html即可
 
-```
+```tsx
  output: {
     path: path.resolve(rootPath, 'dist/renderer'),
     filename: 'js/[name].js',
@@ -42,7 +42,7 @@
   },
 ```
 
-```
+```tsx
 if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL('http://localhost:3000')
   } else {

@@ -12,7 +12,7 @@ Ref 转发是一个可选特性，其允许某些组件接收 ref，并将其向
 - 向下转发该 ref 参数到 `<button ref={ref}>`，将其指定为 JSX 属性。
 - 当 ref 挂载完成，ref.current 将指向 `<button>` DOM 节点。
 
-```
+```tsx
 
 import React, { Component } from 'react'
 
@@ -52,7 +52,7 @@ refs 将不会透传下去。这是因为 ref 不是 prop 属性。就像 key �
 
 ### 错误示范
 高阶函数组件的定义
-```
+```tsx
 function logProps(WrappedComponent) {
   class LogProps extends React.Component {
     componentDidUpdate(prevProps) {
@@ -91,7 +91,7 @@ export default logProps(FancyButton);
 ```
 
 使用的时候
-```
+```tsx
 
 import React, { PureComponent } from "react";
 import FancyButton from "./higherOrderRefsForward";
@@ -123,7 +123,7 @@ export default class higherOrderRefsForwardIndex extends PureComponent {
 React.forwardRef API 明确地将 refs 转发到内部的 FancyButton 组件
 
 #### 高阶组件添加React.forwardRef
-```
+```tsx
 function logProps(Component) {
   class LogProps extends React.Component {
     componentDidUpdate(prevProps) {
@@ -154,7 +154,7 @@ function logProps(Component) {
 
 #### 传个组件给高阶组件包裹
 
-```
+```tsx
   //higherOrderRefsForward.js
   class FancyButton extends React.Component {
     alert(){
@@ -171,7 +171,7 @@ function logProps(Component) {
 
 #### 调用FancyButton
 
-```
+```tsx
 import React, { PureComponent } from "react";
 import FancyButton from "./higherOrderRefsForward";
 

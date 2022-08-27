@@ -23,7 +23,7 @@ Map和Object的区别
 - entries()：返回键值对的遍历器
 - forEach()：使用回调函数遍历每个成员
 
-```
+```tsx
 const map = new Map([['a', 1], ['b',  2]])
 
 for (let key of map.keys()) {
@@ -47,7 +47,7 @@ for (let [key, value] of map.entries()) {
 
 ### 只有对同一个对象的引用，Map 结构才将其视为同一个键
 
-```
+```tsx
 const k1 = ['a'];
 const k2 = ['a'];
 
@@ -87,7 +87,7 @@ NaN 与 NaN 是不恒等的，但是在 Set 中认为NaN与NaN相等，所有只
 
 由于Set结构没有键名，只有键值（或者说键名和键值是同一个值），所以keys方法和values方法的行为完全一致。
 
-```
+```tsx
 const set = new Set(['a', 'b', 'c'])
 
 for (let item of set.keys()) {

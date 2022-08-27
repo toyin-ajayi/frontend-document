@@ -24,7 +24,7 @@
 运行的次数的函数为f(n)=3，根据推导大O阶的规则1，我们需要将常数3改为1，则这个算法的时间复杂度为O(1)。
 
 如果`let y = x*x*x `执行10次，还是O(1)，因为和x这个问题规模没有联系
-```
+```tsx
 function(x){
     let y = x*x*x // 执行一次
     let sum = y+x // 执行两次
@@ -38,7 +38,7 @@ function(x){
 代码循环执行了x次，每一次都执行了3步，那么f(n) = 3n,
 根据第三条法则：如果最高阶项存在且不是1，则去除与这个项相乘的常数。
 那么时间复杂度为O(n)。
-```
+```tsx
 function(x){
     for(int i=0;i<x;i++){
         let y = x*x*x // 执行一次
@@ -52,7 +52,7 @@ function(x){
 
 由2^x=n得出x=log₂n，因此得出这个算法的时间复杂度为O(logn)。
 
-```
+```tsx
 int number=1;
 while(number<n){
 number=number*2;
@@ -63,7 +63,7 @@ number=number*2;
 
 ### 平方阶O(n²)
 
-```
+```tsx
   for(int i=0;i<n;i++){   
       for(int j=0;j<n;i++){
          //复杂度为O(1)的算法

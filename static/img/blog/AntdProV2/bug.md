@@ -2,14 +2,14 @@
 
 ## 服务器端开启gzip
 * step1:启动 分析页面打包情况
-```
+```tsx
 cnpm run analyze
 ```
 ![webpack分析](img/1.png)
 
 * step2: 在nginx 中启用gzip功能
 
-```
+```tsx
 server {
     listen 80;
     # gzip config
@@ -37,7 +37,7 @@ server {
 `npm install echarts-for-react --save`
 
 页面中使用方式
-```
+```tsx
 import ReactEcharts from 'echarts-for-react';//引入组件
 import {graphic} from 'echarts/lib/echarts';//按需引入使用的方法
 
@@ -51,7 +51,7 @@ import {graphic} from 'echarts/lib/echarts';//按需引入使用的方法
 ### 更改antdPro的icon载入方式
 原来的icon加载是将所用的icon放入dist.js全部载入，没有做到按需加载
 * step1:在src文件夹下面创建icons.js文件，用于引入按需加载的图标
-```
+```tsx
 export {
   default as CopyrightOutline
 } from '@ant-design/icons/lib/outline/CopyrightOutline';
@@ -63,7 +63,7 @@ export {
 } from '@ant-design/icons/lib/fill/LockFill';
 ```
 * step2:在config.js里面配置以替换载入路径
-```
+```tsx
 export default {
   alias: {
     '@ant-design/icons/lib/dist$': path.resolve(__dirname, '../src/icons.js')

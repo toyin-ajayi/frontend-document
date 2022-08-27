@@ -31,7 +31,7 @@ http://www.ayqy.net/blog/hot-module-replacement/
 
 ### 监听webpack编译结束
 
-```
+```tsx
 // node_modules/webpack-dev-server/lib/Server.js
 // 绑定监听事件
 setupHooks() {
@@ -52,7 +52,7 @@ _sendStats() {
 ###  webpack监听文件变化
 
 每次修改代码，就会触发编译。说明我们还需要监听本地代码的变化，主要是通过setupDevMiddleware方法实现的。
-```
+```tsx
 // node_modules/webpack-dev-middleware/index.js
 compiler.watch(options.watchOptions, (err) => {
     if (err) { /*错误处理*/ }
@@ -72,7 +72,7 @@ setFs(context, compiler);
 
 ### 客户端从新拉取资源
 
-```
+```tsx
 // webpack-dev-server/client/index.js
 var socket = require('./socket');
 var onSocketMessage = {

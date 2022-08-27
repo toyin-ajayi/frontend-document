@@ -12,7 +12,7 @@
 
 示例:
 
-```
+```tsx
 输入: [1,2,3]
 输出:
 [
@@ -37,7 +37,7 @@
 
 4、恢复状态：撤销刚才的选择，向上回溯
 
-```
+```tsx
 result = []
 function backtrack(路径, 选择列表,result):
     if 满足结束条件:
@@ -61,7 +61,7 @@ function backtrack(路径, 选择列表,result):
 
 ### Js代码
 
-```
+```tsx
 function all(numArray) {
   let memoArray = [];
   let  all =[]
@@ -98,7 +98,7 @@ const x = all([1,2,3,4,5])
 每一种解法包含一个明确的 n 皇后问题的棋子放置方案，该方案中 'Q' 和 '.' 分别代表了皇后和空位。
 
 示例:
-```
+```tsx
 输入: 4
 输出: [
  [".Q..",  // 解法 1
@@ -125,7 +125,7 @@ const x = all([1,2,3,4,5])
 ### Js代码
 > 没做太多优化，内存占用较高。。。
 注意：因为JS数组是引用类型，因为你要恢复到上一状态，很可能把你要输出的数组也改了，这里我用Array.from写了个深拷贝来解决
-```
+```tsx
 function solveNQueens(n) {
 // 填充数组，用map是切断引用关联
   let board = Array(n)
@@ -218,7 +218,7 @@ board =
 
 ### JS 代码
 
-```
+```tsx
 function exist(arr,word){
     for(let i = 0; i<arr.length;i++){
         for(let j = 0;j<arr[i].length;j++){

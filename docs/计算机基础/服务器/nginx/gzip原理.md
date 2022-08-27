@@ -5,7 +5,7 @@
 客户端请求时，可以用 Accept-Encoding:gzip，用户说明接受哪些压缩方法。
 
 nginx服务端响应请求时候压缩：
-```
+```tsx
 server {
     # 开启gzip
     gzip on;
@@ -20,14 +20,14 @@ server {
 
 node服务端响应请求时候压缩：
 
-```
+```tsx
 const compress = require('koa-compress');
 const app = module.exports = new Koa();
 app.use(compress());
 ```
 
 Webpack的 gzip设置 - 应用构建时候压缩
-```
+```tsx
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
 webpackConfig.plugins.push(

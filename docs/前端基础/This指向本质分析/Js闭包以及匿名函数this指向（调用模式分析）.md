@@ -4,7 +4,7 @@ this的指向在函数定义的时候是确定不了的，只有函数执行的�
 ## 案例1闭包-了解this指向最后一个调用者
 这里的sayTwo相当于是一个闭包，内部的匿名函数的执行是this的函数调用模式，具体在案例2通过调用模式分析
 
-```
+```tsx
    var name = 'window'
     var person = {
         name :'Alan',
@@ -34,7 +34,7 @@ this的指向在函数定义的时候是确定不了的，只有函数执行的�
 
 ## 案例2匿名函数-函数调用模式分析
 
-```
+```tsx
     var name = 'window'
     var person = {
         name :'one',
@@ -95,7 +95,7 @@ JS（ES5）里面有三种函数调用形式：
 3.fn其实与上面返回匿名函数形成了闭包，且fn也其实是一个匿名函数，匿名函数的执行具有全局性，fn内部this应该指向window
 4这里用apply修正this指向，使fn内部的this重新指向document
 
-```
+```tsx
             function throttle(fn, delay) {
                 console.log(this)//window
                 // 记录上一次函数触发的时间
@@ -127,7 +127,7 @@ JS（ES5）里面有三种函数调用形式：
 
 ## 参考JS高级编程的案例用call修改this指向
 
-```
+```tsx
 var name = "global";
 
 var foo = {

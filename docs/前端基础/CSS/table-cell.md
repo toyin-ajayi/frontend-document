@@ -1,6 +1,6 @@
 ## display:table-cell原理
 
-```
+```tsx
 <div id="table-cell">content</div>
 
 #table-cell {
@@ -9,7 +9,7 @@
 ```
 
 等价于
-```
+```tsx
 <div id="table">
     <div id="table-row">
         <div id="table-cell">content</div>

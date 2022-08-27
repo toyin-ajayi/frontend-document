@@ -23,7 +23,7 @@
 
 在 Watcher 的更新函数里，最后执行的是是这个方法
 
-```
+```tsx
 this.deep = this.user = this.lazy = this.sync = false
 ...
   update () {
@@ -79,7 +79,7 @@ export function queueWatcher (watcher: Watcher) {
 
 nextTick(flushSchedulerQueue)中的 flushSchedulerQueue 函数其实就是 watcher 的视图更新:
 
-```
+```tsx
 function flushSchedulerQueue () {
   flushing = true
   let watcher, id
@@ -112,7 +112,7 @@ _/
 
 在 Vue 源码 2.5+ 后，nextTick 的实现单独有一个 JS 文件来维护它，它的源码并不多，总共也就 100 多行。接下来我们来看一下它的实现，在 src/core/util/next-tick.js 中：
 
-```
+```tsx
 import { noop } from 'shared/util'
 import { handleError } from './error'
 import { isIOS, isNative } from './env'
@@ -248,7 +248,7 @@ export default {
 
 
 
-```
+```tsx
 var vm = new Vue({
     el: '#example',
     data: {

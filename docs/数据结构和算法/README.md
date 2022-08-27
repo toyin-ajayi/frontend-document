@@ -37,7 +37,7 @@ sidebar_position: 1
 - [Graph](https://github.com/jianjiachenghub/DataStructure-Algorithm/tree/master/DataStructure/Graph)
 
 ## 项目结构
-```
+```tsx
 JavaScript-DataStructure-Algorithm
 ├── Algorithm
 │   ├── README.md

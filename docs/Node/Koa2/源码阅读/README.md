@@ -23,12 +23,12 @@
 
 ## 初始化koa的app
 
-```
+```tsx
 const Koa = require('koa');
 const app = new Koa();
 ```
 new Koa 其实就是实力化了koa模块导出的方法，现在可以进去看一下究竟干了什么：
-```
+```tsx
 //  require('koa')
 module.exports = class Application extends Emitter {
   constructor() {
@@ -57,13 +57,13 @@ module.exports = class Application extends Emitter {
 ## 注册中间件 app.use
 
 实例化koa之后，接下来，使用app.use传入中间件函数
-```
+```tsx
 app.use(async (ctx,next) => {
     await next();
 });
 ```
 koa对应执行源码：
-```
+```tsx
  use(fn) {
     if (isGeneratorFunction(fn)) {
       fn = convert(fn);
@@ -81,7 +81,7 @@ koa-convert就是将generator函数转为类async函数，koa2处于对koa1版�
 ## 程序真正启动 app.listen
 
 使用了node原生http.createServer创建服务器，并把this.callback()作为参数传递进去。可以知道，this.callback()返回的一定是这种形式：(req, res) => {}。继续看下this.callback代码。
-```
+```tsx
 listen(...args) {
     const server = http.createServer(this.callback());
     return server.listen(...args);
@@ -91,7 +91,7 @@ listen(...args) {
 ## callback函数
 node原生http.createServer创建服务器，并把this.callback()作为参数传递进去。可以知道，this.callback()返回的一定是这种形式：(req, res) => {}
 
-```
+```tsx
 callback() {
     // compose处理所有中间件函数。洋葱模型实现核心
     const fn = compose(this.middleware);
@@ -140,7 +140,7 @@ context.js、request.js、response.js三个文件分别是request、response、c
 ### createContext函数
 从上面callback函数里可以看出ctx是由this.createContext函数生成的
 
-```
+```tsx
  // 针对每个请求，都要创建ctx对象
   createContext(req, res) {
     const context = Object.create(this.context);
@@ -160,7 +160,7 @@ context.js、request.js、response.js三个文件分别是request、response、c
 
 request、response两个功能模块分别对node的原生request、response进行了一个功能的封装，使用了getter和setter属性，基于node的对象req/res对象封装koa的request/response对象。我们基于这个原理简单实现一下request.js、response.js，首先创建response.js文件，然后写入以下代码：
 
-```
+```tsx
 // response.js
 module.exports = {
     get body() {
@@ -184,7 +184,7 @@ module.exports = {
 
 我们写的response看上去很简单，可以再参考下koa2的request.js的部分源码:
 可以发现其实koa2内部通过class的get set 帮我我们分封装了大部分属性，使得我们的操作更加简单
-```
+```tsx
 module.exports = {
 
   /**
@@ -258,7 +258,7 @@ delegates依赖的作用
 
 
 简单的实例：如将request上的方法直接代理到ctx上:
-```
+```tsx
 var ctx = {
 
 const delegate = require('delegates');
@@ -281,7 +281,7 @@ console.log(ctx.fn(1))
 ![图片加载失败](./img/createContext.png)
 
 所以这样委托代理后，即有set和get封装处理的node原生API，又有koa2帮我们处理过的的API
-```
+```tsx
 app.use((ctx) => {
   console.log(ctx.req.url)
   console.log(ctx.request.req.url)
@@ -310,7 +310,7 @@ Koa的中间件机制类似上面的compose，同样是把多个函数包装成�
 
 
 如下是注册的一个中间件，use接受一个async函数，它有两个参数一个是ctx，一个是next，具体参数的含义看后面的源码分析
-```
+```tsx
 // 日志 手写的打印信息的功能
 app.use(async (ctx, next) => {
   const start = new Date()
@@ -375,7 +375,7 @@ function compose (middleware) {
 ## 中间件的next函数是个啥
 
 经过上面的源码分析可以发现我们传入app.use的函数最终是在compose里dispatch返回的函数里执行的，传入use的函数就是下面的fn函数
-```
+```tsx
 Promise.resolve(fn(context, dispatch.bind(null, i + 1)));
 ```
 所以fn的第二个参数就是我们的next，next就是一个包裹了dispatch的函数
@@ -397,7 +397,7 @@ Promise.resolve(fn(context, dispatch.bind(null, i + 1)));
 现在假设我们不加的话，如果下一个中间件 也就是 next 的执行, 其实是会被放到异步里面去了，那么这时候可能后面的next中间件还没执行完，前面的中间件就往后执行了，这就不是洋葱模型了（当仅在第二个中间件中使用await关键字时有可能破坏这个执行顺序
 
 我们用 await  promiseFn();来模拟一个异步耗时任务
-```
+```tsx
 app.use((ctx,next)=>{
   console.log('111');
    var result =  next();
@@ -421,7 +421,7 @@ function promiseFn(){
 ```
 期待输出结果为洋葱模型：
 
-```
+```tsx
 //111
 //333
 //444
@@ -430,7 +430,7 @@ function promiseFn(){
 ```
 输出结果却变为：
 
-```
+```tsx
 //111
 //333
 //222
@@ -449,7 +449,7 @@ function promiseFn(){
 因为compose组合之后的函数返回的仍然是Promise对象，所以我们可以在catch捕获异常
 之前知道创建sever后最后返回的是handleRequest函数执行的结果,fnMiddleware就是compose处理后返回的方法，执行开启中间的按顺序调用，最后返回Promise。
 所以可以在最后加上catch(onerror)
-```
+```tsx
 handleRequest(ctx, fnMiddleware) {
   const handleResponse = () => respond(ctx);
   const onerror = err => ctx.onerror(err);
@@ -463,7 +463,7 @@ handleRequest(ctx, fnMiddleware) {
 ### 框架层如何感知中间件内部的错误
 
 方法一：如果我们想在框架层面捕获中间件的错误可以：
-```
+```tsx
 // 捕获全局异常的中间件
 app.use(async (ctx, next) => {
   try {
@@ -477,14 +477,14 @@ app.use(async (ctx, next) => {
 方法二：因为Application一开始就继承原生的Emitter，可以通过事件的发布订阅，从而实现error监听
 
 我们监听了一个事件error，它在什么时候触发呢？与context.js内部实现的一个onerror方法有关，这个方法就是上面中间件内部报错会回调的方法
-```
+```tsx
 app.on('error', err => {
     console.log('error happends: ', err.stack);
 });
 ```
 
 onerror是封装好的方法，注意看`this.app.emit('error', err, this)`这句就是触发我们的监听函数
-```
+```tsx
   onerror(err) {
     if (null == err) return;
     if (!(err instanceof Error)) err = new Error(util.format('non-error thrown: %j', err));

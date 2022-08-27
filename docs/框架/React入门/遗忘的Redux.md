@@ -12,7 +12,7 @@ connect函数生成一个订阅商店的包装器组件。分派操作时，将�
 是在高阶组件（connect 函数返回的组件）里的 componentDidMount 订阅 store 更新，和 componentWillUnmount 取消订阅。
 
 下面是一个伪代码
-```
+```tsx
 function connect(mapStateToProps, mapDispatchToProps) {
   return function (WrappedComponent) {
     return class extends React.Component {
@@ -123,7 +123,7 @@ redux 的createStore()方法的第三个参数enhancer，enhancer（可以叫做
 这个加强的过程中做的事情，其实就是改造dispatch，添加上中间件。
 
 redux提供的applyMiddleware()方法返回的就是一个enhancer。
-```
+```tsx
 function createStore(reducer, preloadedState, enhancer) {
     if(enhancer是有效的){  
         return enhancer(createStore)(reducer, preloadedState)
@@ -143,7 +143,7 @@ function createStore(reducer, preloadedState, enhancer) {
 - 把所有改造函数compose成一个改造函数
 - 改造dispatch方法，传入compose函数里的所有函数都是用于扩展dispatch的，这些函数会被定义为这种形式
   
-```
+```tsx
 function applyMiddleware(...middlewares) {
     // 返回一个函数A，函数A的参数是一个createStore函数。
     // 函数A的返回值是函数B，其实也就是一个加强后的createStore函数，大括号内的是函数B的函数体
@@ -183,7 +183,7 @@ function applyMiddleware(...middlewares) {
 
 ```
 源码中用到了一个很有用的方法：compose()，将多个函数组合成一个函数。理解这个函数对理解中间件很有帮助，我们来看看它的源码：
-```
+```tsx
 function compose(...funcs) {
     // 当未传入函数时，返回一个函数：arg => arg
     if(funcs.length === 0) {
@@ -221,7 +221,7 @@ function compose(...funcs) {
 - promise函数中的next等于logger(...args)
 
 传入compose函数里的所有函数都是用于扩展dispatch的，这些函数会被定义为这种形式：
-```
+```tsx
 (dispatch) => {
   return function(...args) {
     // do something before
@@ -231,7 +231,7 @@ function compose(...funcs) {
 }
 
 ```
-```
+```tsx
   const thunk = thunk(middlewareAPI);
   const promise = promise(middlewareAPI);
   const logger = logger(middlewareAPI);
@@ -251,7 +251,7 @@ function compose(...funcs) {
   因为闭包的原因，最终生成的dispatch函数将会传入到每个中间件中。
 ```
 logger = logger(middlewareAPI);这里返回的logger已经类似于一个
-```
+```tsx
 function(next){
   // 这里的next可以理解为store.dispath,本质上就是调用 middleware 链中下一个 middleware 的 dispatch。
       return function(action){
@@ -280,13 +280,13 @@ function(next){
 
 直接来看一个啥都不干的中间件是如何实现的：
 
-```
+```tsx
 const doNothingMidddleware = (dispatch, getState) => next => action => next(action)
 
 ```
 日志记录的中间件：
 
-```
+```tsx
 let logger = function({ getState, dispatch }){
    return function(next){// 这里的next可以理解为store.dispath,本质上就是调用 middleware 链中下一个 middleware 的 dispatch。
       return function(action){
@@ -306,7 +306,7 @@ let logger = ({ getState, dispatch }) => next => action => {
 ```
 
 简化后的thunk中间件：
-```
+```tsx
 // 这是简化后的 redux-thunk
 const thunk = ({ dispatch, getState }) => next => action => {
     if (typeof action === 'function') {
@@ -331,7 +331,7 @@ const thunk = ({ dispatch, getState }) => next => action => {
 redux-thunk实现了相关异步流程内聚到redux的流程中，实现middleware的功能，也便于项目的开发与维护，避免冗余代码。而实现的方式便是改写redux中的dispatch API，使其可以除PlainObject外，接受一个函数作为参数。
 
 直接将thunk中间件引入，放在applyMiddleware方法之中，传入createStore方法，就完成了store.dispatch()的功能增强。即可以在reducer中进行一些异步的操作。
-```
+```tsx
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 
@@ -350,7 +350,7 @@ redux-thunk最重要的思想，就是可以接受一个返回函数的action cr
 
 因为这个action creator可以返回一个函数，那么就可以在这个函数中执行一些异步的操作
 
-```
+```tsx
 
 
 function createThunkMiddleware(extraArgument) {
@@ -365,7 +365,7 @@ function createThunkMiddleware(extraArgument) {
 
 ```
 三个箭头函数让你有点头晕，我来帮你展开一下：
-```
+```tsx
 function createThunkMiddleware(extraArgument) {
     
     return function({ dispatch, getState }) { // 这是「中间件函数」
@@ -394,7 +394,7 @@ function createThunkMiddleware(extraArgument) {
 
 ## 注册redux-thunk
 
-```
+```tsx
 import { createStore, compose, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import reducer from "./reducer";
@@ -409,7 +409,7 @@ export default store;
 ## 组件将state和Dispatch注入
 
 
-```
+```tsx
 const mapStateToProps = (state) => ({
   bannerList: state.getIn(['recommend', 'bannerList']),
   recommendList: state.getIn(['recommend', 'recommendList']),
@@ -450,7 +450,7 @@ reducer是用来计算state的，所以它的返回值必须是state，也就是
 
 
 ### api/request
-```
+```tsx
 import { axiosInstance } from "./config";
 
 export const getBannerRequest = () => {
@@ -463,7 +463,7 @@ export const getRecommendListRequest = () => {
 ```
 
 ### actionCreators
-```
+```tsx
 import * as actionTypes from './constants';
 import { fromJS } from 'immutable';
 import { getBannerRequest, getRecommendListRequest } from '../../../api/request';
@@ -515,7 +515,7 @@ export const changeEnterLoading = (data) => ({
 
 ### reducer
 
-```
+```tsx
 import * as actionTypes from './constants';
 import { fromJS } from 'immutable';
 

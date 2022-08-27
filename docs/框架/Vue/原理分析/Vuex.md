@@ -11,7 +11,7 @@ install 函数作用很简单
 - 确保 Vuex 只安装一次
 - 混入 beforeCreate 钩子函数，可以在组件中使用 this.$store
 
-```
+```tsx
 export function install (_Vue) {
   // 确保 Vuex 只安装一次
   if (Vue && _Vue === Vue) {
@@ -61,7 +61,7 @@ export default function (Vue) {
 
 ## Store
 
-```
+```tsx
 Vue.use(Vuex); // 1. vue的插件机制，安装vuex
 let store = new Vuex.Store({ // 2.实例化store，调用install方法
  	state,
@@ -79,7 +79,7 @@ new Vue({ // 3.注入store, 挂载vue实例
 new Vuex.Store时内部发生了什么？
 
 首先我们需要在 Store 的构造函数中对 state 进行「响应式化」。
-```
+```tsx
 constructor () {
     this._vm = new Vue({
         data: {
@@ -92,7 +92,7 @@ constructor () {
 state 会将需要的依赖收集在 Dep 中，在被修改时更新对应视图。
 
 所以我们在去值时其实返回的是这个响应式data的值
-```
+```tsx
 get state () {
     return this._vm._data.$$state
   }
@@ -105,7 +105,7 @@ get state () {
 首先是 commit 方法，我们知道 commit 方法是用来触发 mutation 的。
 从 _mutations 中取出对应的 mutation，循环执行其中的每一个 mutation。
 
-```
+```tsx
 commit (type, payload, _options) {
     const entry = this._mutations[type];
     entry.forEach(function commitIterator (handler) {
@@ -118,7 +118,7 @@ commit (type, payload, _options) {
 ## dispatch
 dispatch 同样道理，用于触发 action，可以包含异步状态。
 取出 _actions 中的所有对应 action，将其执行，如果有多个则用 Promise.all 进行包装。
-```
+```tsx
 dispatch (type, payload) {
     const entry = this._actions[type];
 

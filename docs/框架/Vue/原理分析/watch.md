@@ -37,7 +37,7 @@ Vue在设置响应式数据的时候， 遇到值是对象的，会递归遍历�
 
 上边提到了在new Vue()的时候调用了_init方法完成了初始化。在这当中有调用了initWatch方法，定义在src/core/instance/state.js中：
 
-```
+```tsx
 function initWatch (vm, watch) {
   // 遍历watch属性
   for (var key in watch) {
@@ -57,7 +57,7 @@ function initWatch (vm, watch) {
 ```
 遍历watch对象，并将每个watch[key]赋值给handler，如果是数组则遍历电影createWatcher方法，否则直接调用createWatcher方法。接下来看一下createWatcher方法的定义：
 
-```
+```tsx
 function createWatcher (vm, expOrFn, handler, options) {
   if (isPlainObject(handler)) { // 如果是对象，参数移位
     options = handler  
@@ -73,7 +73,7 @@ function createWatcher (vm, expOrFn, handler, options) {
 ```
 
 通过代码可以发现，createWatcher方法`vm.$watch(keyOrFn, handler, options) `函数，调用了`Vue.prototype.$watch`方法，定义在src/core/instance/state.js中：
-```
+```tsx
 
 Vue.prototype.$watch = function(expOrFn, cb, options = {}) {
   const vm = this
@@ -104,7 +104,7 @@ Vue.prototype.$watch = function(expOrFn, cb, options = {}) {
 
 ## 重点是new Watcher中的处理
 
-```
+```tsx
 // 简化成一个类
 class Watcher {
   constructor(vm, expOrFn, cb, options) {
@@ -139,7 +139,7 @@ class Watcher {
 
 ## 链式访问属性的特殊处理 data.a.b.c
 如果是字符就去匹配这个可以对应的方法
-```
+```tsx
 const bailRE = /[^\w.$]/  // 得是对象路径形式，如info.name
 
 function parsePath (path) {
@@ -158,7 +158,7 @@ function parsePath (path) {
 ```
 
 根据key提取到的这个getter方法，其实是key路径最后的那个属性的值，也就是属性变了执行的方法.
-```
+```tsx
 Watcher.prototype.get = function get () {     //第3135行
   pushTarget(this);                                 //将当前用户watch保存到Dep.target总=中
   var value;
@@ -191,7 +191,7 @@ Watcher.prototype.get = function get () {     //第3135行
 - 就是初始化话的时候去访问已经响应式的watch的key值
 - 然后触发响应式的依赖收集，但此时全局的Dep.target在new Watch的时候指向的是此时的user watcher
 
-```
+```tsx
 var Watcher = function (vm, key, cb, opt) {  
 
     this.vm = vm;    
@@ -226,7 +226,7 @@ var Watcher = function (vm, key, cb, opt) {
 get方法闭包中的dep收集这个新new出来的watcher，那么以后vm.name的set方法被调用的时候，就会通过dep.notify调用所收集的watcher的update方法，从而调用run方法，进而调用cb方法。
 于是 name 变化的时候，会可以通知到 watch，监听就成功了
 
-```
+```tsx
 Watcher.prototype.update = function update () {
     /* istanbul ignore else */
     console.error('watch-update!!!');
@@ -247,7 +247,7 @@ Watcher.prototype.update = function update () {
 
  ```
 
-```
+```tsx
 
  Watcher.prototype.run = function run () {
     if (this.active) {

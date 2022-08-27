@@ -4,7 +4,7 @@
 我们在需要实现一个包裹组件的时候，比如Card，里面会放内容
 
 ### 没有this.props.children我们可能需要这么写
-```
+```tsx
 class Card extends Component {
   render () {
     return (
@@ -19,7 +19,7 @@ class Card extends Component {
 ```
 使用Card的时候
 
-```
+```tsx
  <Card content={
     <div>
       <h2>React.js 小书</h2>
@@ -31,7 +31,7 @@ class Card extends Component {
 
 ### 使用props.children
 
-```
+```tsx
 class Card extends Component {
   render () {
     return (
@@ -46,7 +46,7 @@ class Card extends Component {
 ```
 使用的时候：
 
-```
+```tsx
 <Card>
     <h2>React.js 小书</h2>
     <div>开源、免费、专业、简单</div>
@@ -65,7 +65,7 @@ props.children对于我们开发者来说就是一个黑盒，我们对它可能
 看过React官方文档，你会看到说"子组件是一种不透明的数据结构"(opaque data structure)。意思就是props.children可以是任何类型，比如array, function, object等等。因为什么都可以传，所以你也不能确定传过来了什么东西。 （好像最后反的是类似数组但是不是数组的数据结构）
 
 比如这下来了一个函数，如果我们明确知道这是一个函数的还好，直接调用它
-```
+```tsx
 <Executioner>
   {(arg) => <h1>Hello World!</h1>}
 </Executioner>
@@ -81,7 +81,7 @@ class Executioner extends React.Component {
 ```
 
 但我们直接对他进行一些其他的操作可能就会导致报错，React.Children会避免参生这种错误
-```
+```tsx
 class Executioner extends React.Component {
   render() {
     const children = this.props.children

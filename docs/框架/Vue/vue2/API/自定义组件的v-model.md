@@ -5,11 +5,11 @@
 
 ## 在原生表单元素中
 
-```
+```tsx
 <input v-model='something'>
 ```
 就相当于
-```
+```tsx
 
 <input v-bind:value="something" v-on:input="something = $event.target.value">
 
@@ -19,19 +19,19 @@
 
 ## 在自定义组件中
 
-```
+```tsx
 <my-component v-model='something'></my-componment>
 
 ```
 相当于
 
-```
+```tsx
 <my-component v-bind:value='something' v-on:input='something = arguments[0]'></my-component>
 
 ```
 这时候，something接受的值就是input是事件的回掉函数的第一个参数
 所以在自定义的组件当中，要实现数据绑定，还需要使用[$emit]去触发input的事件。
-```
+```tsx
 
 //my-component
 this.$emit('input', value)
@@ -41,7 +41,7 @@ this.$emit('input', value)
 
 默认情况下，一个组件上的 v-model 会把 value 用作 prop 且把 input 用作 event，但是一些输入类型比如单选框和复选框按钮可能想使用 value prop 来达到不同的目的。使用 model 选项可以回避这些情况产生的冲突。
 
-```
+```tsx
 <!-- parent -->
 <template>
 <div class="parent">
@@ -66,7 +66,7 @@ export default {
 v-model的sthGiveChild 绑定到give属性，也就是孩子组件的props上的give是等于sthGiveChild的。
 
 然后自定义一个绑定的事件为returnBack（默认是input，本来是自动监听input来改变绑定的属性），现在我们需要主动触发returnBack这个事件来更新`v-on:returnBack='sthGiveChild = arguments[0]'`
-```
+```tsx
 <!-- child -->
 <template>
 <div class="child">

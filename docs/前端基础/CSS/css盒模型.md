@@ -21,7 +21,7 @@ box-sizing来进行切换
 - content-box 默认属性 为标准模式
 
 计算宽度的时候不包含 border pading 很烦人，而且又是默认值，业内一般采用以下代码重置样式：
-```
+```tsx
 :root {
   box-sizing: border-box;
 }

@@ -174,7 +174,7 @@ package-lock.json 不应写进 .gitignore。这点无论你是否使用 lock 都
 ### npm ci 读取package-lock.json进行下载
 
 npm ci与npm i主要有以下的区别。
-```
+```tsx
 npm i依赖package.json，而npm ci依赖package-lock.json。
 当package-lock.json中的依赖于package.json不一致时，npm ci退出但不会修改package-lock.json。
 npm ci只可以一次性的安装整个项目依赖，但无法添加单个依赖项。

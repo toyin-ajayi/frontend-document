@@ -55,7 +55,7 @@ Transform 流的例子包括：
 - zlib 流
 - crypto 流
 
-```
+```tsx
 const fs = require('fs')
 const zlib = require('zlib')
 
@@ -72,7 +72,7 @@ glup这个打包工具也是大量使用转换流来进行操作的。
 
 ![图片加载失败](./img/../../img/流的方法和事件.png)
 
-```
+```tsx
 let readStream=fs.createReadStream('./test/b.js');
 //读取文件发生错误事件
 readStream.on('error', (err) => {
@@ -107,7 +107,7 @@ readStream.on('close', () => {
 ## pipe方法
 
 pipe方法和如下等价
-```
+```tsx
 readable.on(" data", (chunk) => {
   writable.write(chunk);
 });

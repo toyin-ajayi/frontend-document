@@ -42,7 +42,7 @@ SEO是搜索引擎优化，简而言之就是针对百度这些搜索引擎，�
 ### renderToString
 React可以将React元素渲染成它的初始化Html，并且返回html字符串,在express服务端生成html,返回给浏览器渲染
 
-```
+```tsx
 const express = require('express');
 const app = express();
 const React = require('react');
@@ -62,7 +62,7 @@ app.listen(3000);
 ## 同构
 将上面的代码加上JS的事件监听服务器端渲染返给浏览器，你会发现在浏览器里无能如何点击都不会触发事件
 因为renderToString只是返回html字符串，元素对应的js交互逻辑并没有返回给浏览器，因此点击h1标签是无法响应的。
-```
+```tsx
 const App = class extends React.PureComponent{
   handleClick=(e)=>{
     alert(e.target.innerHTML);
@@ -76,7 +76,7 @@ const App = class extends React.PureComponent{
 
 > 同一份react代码在服务端执行一遍，再在客户端执行一遍。
 同一份react代码，在服务端执行一遍之后，我们就可以生成相应的html。在客户端执行一遍之后就可以正常响应用户的操作。这样就组成了一个完整的页面。所以我们需要额外的入口文件去打包客户端需要的js交互代码。
-```
+```tsx
 import express from 'express';
 import React from 'react';
 import {renderToString} from 'react-dom/server';

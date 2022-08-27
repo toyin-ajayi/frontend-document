@@ -1,6 +1,6 @@
 ## async/await中的某些诡异的执行顺序
 
-```
+```tsx
 async function async1() {
     console.log('async1 start')
     await async2()
@@ -27,7 +27,7 @@ new Promise((resolve) => {
 
 上面这段代码以前chrome71执行的结果：
 
-```
+```tsx
 async1 start
 async2
 1
@@ -37,7 +37,7 @@ async1 end
 4
 ```
 现在执行的结果：
-```
+```tsx
 async1 start
 async2
 1
@@ -53,7 +53,7 @@ async1 end
 
 ## 老版的等价代码
 
-```
+```tsx
 function async1(){
   console.log('async1 start')
   return new Promise(resolve => resolve(async2()))
@@ -91,7 +91,7 @@ new Promise((resolve) => {
 PromiseResolveThenableJob：浏览器对`new Promise(resolve => resolve(thenable))`的处理
 Promise resolve 的是`async2()`，而`async2()`返回了一个状态为`<resolved>: undefined`的 Promsie，**Promise 是一个 thenable 对象**。
 
-```
+```tsx
 let thenable = {
   then(resolve, reject) {
     console.log('in thenable');
@@ -115,7 +115,7 @@ new Promise((r) => {
 .then(() => { console.log('4') });
 ```
 结果：
-```
+```tsx
 in p0
 in p1
 in thenable
@@ -137,13 +137,13 @@ thenable ok
 **额外创建了两个Job，表现上就是后续代码被推迟了2个时序**
 
 所以thenable是promise的时候：
-```
+```tsx
 new Promise((resolve) => {
     resolve(thenable)
 })
 ```
 时序上等价于：
-```
+```tsx
 new Promise((resolve) => {
     Promise.resolve().then(() => {
         thenable.then(resolve)
@@ -152,7 +152,7 @@ new Promise((resolve) => {
 ```
 所以老版的最终代码可已转化为：
 
-```
+```tsx
 function async1(){
     console.log('async1 start');
     const p = async2();
@@ -191,7 +191,7 @@ new Promise((resolve) => {
 Promise.resolve(v)和new Promise(resolve => resolve(v))的区别：
 - v如果是Promise，就不再会去跑一遍这个Promise,直接将返回这个 promise
 题中的代码可做如下等价转换：
-```
+```tsx
 function async1(){
     console.log('async1 start');
     const p = async2();
@@ -216,7 +216,7 @@ new Promise((resolve) => {
     console.log(4)
 })
 ```
-```
+```tsx
 async1 start
 async2
 1

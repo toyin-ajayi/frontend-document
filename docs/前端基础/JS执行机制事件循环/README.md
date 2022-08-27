@@ -102,7 +102,7 @@
 
 ### ajax 普通异步请求实例
 
-```
+```tsx
 let data = [];
 $.ajax({
     url:www.javascript.com,
@@ -121,7 +121,7 @@ console.log('代码执行结束');
 
 ### Promise 的链式 then() 是怎样执行的
 
-```
+```tsx
 new Promise((r) => {
     r();
 })
@@ -145,7 +145,7 @@ new Promise((r) => {
 
 ### 普通微任务宏任务实例
 
-```
+```tsx
 setTimeout(function(){
     console.log('定时器开始啦')
 });
@@ -173,7 +173,7 @@ console.log('代码执行结束');
 
 ### async/await 执行顺序
 
-```
+```tsx
 // 1 2 6 4 3 5
 //console.log(3)其实是在async2函数返回的Promise的then语句中执行的
 async function async1() {
@@ -201,7 +201,7 @@ console.log(6);
 
 ### 地狱模式：promise 和 settimeout 事件循环实例
 
-```
+```tsx
 console.log('1');
 // 1 6 7 2 4 5 9 10 11 8 3
 // 记作 set1

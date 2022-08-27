@@ -10,7 +10,7 @@ Symbol值作为 WeakMap 的键名，都会报错。
 
 WeakMap的设计目的在于，有时我们想在某个对象上面存放一些数据，但是这会形成对于这个对象的引用。
 
-```
+```tsx
 const e1 = document.getElementById('foo');
 const e2 = document.getElementById('bar');
 const arr = [
@@ -23,7 +23,7 @@ e1和e2是两个对象，我们通过arr数组对这两个对象添加一些文�
 
 一旦不再需要这两个对象，我们就必须手动删除这个引用，否则垃圾回收机制就不会释放e1和e2占用的内存。
 
-```
+```tsx
 // 不需要 e1 和 e2 的时候
 // 必须手动删除引用
 arr [0] = null;
@@ -41,7 +41,7 @@ WeakMap 就是为了解决这个问题而诞生的，它的键名所引用的对
 ## 对比Map和WeekMap
 
 虽然我们手动将obj，进行释放，然是**target依然对obj(键)**存在强引用关系，所以这部分内存依然无法被释放。
-```
+```tsx
 let obj = { name : 'jjc'}
 const target = new Map();
 target.set(obj,'123');
@@ -49,7 +49,7 @@ obj = null;
 ```
 
 如果是WeakMap的话，target和obj存在的就是弱引用关系，当下一次垃圾回收机制执行时，这块内存就会被释放掉。
-```
+```tsx
 let obj = { name : 'jjc'}
 const target = new WeakMap();
 target.set(obj,'123');

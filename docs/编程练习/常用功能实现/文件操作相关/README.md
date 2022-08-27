@@ -6,7 +6,7 @@ Blob 全称：Binary Large Object （二进制大型对象）。
 Blob 对象表示一个不可变、原始数据的类文件对象。Blob 表示的不一定是 JavaScript 原生格式的数据。File 接口基于 Blob，继承了 blob 的功能并将其扩展使其支持用户系统上的文件。
 Blob 对象表示一个二进制文件的数据内容，通常用来读写文件，比如一个图片文件的内容就可以通过 Blob 对象读写。
 
-```
+```tsx
 const leoHtmlFragment = ['<a id="a"><b id="b">hey leo！</b></a>']; // 一个包含 DOMString 的数组
 const leoBlob = new Blob(leoHtmlFragment, {type : 'text/html'});   // 得到 blob
 
@@ -39,7 +39,7 @@ new FileReader()
 - FileReader.readAsDataURL()：开始读取指定 Blob 中的内容。一旦完成，rusult 属性中将包含一个 data:URL 格式的字符串以表示所读文件的内容。一般用于读取本地图片实现预览功能，这样子就可以减少浏览器与服务器的交互。
 - FileReader.readAsText()：开始读取指定的 Blob 中的内容。一旦完成，reuslt 属性中将包含一个字符串以表示所读取的文件内容。一般用于读取类型为 application/json 二进制数据。
 
-```
+```tsx
 var btn = document.getElementById("btn");
 btn.οnclick = function() {
   var file = flObj.files[0];
@@ -59,7 +59,7 @@ ArrayBuffer 对象是 ES6 才纳入正式 ECMAScript 规范，是 JavaScript 操
 
 - 数组是放在堆中，ArrayBuffer数组则把数据放在栈中（所以取数据时后者快）
 - ArrayBuffer初始化后固定大小，数组则可以自由增减。
-```
+```tsx
 const buffer = new BufferAarray(12);
  // 生成一个可以12个字节的连续内存，每个字节的默认值是0
 
@@ -75,7 +75,7 @@ TypedArray 是一类构造函数的总称,用这九个构造函数生成的 type
 
 ![图片无法加载](./类型化数组.png)
 
-```
+```tsx
 const buffer = new ArrayBuffer(12);// 这里面全是二进制的
 const x1 = new Int32Array(buffer);
 x1[0] = -434393088;
@@ -107,7 +107,7 @@ FormData 对象的字段类型可以是 Blob, File, 或者 string: 如果它的�
 
 增加了 ajax 对二进制文件上传的支持,直接发就行了
 
-```
+```tsx
 var xhr = new XMLHttpRequest();
 var formData = new FormData();
 var fileInput = document.getElementById("myFile");
@@ -126,7 +126,7 @@ xhr.send(formData);
 xhr = null;
 ```
 
-```
+```tsx
 
 
 FormData 提供以下实例方法。
@@ -145,7 +145,7 @@ FormData.entries() // 返回一个遍历器对象，用于for...of循环遍历�
 
 ## Content—Type
 
-```
+```tsx
 例如： Content-Type: text/html;charset:utf-8;
 
 常见的媒体格式类型如下：

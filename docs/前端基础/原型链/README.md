@@ -23,7 +23,7 @@ JavaScript 在创建对象的时候，都会有一个`[[proto]]`的内置属性�
 原型对象 prototype 上的预定义的`constructor`属性，用来引用它的函数对象。这是一种循环引用。
 经常会有下列的写法,加`constructor`是因为重写了原型对象，constructor 属性就消失了，需要自己手动补上。
 
-```
+```tsx
 function F(){};
 F.prototype = {
     constructor : F,
@@ -50,7 +50,7 @@ JavaScript 在创建对象的时候，都会有一个`[[proto]]`的内置属性�
 
 这里的 myfun()相当于上图的 Foo()函数
 
-```
+```tsx
     function myfun(x,y){
       this.x = x
       this.y = y
@@ -76,7 +76,7 @@ Array.\_\_proto\_\_ -> Function.prototype
 Function.prototype 是一个函数类型的对象
 Function.prototype.\_\_proto\_\_指向最顶层的 Object.prototype
 
-```
+```tsx
 console.log(Array)
 ```
 
@@ -101,7 +101,7 @@ console.log(Array)
 `Object`本身是构造函数，继承了`Function.prototype`;
 `Function`也是对象，继承了`Object.prototype`。
 
-```
+```tsx
 Function.__proto__ === Function.prototype // true
 Object.__proto__ === Function.prototype // true
 Object.prototype.__proto__ === null // true
@@ -110,14 +110,14 @@ Object.prototype === Object.__proto__ // false
 
 ```
 
-```
+```tsx
 Object instanceof Function // true
 Function instanceof Object // true
 ```
 
 完全没必要去纠结鸡生蛋还是蛋生鸡的问题,之所以`Function.__proto__ === Function.prototype`，是为了表明`Function`作为一个原生构造函数，本身也是一个函数对象(由自己构造出的实例)，让 `Function`这个构造函数 可以获取定义在 `Object.prototype` 上的方法。
 
-```
+```tsx
 console.log(Function)
 ```
 

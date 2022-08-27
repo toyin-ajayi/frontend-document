@@ -7,7 +7,7 @@
 
 请记住，当 ref 对象内容发生变化时，useRef 并不会通知你。变更 .current 属性不会引发组件重新渲染。如果想要在 React 绑定或解绑 DOM 节点的 ref 时运行某些代码，则需要使用回调 ref 来实现。
 
-```
+```tsx
 import React, { useRef,useState} from 'react';
 function DomInput(){
     const inputEl = useRef(null)
@@ -41,7 +41,7 @@ useRef() Hook 不仅可以用于 DOM refs。「ref」 对象是一个 current �
 **ref对象与自建一个{current：‘’}对象的区别是：useRef会在每次渲染时返回同一个ref对象，即返回的ref对象在组件的整个生命周期内保持不变。自建对象每次渲染时都建立一个新的。**
 
 这可以用来保存获取上一轮的 props 或 state
-```
+```tsx
  export default function Counter() {
     const h1 = useRef(null)
     useEffect(() => {
@@ -121,7 +121,7 @@ useRef 会在每次渲染时返回同一个 ref , 而自建一个 {current: ...}
 
 要想测量一个 DOM 节点的位置或是尺寸，你可以使用 callback ref。每当 ref 被附加到一个另一个节点，React 就会调用 callback
 
-```
+```tsx
 function MeasureExample() {
   const [height, setHeight] = useState(0);
 
@@ -272,7 +272,7 @@ const useContextMenu = (itemArr, targetSelector, deps) => {
   - 依赖项判断是在render阶段判断的，发生在在ref.current更新之前，而useEffect的effect函数执行在渲染之后。
 
 可以简单的用useState模拟useRef：
-```
+```tsx
 const useRef = (initialValue) => {
   const [ref] = useState({ current: initialValue});
   return ref

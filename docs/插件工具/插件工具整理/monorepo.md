@@ -44,7 +44,7 @@ lerna的主要功能可以分为：版本控制与发布，需要与npm(或yarn)
 ### 根目录下的package.json
 
 private是防止publish root文件夹，workspace是指定工作区,yarn workspaces 可以将多个包的 node_modules 整合成一个， 只需要执行 yarn install 就可将所有包的依赖安装。
-```
+```tsx
 {
   ...
   "private": true,
@@ -61,7 +61,7 @@ yarn会把["workspace-a", "workspace-b"]中的dep依赖自动安装到root，并
 
 ### 模块
 如果不用workspace，那得借助一大堆npm link，包多了就失去了可管理性。
-```
+```tsx
 {
   "name": "workspace-a",
   "version": "1.0.0",
@@ -73,7 +73,7 @@ yarn会把["workspace-a", "workspace-b"]中的dep依赖自动安装到root，并
 
 ```
 
-```
+```tsx
 {
   "name": "workspace-b",
   "version": "1.0.0",
@@ -90,7 +90,7 @@ workspace-b 依赖 workspace-a，将直接引用当前项目中内部的文件�
 
 ## lerna.json
 
-```
+```tsx
 {
   "version": "1.1.3",
   "npmClient": "yarn",
@@ -123,7 +123,7 @@ packages: 用以指明所有包的路径。
 
 ## lerna 和 yarn 常用等价命令
 
-```
+```tsx
 lerna bootstrap	安装依赖
 lerna clean	删除各个包下的node_modules
 lerna init	创建新的lerna库
@@ -145,7 +145,7 @@ lerna ls 列出所有公开的包（排除private=true的）
 
 ### 下载所有依赖
 
-```
+```tsx
 yarn install
 lerna bootstrap --npm-client yarn --use-workspaces  (lerna bootstrap --hoist已改为yarn workspaces?
 
@@ -160,14 +160,14 @@ npm install 为所有的包安装依赖。
 ### 安装指定依赖
 
 
-```
+```tsx
 yarn workspace packageB add packageA // 给某个package安装依赖,将packageA作为packageB的依赖进行安装
 yarn workspaces add lodash // 给所有的package安装依赖（这条指令貌似已经废除，可以用lerna add lodash代替 
 yarn add -W -D typescript // 给root 安装依赖 -W 选项显式指明在 workspace 的根目录执行，避免在根目录误操作 yarn
 ```
 
 
-```
+```tsx
 lerna add semver --scope cli-shared-utils // 为cli-shared-utils 增加 semver 模块 
 lerna add chalk // 为所有 package 增加 chalk 模块 
 lerna add wdm-lerna-demo-core --scope=wdm-lerna-demo-ui // 增加内部模块之间的依赖,执行完后 wdm-lerna-demo-ui 会增加新的 dependencies
@@ -178,13 +178,13 @@ lerna add wdm-lerna-demo-core --scope=wdm-lerna-demo-ui // 增加内部模块之
 ### 删除依赖
 
 
-```
+```tsx
 yarn workspace packageB remove packageA
 yarn workspaces remove lodash
 yarn remove -W -D typescript
 ```
 
-```
+```tsx
 lerna 没有直接的删除指令，不过可以如下操作
 lerna exec -- yarn remove lodash
 ```
@@ -192,7 +192,7 @@ lerna exec -- yarn remove lodash
 
 ### 清理环境
 
-```
+```tsx
 lerna clean # 清理所有的node_modules
 yarn workspaces run clean # 执行所有package的clean操作
 
@@ -222,7 +222,7 @@ lerna有两种管理模式，固定模式和独立模式
 ### --include-dependencies
 无论--scope、-ignore或--single，在运行命令时包括所有可传递的依赖项。
 与接受--scope（bootstrap、clean、ls、run、exec）的任何命令结合使用。确保任何作用域包（通过--scope或--ignore）的所有依赖项（和dev依赖项）也被操作。
-```
+```tsx
 $ lerna bootstrap --scope my-component --include-dependencies
 # my-component及其所有依赖项将被引导 bootstrapped 
 

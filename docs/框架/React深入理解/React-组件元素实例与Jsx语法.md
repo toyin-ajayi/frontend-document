@@ -2,7 +2,7 @@
 ## React其实是一个对象
 
 提供了一些API，其中有一个createElement就是用来生成Element对象，描述Virtual DOM的
-```
+```tsx
 var React = {
   Children: {
     map: ReactChildren.map,
@@ -32,7 +32,7 @@ var React = {
 
 ## React的JSX语法
 
-```
+```tsx
 const element = (
   <h1 className="greeting">
     Hello, world!
@@ -41,7 +41,7 @@ const element = (
 ```
 借助babel-plugin-transform-react-jsx，上面的JSX将被转译成：
 
-```
+```tsx
 const element = React.createElement(
   'h1',
   {className: 'greeting'},
@@ -49,7 +49,7 @@ const element = React.createElement(
 );
 ```
 React.createElement是在做什么？看下相关部分代码：
-```
+```tsx
 var ReactElement = function(type, key, ref, self, source, owner, props) {
   var element = {
     $$typeof: REACT_ELEMENT_TYPE,
@@ -85,7 +85,7 @@ ReactElement.createElement = function(type, config, children) {
 
 ## Elements Tree 
 由源码可知ReactElement.createElement最终返回了一个对象，这个对象大概是这样的形状：
-```
+```tsx
 {
   type,
   key,
@@ -96,7 +96,7 @@ ReactElement.createElement = function(type, config, children) {
 ```
 我们知道了react的render方法是返回一个Elements Tree
 
-```
+```tsx
 class Header extends Component {
   render () {
     return (
@@ -113,7 +113,7 @@ ReactDOM.render(
 )
 ```
 被JSX解析：
-```
+```tsx
 class Header extends Component {
   render () {
     return (
@@ -150,7 +150,7 @@ ReactDOM.render(
 
 当一个元素类型type是字符串(string)时，该元素表示一个DOM节点,其类型字符串是该DOM节点的标签名称,另外一个属性props对应地表示DOM节点属性。这是React要往屏幕上渲染的内容。例子如下 :
 
-```
+```tsx
 {
   type: 'button',
   props: {
@@ -168,7 +168,7 @@ ReactDOM.render(
 
 描述的HTML如下
 
-```
+```tsx
 <button class='button button-blue'>
   <b>
     OK!
@@ -181,7 +181,7 @@ ReactDOM.render(
 ## 组件元素 Component Elements
 
 然而，元素类型type也可以是对应到一个React组件的一个函数或者类，嵌套的话，React会重复第一种的过程，直到它知道页面上所有的组件想渲染出什么DOM nodes。
-```
+```tsx
 class Home extends React.Component {
   render() {
     return (
@@ -215,7 +215,7 @@ class Home extends React.Component {
 
 ```
 React 知道如何渲染type = 'div' 和 type = 'p' 的节点，但不知道如何渲染type=Welcome的节点，当React 发现Welcome 是一个React 组件时（首先Welcome首字母为大写，内部好像会使用一个typeof来看是不是function），会根据Welcome组件render函数返回的React 元素决定如何渲染Welcome节点。Welcome组件返回的React 元素为：
-```
+```tsx
 {
   type: 'h1',
   props: {
@@ -226,7 +226,7 @@ React 知道如何渲染type = 'div' 和 type = 'p' 的节点，但不知道如�
 ```
 
 描述组件的元素也还是元素，跟描述DOM节点的元素一样。他们也可以跟其他元素嵌套或者混在一起使用。
-```
+```tsx
 const DeleteAccount = () => ({
   type: 'div',//DOM元素
   props: {
@@ -255,7 +255,7 @@ const DeleteAccount = () => ({
 ## 组件在虚拟树中的比对
 
 如果type是对函数或类的引用（即常规的React组件），并且我们启动了tree diff的过程，则React会持续地去检查组件的内部逻辑，以确保render返回的值不会改变（类似对副作用的预防措施）。对树中的每个组件进行遍历和扫描 —— 是的，在复杂的渲染场景下，成本可能会非常昂贵！
-```
+```tsx
 // before update:
 { type: Welcome , props: { className: 'cn' } }
 

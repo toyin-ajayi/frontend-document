@@ -25,7 +25,7 @@
 ## 基本案例介绍
 背景:成都老妈兔头真香,买的人太多需要预定才能买到，所以顾客就等于了订阅者，订阅老妈兔头。
 而老妈兔头有货了得通知顾客来买啊，不然没有钱赚，得通知所有的订阅者有货了来提兔头，这时老妈兔头这家店就是发布者。
-```
+```tsx
 /*兔头店*/        
 var shop={
     listenList:[],//缓存列表
@@ -58,7 +58,7 @@ shop.trigger("中辣");
 
 ```
 
-```
+```tsx
 //console
 通知小明，中辣味道的好了
 通知小龙，中辣味道的好了
@@ -73,7 +73,7 @@ shop.trigger("中辣");
 - addlisten方法用来把订阅回调函数fn都加到缓存列表listenList中
 - trigger方法取到arguments里第一个当做key，根据key值去执行对应缓存列表中的函数
 - remove方法可以根据key值取消订阅
-```
+```tsx
 /*兔头店*/        
 var shop={
     listenList:{},//缓存对象
@@ -169,7 +169,7 @@ shop.trigger("特辣");
 发布-订阅的优势很明显，做到了时间上的解耦和对象之间的解耦，从架构上看，MVC，MVVM都少不了发布-订阅的参与。
 同样的node中的EventEmitter也是发布订阅的
 
-```
+```tsx
 class EventEmitter{
     constructor(){
         this._events  = this._events||new Map()

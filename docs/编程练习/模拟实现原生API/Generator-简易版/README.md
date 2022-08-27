@@ -26,7 +26,7 @@ yield运算必然不能使该函数退出（或者说必须不能让数据帧从
 tor 是 foo3() 生成器（内部的）迭代过程的一个句柄。从引擎内的实现过程来说，tor 其实包括状态（state）和执行上下文（context）两个信息，它是GeneratorFunction.prototype的一个实例。这个 tor 所代表的生成器在创建出来的时候将立即被挂起，因此状态值（state）初始化置为"启动时挂起（suspendedStart）"，而当在调用 tor.next() 因yield运算而导致的挂起称为"Yield 时挂起（suspendedYield）"。
 
 另一个信息，即 context，就指向 tor 被创建时的上下文。上面已经说过了，所谓上下文一定指的是一个外部的、内部的或由全局 / 模块入口映射成的函数。接下来，当 tor.next() 执行时，tor 所包括的 context 信息被压到栈顶执行；当 tor.next() 退出时，这个 context 就被从栈上移除。这个过程与调用 eval() 是类似的，总是能保证指定栈是全局唯一活动的一个栈。
-```
+```tsx
 
 function* foo3() {
   yield 10;
@@ -118,7 +118,7 @@ function gen$(_context) {
 
 ## Babel如何编译Generator函数
 
-```
+```tsx
 function* foo() {
   yield 'result1'
   yield 'result2'
@@ -131,7 +131,7 @@ console.log(gen.next().value)
 console.log(gen.next().value)
 ```
 编译结果：
-```
+```tsx
 var _marked =
 /*#__PURE__*/
 regeneratorRuntime.mark(foo);
@@ -167,7 +167,7 @@ console.log(gen.next().value);
 ```
 
 详细结果
-```
+```tsx
 (function() {
   var ContinueSentinel = {};
 

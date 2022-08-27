@@ -97,7 +97,7 @@ Host 是 HTTP 1.1 协议中新增的一个请求头，不传会报 400,主要用
 
 默认再用 Nginx 反向代理请求的时候会丢失 Host，所以需要加上前面三句保证 host 不会丢失
 
-```
+```tsx
 location /test {
             proxy_set_header  Host  $host;
             proxy_set_header  X-real-ip $remote_addr;

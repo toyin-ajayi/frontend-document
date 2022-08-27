@@ -112,7 +112,7 @@ JavaScript 引擎是单线程运行的，JavaScript 中耗时的 I/O 操作都�
 创建 Worker 时，JS 引擎向浏览器申请开一个子线程（子线程是浏览器开的，完全受主线程控制，而且不能操作 DOM）
 JS 引擎线程与 worker 线程间通过特定的方式通信（postMessage API，需要通过序列化对象来与线程交互特定的数据）
 
-```
+```tsx
 //主线程 main.js
 var worker = new Worker("worker.js");
 worker.onmessage = function(event){
@@ -272,7 +272,7 @@ Javascript
 
 ### 实例1 合并样式
 避免逐条改变样式，使用类名去合并样式
-```
+```tsx
 const container = document.getElementById('container')
 container.style.width = '100px'
 container.style.height = '200px'
@@ -281,7 +281,7 @@ container.style.color = 'red'
 ```
 
 将这段代码用 类名去合并
-```
+```tsx
 .basic_style {
   width: 100px;
   height: 200px;
@@ -293,7 +293,7 @@ container.classList.add('basic_style')
 ```
 ### 实例2 将 DOM “离线”
 
-```
+```tsx
 let container = document.getElementById('container')
 container.style.display = 'none'
 container.style.width = '100px'
@@ -329,7 +329,7 @@ container.style.display = 'block'
 ### 实例3 不要经常去访问即时刷新flush的属性
 要经常访问会引起浏览器flush队列的属性，如果你确实要访问，利用缓存
 
-```
+```tsx
 // 别这样写，大哥
 for (let i = 0; i < 10; i++) {
   el.style.left = el.offsetLeft + 5 + "px";

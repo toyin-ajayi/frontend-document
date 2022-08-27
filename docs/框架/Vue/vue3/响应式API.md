@@ -30,7 +30,7 @@ Ref的作用：
 
 toRefs 用于将一个 reactive 对象转化为属性全部为 ref 对象的普通对象
 
-```
+```tsx
 const state = reactive({
   foo: 1,
   bar: 2
@@ -47,7 +47,7 @@ console.log(state.foo) // 3
 ```
 
 当从组合式函数返回响应式对象时，toRefs 非常有用，这样消费组件就可以在不丢失响应性的情况下对返回的对象进行分解/扩散：
-```
+```tsx
 function useFeatureX() {
   const state = reactive({
     foo: 1,

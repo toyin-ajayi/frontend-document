@@ -70,7 +70,7 @@ plugin 用于扩展webpack的功能。它直接作用于 webpack，扩展了它�
 extension: 指定extension之后可以不用在require或是import的时候加文件扩展名,会依次尝试添加扩展名进行匹配
 alias: 配置别名可以加快webpack查找模块的速度
 
-```
+```tsx
 resolve: {
     extension: ["", ".js", ".jsx"],
     alias: {
@@ -84,7 +84,7 @@ resolve: {
 
 ## noParse（无需解析内部依赖的包）
 
-```
+```tsx
 
 module：{
     noParse：/jquery/
@@ -111,7 +111,7 @@ presets的"@babel/preset-env"里可以设置useBuiltIns来动态载入polyfill(�
 ### 错误实例
 
 下面写法看似逻辑是对的，其实在报错，因为编译器的执行不是css-loader->style-loader->
-```
+```tsx
 module: {
     rules: [
       {
@@ -132,7 +132,7 @@ module: {
 在Uninx有pipeline的概念，平时应该也有接触，比如 ps aux | grep node，这些都是从左往右的。
 
 但是在函数式编程中有组合的概念，我们数学中常见的f(g(x))，在函数式编程一般的实现方式是从右往左，如
-```
+```tsx
 const compose = (...fns) => x => fns.reduceRight((v, f) => f(v), x);
 const add1 = n => n + 1; //加1
 const double = n => n * 2; // 乘2
@@ -146,7 +146,7 @@ add1ThenDouble(2); // 6
 这里可以看到我们先执行的加1，然后执行的double，在compose中是采用reduceRight，所以我们传入参数的顺序编程了先传入double，后传入add1
 
 那么其实也可以实现从左往右
-```
+```tsx
 const pipe = (...fns) => x => fns.reduce((v, f) => f(v), x);
 const add1ThenDouble = pipe(
   add1,
@@ -158,7 +158,7 @@ add1ThenDouble(2); // 6
 所以只不过webpack选择了函数式编程的方式，所以loader的顺序编程了从右往左
 
 ### 完整的配置
-```
+```tsx
       {
         test: /\.less$/,
         use: [
@@ -212,7 +212,7 @@ CDN的全称是Content Delivery Network，即内容分发网络。
 
 使用公共cdn。webpack中可以利用externals属性，将不希望打包的第三方公共库独立出来在html中全局引入，这样的优势在于加快了编译打包的速度，更重要的是减小了打包后文件的大小，可以利用公共cdn引入第三方库。
 
-```
+```tsx
 externals: {
     'jquery': 'jQuery',
     'react': 'React',
@@ -222,7 +222,7 @@ externals: {
 ```
 
 然后在模板中加上链接
-```
+```tsx
 <!DOCTYPE html>
 <html>
   <head>
@@ -245,7 +245,7 @@ externals: {
 
 ## 首屏渲染loading
 使用 html-webpack-plugin 来帮助我们自动插入 loading
-```
+```tsx
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
 
@@ -273,7 +273,7 @@ var webpackConfig = {
 ```
 
 模板中：
-```
+```tsx
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -480,7 +480,7 @@ optimization: {
 #### 自定义一个cacheGroup + test 去匹配
 
 
-```
+```tsx
 // webpack.config.js
 entry: {
     indexA: path.join(__dirname, 'src/indexA.js')

@@ -9,7 +9,7 @@
 注意：
 
 使用了PureComponent后，重复setSate相同的值，比如下面这样：
-```
+```tsx
  handleClick = () => {
     console.log(`当前组件状态是否是上一次状态：${this.state === lastState}`); // 只要被setState后的都是false，不论值是否改变
 
@@ -26,7 +26,7 @@
 ## useSate 与 setState 的差异2
 
 ### state创建一个按钮，点击后让计数器自增，但是延时 3 秒后再打印出来
-```
+```tsx
 function Counter() {
   const [count, setCount] = useState(0);
 
@@ -48,7 +48,7 @@ function Counter() {
 ```
 
 在三秒内连续点击三次，那么 count 的值最终会变成 3，而随之而来的输出结果
-```
+```tsx
 0
 1
 2
@@ -56,7 +56,7 @@ function Counter() {
 ```
 如何每次都打印3？，可以采用useRef
 
-```
+```tsx
 function Counter() {
   const count = useRef(0);
 
@@ -80,7 +80,7 @@ function Counter() {
 ### 使用 Class Component 方式实现一遍呢？
 
 
-```
+```tsx
 class Counter extends Component {
   state = { count: 0 };
 
@@ -105,7 +105,7 @@ class Counter extends Component {
 
 ```
 嗯，结果应该等价吧？3 秒内快速点击三次按钮，这次的结果是：
-```
+```tsx
 3
 3
 3

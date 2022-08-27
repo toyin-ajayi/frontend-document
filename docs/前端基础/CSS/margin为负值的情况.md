@@ -41,7 +41,7 @@
 
 如果设置的 margin 的方向与浮动的方向相同，那么，元素会往对应的方向移动对应的距离。
 
-```
+```tsx
 .elem {
     float: right;
     margin-right: -100px;
@@ -51,7 +51,7 @@
 
 
 如果设置 margin 的方向与浮动的方向相反，则元素本身不动，元素之前或者之后的元素会向该元素的方向移动相应的距离。
-```
+```tsx
 .elem {
     float: right;
     margin-left: -100px;

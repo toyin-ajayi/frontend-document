@@ -123,7 +123,7 @@ tomcat 中 session 的默认失效时间为 30 分钟，可调用调用 session 
 
 我们可以创建一个新的 CooKie，该 Cookie 的名字为 jsession，path 为 WEB 应用的虚拟路径，并设置 setMaxAge()的毫秒值，让 Cookie 保存在客户端的硬盘中，这时即使多次对浏览器进行关开操作是不会清除客户端硬盘文件的。所以，Cookie 就不丢失了，SessionId 也不会随浏览器关闭而丢失。
 
-```
+```tsx
 Cookie cookie = new Cookie("JSESSIONID",session.getId());
           cookie.setPath(request.getContextPath()+"/");
           cookie.setMaxAge(30*60);

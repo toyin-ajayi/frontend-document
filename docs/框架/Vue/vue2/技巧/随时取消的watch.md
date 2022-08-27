@@ -1,6 +1,6 @@
 ## 随时监听，随时取消，了解一下$watch
 
-```
+```tsx
 export default {
   data() {
     return {

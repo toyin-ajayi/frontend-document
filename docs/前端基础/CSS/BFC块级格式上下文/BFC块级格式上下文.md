@@ -33,7 +33,7 @@ BFC(Block formatting context)直译为"块级格式化上下文"。它是一个�
 ![图片描述](/img/blog/14/1.png)
 ![图片描述](/img/blog/14/2.png)
 
-```
+```tsx
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,7 +76,7 @@ BFC(Block formatting context)直译为"块级格式化上下文"。它是一个�
 ![图片描述](/img/blog/14/3.png)
 ![图片描述](/img/blog/14/4.png)
 
-```
+```tsx
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -119,7 +119,7 @@ BFC(Block formatting context)直译为"块级格式化上下文"。它是一个�
 
 解决兄弟元素的时候不能直接选择所有兄弟然后创建BFC，因为这样也处于同一个 BFC(父节点)，元素还是会相互影响，发生 margin collapse，所有我们可以再套一层box就行了，都不需要创建BFC
 
-```
+```tsx
 <div>
     <div class="box">
         <div class='hang'>bbbbbbbbbbbbbb</div>
