@@ -68,6 +68,17 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      algolia: {
+        // Algolia 提供的应用 ID
+        appId: 'NVPHZD3LTK',
+        //  公开 API 密钥：提交它没有危险
+        apiKey: 'fc538fc0538006cd18547e92871b04f9',
+        indexName: 'jcjian',
+        // 可选：见下文
+        contextualSearch: true,
+        // 可选：搜索页面的路径，默认启用（可以用 `false` 禁用）
+        searchPagePath: 'search',
+      },
       docs: {
         sidebar: {
           autoCollapseCategories: true,
@@ -77,7 +88,7 @@ const config = {
         title: "JcJian's Site",
         logo: {
           alt: "My Site Logo",
-          src: "img/logo.svg",
+          src: "img/logo.jpeg",
         },
         items: [
           {
