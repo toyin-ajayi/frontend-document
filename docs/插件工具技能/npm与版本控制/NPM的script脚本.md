@@ -72,3 +72,24 @@ npm run script1.js & npm run script2.js
 ```
 
  串行命令执行过程中，如果前面的命令失败，后面命令会全部终止。所以前面的命令一般都是那种不可交换的，返回ture或者false的。示例很简单，自己试下就好。
+
+ ## 附加参数
+
+ 向 npm 脚本传入参数，要使用--标明
+
+ ```bash
+ "lint": "jshint **.js"
+ ```
+
+ 向上面的npm run lint命令传入参数，必须写成下面这样。
+
+```bash
+$ npm run lint --  --reporter checkstyle > checkstyle.xml
+```
+
+也可以在package.json里面再封装一个命令。
+
+```
+"lint": "jshint **.js",
+"lint:checkstyle": "npm run lint -- --reporter checkstyle > checkstyle.xml"
+```
