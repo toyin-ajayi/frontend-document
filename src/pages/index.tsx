@@ -31,8 +31,8 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       wrapperClassName={styles.layout}
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`${siteConfig.title}`}
+      description="前端相关知识总结与笔记">
         <div className={styles.content}>
           <HomepageHeader/>
         </div>
