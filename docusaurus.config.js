@@ -9,11 +9,11 @@ const sidebarTransform = require("./src/utils/sidebarTransform");
 const config = {
   title: "JcJian's fontend document",
   tagline: "构建前端知识体系",
-  url: "https://fontend-document.vercel.app/",
+  url: "https://www.qwerasd.fun/",
   baseUrl: "/",
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
-  favicon: "img/favicon.ico",
+  favicon: "img/logo.jpeg",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -85,9 +85,9 @@ const config = {
         },
       },
       navbar: {
-        title: "JcJian's Site",
+        title: "JcJian",
         logo: {
-          alt: "My Site Logo",
+          alt: "Logo",
           src: "img/logo.jpeg",
         },
         items: [

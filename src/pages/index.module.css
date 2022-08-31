@@ -3,6 +3,22 @@
  * and scoped locally.
  */
 
+ .layout {
+  display: flex;
+  flex-direction: column;
+ }
+
+ .content {
+  flex: 1;
+  display: flex;
+  background-color: none;
+  background-image: url(/static/img/太空人.gif);
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  align-items: center;
+  justify-content: center;
+ }
+
 .heroBanner {
   padding: 4rem 0;
   text-align: center;
