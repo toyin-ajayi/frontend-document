@@ -6,7 +6,7 @@ tags: [前端相关, 笔记总结, 知识梳理]
 ---
 
 :::tip
-该文档网站只披露.md文本相关的，部分总结、知识的梳理代码实现请参考https://github.com/jianjiachenghub/fontend-document
+该文档网站只披露.md文本相关的，部分总结、知识的梳理代码实现请参考https://github.com/jianjiachenghub/frontend-document
 
 或者点击页面左下方的编辑跳转到源码仓库查看其余如.js .html等
 :::

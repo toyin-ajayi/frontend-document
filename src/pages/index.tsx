@@ -12,8 +12,8 @@ function HomepageHeader() {
   return (
     <header className={clsx(styles.heroBanner)}>
       <div className="container">
-        <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <h1 className="hero__title" style={{color: 'white', textShadow: '0 0 10px black'}}>{siteConfig.title}</h1>
+        <p className="hero__subtitle" style={{color: 'white', textShadow: '0 0 7px black'}}>{siteConfig.tagline}</p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"

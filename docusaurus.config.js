@@ -7,7 +7,7 @@ const sidebarTransform = require("./src/utils/sidebarTransform");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "JcJian's fontend document",
+  title: "JcJian's frontend document",
   tagline: "构建前端知识体系",
   url: "https://www.qwerasd.fun/",
   baseUrl: "/",
@@ -18,7 +18,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "jianjiacheng", // Usually your GitHub org/user name.
-  projectName: "fontend-document", // Usually your repo name.
+  projectName: "frontend-document", // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -38,7 +38,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            "https://github.com/jianjiachenghub/fontend-document/tree/main/",
+            "https://github.com/jianjiachenghub/frontend-document/tree/main/",
           async sidebarItemsGenerator({
             defaultSidebarItemsGenerator,
             ...args
@@ -56,7 +56,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            "https://github.com/jianjiachenghub/fontend-document/tree/main/",
+            "https://github.com/jianjiachenghub/frontend-document/tree/main/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -85,7 +85,7 @@ const config = {
         },
       },
       navbar: {
-        title: "JcJian",
+        title: "Space frontend",
         logo: {
           alt: "Logo",
           src: "img/logo.jpeg",
@@ -98,7 +98,7 @@ const config = {
           },
           ...require("./src/utils/files.js").navbars,
           {
-            href: "https://github.com/jianjiachenghub/fontend-document",
+            href: "https://github.com/jianjiachenghub/frontend-document",
             label: "GitHub",
             position: "right",
           },
