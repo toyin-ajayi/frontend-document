@@ -29,7 +29,7 @@ A = decorator(A) || A;
 
 如果觉得一个参数不够用，可以在装饰器外面再封装一层函数。
 
-```TS
+```ts
 function testable(isTestable) {
   return function(target) {
     target.isTestable = isTestable;
@@ -49,14 +49,14 @@ MyClass.isTestable // false
 
 
 类似于defineProperty
-```TS
+```ts
 class Person {
   @readonly
   name() { return `${this.first} ${this.last}` }
 }
 ```
 
-```TS
+```ts
 function readonly(target, name, descriptor){
   // descriptor对象原来的值如下
   // {

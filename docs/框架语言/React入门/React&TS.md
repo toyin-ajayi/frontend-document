@@ -77,7 +77,7 @@ const ref2 = useRef<HTMLElement | null>(null);
 HTMLElement 有很多具体的类型：
 
 可以去react目录下的global.d,ts下面去查看
-```TS
+```ts
 interface HTMLElement extends Element { }
 interface HTMLAnchorElement extends HTMLElement { }
 interface HTMLAreaElement extends HTMLElement { }
@@ -456,7 +456,7 @@ export function inject<TProps, TInjectedKeys extends keyof TProps>(
 ## 组件与原生属性混合
 
 想封装一些button组件和input组件，会注入一些属性，然后原生的属性也要支持
-```TS
+```ts
 type NativeButtonProps = ButtonHTMLAttributes<HTMLElement> & BaseButtonProps
 type NativeAriaProps = AnchorHTMLAttributes<HTMLElement> & BaseButtonProps
 ```
