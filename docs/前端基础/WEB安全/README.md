@@ -74,6 +74,27 @@ DOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行
 
 > [https://juejin.im/post/5bac9e21f265da0afe62ec1b](https://juejin.im/post/5bac9e21f265da0afe62ec1b)
 
+### 内容安全策略 ( CSP )
+
+内容安全策略 (CSP) 是一个额外的安全层，用于检测并削弱某些特定类型的攻击，包括跨站脚本 (XSS (en-US)) 和数据注入攻击等。无论是数据盗取、网站内容污染还是散发恶意软件，这些攻击都是主要的手段。配置你的网络服务器返回 Content-Security-Policy HTTP 头部即可
+
+CSP 通过指定有效域——即浏览器认可的可执行脚本的有效来源——使服务器管理者有能力减少或消除 XSS 攻击所依赖的载体。一个 CSP 兼容的浏览器将会仅执行从白名单域获取到的脚本文件，忽略所有的其他脚本 (包括内联脚本和 HTML 的事件处理属性)。
+
+```tsx
+Content-Security-Policy: default-src 'self'; img-src *; media-src media1.com media2.com; script-src userscripts.example.com
+```
+
+- default-src默认均来自站点的同一个源 (不包括其子域名)
+- 图片可以从任何地方加载 (注意 "*" 通配符)。
+- 多媒体文件仅允许从 media1.com 和 media2.com 加载 (不允许从这些站点的子域名)。
+- 可运行脚本仅允许来自于 userscripts.example.com。
+
+CSP 可以部署为*报告 (report-only)*模式。在此模式下，CSP 策略不是强制性的，但是任何违规行为将会报告给一个指定的 URI 地址
+
+```tsx
+Content-Security-Policy: default-src 'self'; report-uri http://reportcollector.example.com/collector.cgi
+```
+
 ### HttpOnly 防止劫取 Cookie
 
 具体含义就是，如果某个 Cookie 带有 HttpOnly 属性，那么这一条 Cookie 将被禁止读取，也就是说，JavaScript 读取不到此条 Cookie，不过在与服务端交互的时候，Http Request 包中仍然会带上这个 Cookie 信息，即我们的正常交互不受影响。
