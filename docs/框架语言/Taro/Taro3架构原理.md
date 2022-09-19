@@ -234,3 +234,46 @@ Taro Next 的更新是 DOM 级别的，比 Data 级别的更新更加高效，�
 - 3. 与 remax 一样，增加了镜像树，如果去掉镜像树可能需要自己维护 react-reconciler 这个包，也就是在 commitRoot 的中处理 effect 的时候就记录下路径和数据，而不需要去构建镜像树了，也就是需要重写这个 commitRoot。但是这又直接导致了后期需要根据react的更新而不断迭代，是否可以无侵入做到这一步？
 
 
+## Taro的跨平台组件设计
+
+只用一份代码构建的组件库能兼容所有的 web 开发框架：Web Components
+使用原生语法去编写 Web Components 相当繁琐，因此我们需要一个框架帮助我们提高开发效率和开发体验：Stencil
+
+Stencil 是一个可以生成 Web Components 的编译器。它糅合了业界前端框架的一些优秀概念，如支持 Typescript、JSX、虚拟 DOM 等。
+
+```tsx
+import { Component, Prop, State, h } from '@stencil/core'
+
+@Component({
+  tag: 'my-component'
+})
+export class MyComponent {
+  @Prop() first = ''
+  @State() last = 'JS'
+
+  componentDidLoad () {
+    console.log('load')
+  }
+
+  render () {
+    return (
+      <div>
+        Hello, my name is {this.first} {this.last}
+      </div>
+    )
+  }
+}
+
+<my-component first='Taro' />
+
+```
+
+除此之外还需要处理 React 与Web Component的一些兼容性问题
+- React 使用 setAttribute 的形式给 Web Components 传递参数。当参数为原始类型时是可以运行的，但是如果参数为对象或数组时，由于 HTML 元素的 attribute 值只能为字符串或 null，最终给 WebComponents 设置的 attribute 会是 attr="[object Object]"。
+- 因为 React 有一套合成事件系统，所以它不能监听到 Web Components 发出的自定义事件
+
+解决方案参考https://docs.taro.zone/blog/2020-4-13-taro-components#%E5%9C%A8-react-%E4%B8%8E-vue-%E4%B8%AD%E4%BD%BF%E7%94%A8-stencil
+
+## 参考
+
+- https://docs.taro.zone/blog/2020-01-02-gmtc
