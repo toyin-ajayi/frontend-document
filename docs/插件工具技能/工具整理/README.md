@@ -64,6 +64,10 @@ module.exports = {
 
 ```
 
+## Copilot
+
+Copilot 是由微软、OpenAI、GitHub 三家联合打造的 AI 编程辅助工具，GitHub 学生包免费使用
+
 ## 更多
 - Tailwind CSS https://www.tailwindcss.cn/docs/installation
 - normalize.css 摸评浏览器之间的样式差异，解决部分原有样式不合理的地方
