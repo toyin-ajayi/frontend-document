@@ -1,5 +1,7 @@
 [Typescript 官方文档 EN](https://www.typescriptlang.org/docs/)
 
+[Typescript 官方文档 社区中文翻译](https://github.com/zhongsp/TypeScript)
+
 [冴羽大大的TS文档](https://ts.yayujs.com/)
 
 [详细教程](https://ts.xcatliu.com/basics/declaration-files.html#npm-%E5%8C%85)
