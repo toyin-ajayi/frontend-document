@@ -17,14 +17,18 @@ Cookie 主要用于以下三个方面：
 
 ### 主域名不同
 
-比如在www.baidu.com下开启控制台，然后写入Cookie：
+`比如在www.baidu.com下开启控制台然后写入Cookie`
+
 ```tsx
 document.cookie='myname=huaminlai;path=/;domain=.google.com';// 无效
 ```
+
 上面这种写法是不会生效的，应为在www.baidu.com这个域下，只能设置百度网页的Cookie：
+
 ```tsx
 document.cookie='myname=laihuamin;path=/;domain=.baidu.com';// 有效
 ```
+
 ### 次级域名不同
 
 虽然网站images.google.com与网站www.google.com同属于Google，但是域名不一样，二者同样不能互相操作彼此的Cookie。而且path也必须一样才能相互访问彼此的cookie，需要注意不同浏览器对path访问规定不一样，对于chrome，path必须为当前目录，设置为其他目录无效，只能当前页面只能访问当前目录及其以上的cookie
