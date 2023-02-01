@@ -2,7 +2,7 @@
 
 [Local success](../Local/Local.md)
 
-www.baidu.com
+比如在www.baidu.com下开启控制台，然后写入Cookie：
 
 ## Vercel
 
